@@ -14,8 +14,8 @@ absl.logging.set_verbosity(absl.logging.ERROR)
 
 
 def main():
-	data = ''  # choose an input file.
-	model = ''  # choose a trained model here
+	data = './data/uniform_len25-30_n1000.fa-eval'  # choose an input file.
+	model = './profile_models/sm3_l30_005'  # choose a trained model here
 	outdir = f"predictions/{model}-{data}"
 
 	evaluate = True
@@ -28,8 +28,8 @@ def main():
 	tgen = PaddedMatrixEncoding(batch_size, seqs, dbrs)
 
 	m = load_model(model,
-					   custom_objects={"mcc": mcc, "f1": f1,
-									   "sensitivity": sensitivity})
+				   custom_objects={"mcc": mcc, "f1": f1,
+								   "sensitivity": sensitivity})
 	if evaluate:
 		print(m.evaluate(tgen))
 

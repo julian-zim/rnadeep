@@ -15,6 +15,23 @@ def one_hot_encode(char):
 		return np.array([0, 0, 0, 0])
 
 
+def profile_hot_encode(char):
+	char = char.upper()
+
+	match char:
+		case 'A':
+			return 0
+		case 'C':
+			return 1
+		case 'G':
+			return 2
+		case 'U':
+			return 3
+
+	print('WARNING! TRYING TO USE NOT IMPLEMENTED FEATURE OF INDELS')
+	return 4  # indel (TODO)
+
+
 def one_hot_matrix(seq):
 	matrix = np.zeros((len(seq), len(seq), 8), dtype=int)
 	for i, char_i in enumerate(seq):
@@ -22,7 +39,22 @@ def one_hot_matrix(seq):
 		for j, char_j in enumerate(seq):
 			hot_j = one_hot_encode(char_j)
 			matrix[i][j] = np.concatenate((hot_i, hot_j))
-			matrix[j][i] = np.concatenate((hot_j, hot_i))
+			matrix[j][i] = np.concatenate((hot_j, hot_i))  # TODO: unnecessary?
+	return matrix
+
+
+def profile_hot_matrix(ali):
+	matrix = np.zeros((len(ali[0]), len(ali[0]), 16), dtype=float)
+	seq_count = len(ali)
+
+	for i in range(len(ali[0])):
+		for j in range(len(ali[0])):
+			for k in range(seq_count):
+				char_i = ali[k][i]
+				char_j = ali[k][j]
+				index = profile_hot_encode(char_i) * 4 + profile_hot_encode(char_j)
+				matrix[i][j][index] += 1 / seq_count
+
 	return matrix
 
 
@@ -54,16 +86,16 @@ def make_pair_table(ss, base=0, chars=['.']):
 		raise Exception(f"unexpected value in make_pair_table: (base = {base})")
 
 	for i, char in enumerate(ss, base):
-		if (char == '('):
+		if char == '(':
 			stack.append(i)
-		elif (char == ')'):
+		elif char == ')':
 			try:
 				j = stack.pop()
 			except IndexError as e:
 				raise Exception("Too many closing brackets in secondary structure")
 			pt[i] = j
 			pt[j] = i
-		elif (char not in set(chars)):
+		elif char not in set(chars):
 			raise Exception(f"unexpected character in sequence: '{char}'")
 	if stack != []:
 		raise Exception("Too many opening brackets in secondary structure")
@@ -71,7 +103,7 @@ def make_pair_table(ss, base=0, chars=['.']):
 
 
 def base_pair_matrix(ss):
-	# ptable[i] = j if (i.j) pair or 0 if i is unpaired, 
+	# ptable[i] = j if (i.j) pair or 0 if i is unpaired,
 	# ptable[0] contains the length of the structure.
 	# ptable = RNA.ptable(ss)
 	ptable = make_pair_table(ss, 1)
@@ -120,6 +152,30 @@ def encode_padded_sequence_matrix(sequences, max_length=None):
 
 		# Sequence = 1, padding = 0
 		mask = np.ones((len(seq), len(seq)))
+		mask = np.pad(mask, ((0, wl), (0, wl)), 'constant')
+		masks[i] = mask
+
+	return xs, masks
+
+
+def encode_padded_alignment_matrix(alignments, max_length=None):
+	# TODO: check whether all sequences are the same length in the alignment (I guess that can be assumed?)
+	if max_length is None:
+		max_length = max(len(ali[0]) for ali in alignments)
+	batch_size = len(alignments)
+
+	xs = np.zeros((batch_size, max_length, max_length, 16), dtype=np.float32)
+	masks = np.zeros((batch_size, max_length, max_length), dtype=np.float32)
+
+	for i, ali in enumerate(alignments):
+		wl = max_length - len(ali[0])
+
+		x = profile_hot_matrix(ali)
+		x = np.pad(x, ((0, wl), (0, wl), (0, 0)), 'constant')
+		xs[i] = x
+
+		# Sequence = 1, padding = 0
+		mask = np.ones((len(ali[0]), len(ali[0])))
 		mask = np.pad(mask, ((0, wl), (0, wl)), 'constant')
 		masks[i] = mask
 

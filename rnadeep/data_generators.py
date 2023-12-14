@@ -4,6 +4,7 @@ from tensorflow.keras.utils import Sequence
 from .encoding_utils import (encode_sequence_matrix,
 							 encode_structure_matrix,
 							 encode_padded_sequence_matrix,
+							 encode_padded_alignment_matrix,
 							 encode_padded_structure_matrix,
 							 encode_sequence,
 							 encode_structure,
@@ -12,7 +13,7 @@ from .encoding_utils import (encode_sequence_matrix,
 
 class MatrixEncoding(Sequence):
 	def __init__(self, batch_size, sequences, structures):
-		""" Use this data generator if all sequences have same length, 
+		""" Use this data generator if all sequences have same length,
 		or with batch_size = 1.  """
 		self.x = sequences
 		self.y = structures
@@ -48,6 +49,25 @@ class PaddedMatrixEncoding(Sequence):
 		return ([x, xm], y) if self.use_mask else (x, y)
 
 
+class PaddedAlignmentMatrixEncoding(Sequence):
+	def __init__(self, batch_size, alignments, structures, use_mask=True):
+		self.x = alignments
+		self.y = structures
+		self.batch_size = batch_size
+		self.use_mask = use_mask
+
+	def __len__(self):
+		return math.ceil(len(self.x) / self.batch_size)
+
+	def __getitem__(self, idx):
+		batch_x = self.x[idx * self.batch_size:(idx + 1) * self.batch_size]  # Alignments
+		batch_y = self.y[idx * self.batch_size:(idx + 1) * self.batch_size]  # Structures
+
+		x, xm = encode_padded_alignment_matrix(batch_x)
+		y = encode_padded_structure_matrix(batch_y)
+		return ([x, xm], y) if self.use_mask else (x, y)
+
+
 class BinaryEncoding(Sequence):
 	def __init__(self, batch_size, sequences, structures):
 		self.x = sequences
@@ -78,7 +98,7 @@ class BinaryWindowEncoding(Sequence):
 	def __getitem__(self, idx):
 		batch_x = self.x[idx * self.batch_size:(idx + 1) * self.batch_size]  # Sequences
 		batch_y = self.y[idx * self.batch_size:(idx + 1) * self.batch_size]  # Structures
-		# Returns a +/- window-sized window for every nucleotide 
+		# Returns a +/- window-sized window for every nucleotide
 		x = encode_sequence_windows(batch_x, self.window_size)
 		# Reshape to see per nucleotide if paired or unpaired
 		y = encode_structure(batch_y).reshape(len(batch_y) * len(batch_y[0]), 1)
