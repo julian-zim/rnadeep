@@ -2,3 +2,5 @@
 *~
 *.swp
 *.tex
+.idea/
+examples/models/

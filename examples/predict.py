@@ -15,7 +15,7 @@ absl.logging.set_verbosity(absl.logging.ERROR)
 
 def main():
 	data = './data/uniform_len25-30_n1000.fa-eval'  # choose an input file.
-	model = './profile_models/sm3_l30_005'  # choose a trained model here
+	model = './models/profile/sm3_l30_005'  # choose a trained model here
 	outdir = f"predictions/{model}-{data}"
 
 	evaluate = True
