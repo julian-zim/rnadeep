@@ -4,3 +4,4 @@
 *.tex
 .idea/
 examples/models/
+rnaconv/data/out/
