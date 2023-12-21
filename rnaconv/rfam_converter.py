@@ -9,7 +9,7 @@ def ct_to_nei(inpath, filename, outpath):
 		pass
 
 	with open(inpath + filename, 'r') as file:
-		with open(outpath + filename, 'w') as outfile:
+		with open(outpath + filename + '.nei', 'w') as outfile:
 			file.readline()
 			outfile.write('Pos    0|\n')
 			line = file.readline()
@@ -28,11 +28,15 @@ def dotbracket_to_ct(inpath, filename, outpath):
 	except FileExistsError:
 		pass
 
-	command = 'b2ct < ' + inpath + filename + '> ' + outpath + filename
+	result = subprocess.run('RNAfold --version', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+	if result.returncode != 0:
+		raise RuntimeError('ViennaRNA is not installed.')
+
+	command = 'b2ct < ' + inpath + filename + '> ' + outpath + filename + '.ct'
 	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 	if result.returncode != 0:
 		print('Warning: Couldn\'t convert file ' + filename)
-		os.remove(outpath + filename)
+		os.remove(outpath + filename + '.ct')
 
 
 def wuss_to_dotbracket(inpath, filename, outpath):
@@ -189,7 +193,7 @@ def stockholm_to_frequencies(inpath, filename, outpath):
 				line = file.readline()
 		count = sum(amounts)
 		amounts = [amount / count for amount in amounts]
-		with open(outpath + 'freq/' + filename, 'w') as outfile:
+		with open(outpath + 'freq/' + filename + '.freq', 'w') as outfile:
 			outfile.write(str(amounts[0] / count) + '  ' +
 						  str(amounts[1] / count) + '  ' +
 						  str(amounts[2] / count) + '  ' +
