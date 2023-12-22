@@ -34,7 +34,7 @@ def dotbracket_to_ct(inpath, filename, outpath):
 	command = 'b2ct < ' + inpath + filename + '> ' + outpath + filename + '.ct'
 	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 	if result.returncode != 0:
-		print('Warning: Couldn\'t convert file ' + filename)
+		print('Warning: Couldn\'t convert file ' + filename + ' to ct.')
 		os.remove(outpath + filename + '.ct')
 
 
@@ -215,7 +215,7 @@ def fix_newick_string(inpath, filename, outpath):
 	except FileExistsError:
 		pass
 
-	with open(inpath + filename, 'r') as file:
+	with (open(inpath + filename, 'r') as file):
 		newick_string = file.read()
 
 		fixed_newick_string_1 = ''
@@ -235,7 +235,7 @@ def fix_newick_string(inpath, filename, outpath):
 		fixed_newick_string_2 = ''
 		predict_name = False
 		name = False
-		for char in fixed_newick_string_1:
+		for i, char in enumerate(fixed_newick_string_1):
 
 			if predict_name:
 				if char != '(' and char != ',':
@@ -243,11 +243,11 @@ def fix_newick_string(inpath, filename, outpath):
 					predict_name = False
 
 			if name:
-				if char == '(' or char == ')':
-					fixed_newick_string_2 += '_'  # replace brackets in names with underscores
-				elif char == ':':
+				if char == ':' and fixed_newick_string_1[i+1].isdigit() and fixed_newick_string_1[i+2] == '.':  # TODO:?
 					name = False
 					fixed_newick_string_2 += char
+				elif char == '(' or char == ')' or char == ',' or char == ':':
+					fixed_newick_string_2 += '_'  # replace brackets and colons in names with underscores
 				else:
 					fixed_newick_string_2 += char
 

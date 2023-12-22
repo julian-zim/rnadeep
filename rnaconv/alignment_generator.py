@@ -11,6 +11,8 @@ def generate_alignments(outpath):
 	filenames = os.listdir('./data/Rfam.seed_neighbourhood/nei/')
 	for filename in filenames:
 		filename_base = filename.split('.')[0]
+		if not os.path.exists('./data/Rfam.seed_tree/fixed/' + filename_base + '.seed_tree'):
+			continue
 		with open('./data/Rfam.seed_frequency/freq/' + filename_base + '.fa.freq') as freq_file:
 			frequencies = freq_file.readline()[:-1]
 		with open('./data/Rfam.seed_neighbourhood/nei/' + filename_base + '.fa.ct.nei') as nei_file:
@@ -26,7 +28,7 @@ def generate_alignments(outpath):
 		result = subprocess.run(command, text=True, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		if os.path.getsize('./data/sissi/' + filename_base + '.ali') == 0:
 			# print('Running \'' + command + '\'')
-			print('Error for file \'' + filename_base + '.ali\':\n' + result.stderr)
+			print('Error in \'' + filename_base + '\':\n' + result.stderr)
 			os.remove('./data/sissi/' + filename_base + '.ali')
 
 

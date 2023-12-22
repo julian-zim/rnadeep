@@ -1,2609 +1,2489 @@
-Error for file 'RF00116.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF02921.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF01059.ali':
+Error in 'RF01059':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03027.ali':
+Error in 'RF03027':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00653.ali':
+Error in 'RF00653':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00748.ali':
+Error in 'RF00748':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00650.ali':
+Error in 'RF00650':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF03679.ali':
-Error opening tree file: './data/Rfam.seed_tree/fixed/RF03679.seed_tree'
 
-Error for file 'RF03080.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF03404.ali':
+Error in 'RF03404':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00681.ali':
+Error in 'RF00681':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00658.ali':
+Error in 'RF00658':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF02755.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF00259.ali':
+Error in 'RF00259':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01313.ali':
+Error in 'RF01313':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF02029.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF02958.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF02264.ali':
+Error in 'RF02958':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00771.ali':
+Error in 'RF02264':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01974.ali':
+Error in 'RF00771':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03059.ali':
+Error in 'RF01974':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01387.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF02992.ali':
+Error in 'RF03059':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03129.ali':
+Error in 'RF01387':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00114.ali':
+Error in 'RF02992':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00436.ali':
+Error in 'RF03129':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00892.ali':
+Error in 'RF00114':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00019.ali':
+Error in 'RF00436':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00699.ali':
+Error in 'RF00892':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00890.ali':
+Error in 'RF00019':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00792.ali':
+Error in 'RF00699':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00676.ali':
+Error in 'RF00890':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04188.ali':
+Error in 'RF00792':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01796.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF04158.ali':
+Error in 'RF00676':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01750.ali':
+Error in 'RF04188':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01855.ali':
+Error in 'RF04158':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02193.ali':
+Error in 'RF01750':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00694.ali':
+Error in 'RF01855':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03256.ali':
+Error in 'RF02193':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03133.ali':
+Error in 'RF00694':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03136.ali':
+Error in 'RF03256':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00793.ali':
+Error in 'RF03133':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF01407.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF02967.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF04180.ali':
+Error in 'RF03136':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01902.ali':
+Error in 'RF00793':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF02975.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF03036.ali':
+Error in 'RF01407':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02372.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF02204.ali':
+Error in 'RF04180':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04218.ali':
+Error in 'RF01902':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF03091.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF00937.ali':
+Error in 'RF03036':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00844.ali':
+Error in 'RF02204':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01721.ali':
+Error in 'RF04218':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02923.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF01055.ali':
+Error in 'RF00937':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04154.ali':
+Error in 'RF00844':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02982.ali':
+Error in 'RF01721':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02024.ali':
+Error in 'RF02923':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00417.ali':
+Error in 'RF01055':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00316.ali':
+Error in 'RF04154':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01317.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF04282.ali':
+Error in 'RF02982':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03008.ali':
+Error in 'RF02024':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03086.ali':
+Error in 'RF00417':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00674.ali':
+Error in 'RF00316':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03271.ali':
+Error in 'RF04282':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00870.ali':
+Error in 'RF03008':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02934.ali':
+Error in 'RF03086':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02230.ali':
+Error in 'RF00674':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00252.ali':
+Error in 'RF03271':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01381.ali':
+Error in 'RF00870':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03127.ali':
+Error in 'RF02934':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00326.ali':
+Error in 'RF02230':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00917.ali':
+Error in 'RF00252':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00646.ali':
+Error in 'RF01381':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03072.ali':
+Error in 'RF03127':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03156.ali':
+Error in 'RF00326':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02342.ali':
+Error in 'RF00917':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00244.ali':
+Error in 'RF00646':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04053.ali':
+Error in 'RF03072':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01763.ali':
+Error in 'RF03156':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00635.ali':
+Error in 'RF02342':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00697.ali':
+Error in 'RF00244':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00311.ali':
+Error in 'RF04053':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01012.ali':
+Error in 'RF01763':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01706.ali':
+Error in 'RF00635':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01760.ali':
+Error in 'RF00697':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02222.ali':
+Error in 'RF00311':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01725.ali':
+Error in 'RF01012':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00727.ali':
+Error in 'RF01706':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01331.ali':
+Error in 'RF01760':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00253.ali':
+Error in 'RF02222':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00251.ali':
+Error in 'RF01725':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03166.ali':
+Error in 'RF00727':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00662.ali':
+Error in 'RF01331':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03010.ali':
+Error in 'RF00253':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01813.ali':
+Error in 'RF00251':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01690.ali':
+Error in 'RF03166':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00179.ali':
+Error in 'RF00662':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00680.ali':
+Error in 'RF03010':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01982.ali':
+Error in 'RF01813':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04284.ali':
+Error in 'RF01690':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00654.ali':
+Error in 'RF00179':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03043.ali':
+Error in 'RF00680':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF00018.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF00003.ali':
+Error in 'RF01982':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01382.ali':
+Error in 'RF04284':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00696.ali':
+Error in 'RF00654':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00663.ali':
+Error in 'RF03043':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01689.ali':
+Error in 'RF00003':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00166.ali':
+Error in 'RF01382':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02233.ali':
+Error in 'RF00696':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01047.ali':
+Error in 'RF00663':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00104.ali':
+Error in 'RF01689':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03003.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF04182.ali':
+Error in 'RF00166':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02237.ali':
+Error in 'RF02233':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00673.ali':
+Error in 'RF01047':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01687.ali':
+Error in 'RF00104':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF03056.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF02965.ali':
+Error in 'RF03003':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02840.ali':
+Error in 'RF04182':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00853.ali':
+Error in 'RF02237':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01035.ali':
+Error in 'RF00673':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02126.ali':
+Error in 'RF01687':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02957.ali':
+Error in 'RF02965':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00801.ali':
+Error in 'RF02840':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01910.ali':
+Error in 'RF00853':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00506.ali':
+Error in 'RF01035':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03028.ali':
+Error in 'RF02126':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03132.ali':
+Error in 'RF02957':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01739.ali':
+Error in 'RF00801':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01809.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF02106.ali':
+Error in 'RF01910':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03002.ali':
+Error in 'RF00506':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00655.ali':
+Error in 'RF03028':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02512.ali':
+Error in 'RF03132':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF03068.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF03126.ali':
+Error in 'RF01739':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00671.ali':
+Error in 'RF02106':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00470.ali':
+Error in 'RF03002':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02966.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF00720.ali':
+Error in 'RF00655':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02678.ali':
+Error in 'RF02512':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF01707.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF00457.ali':
+Error in 'RF03068':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01688.ali':
+Error in 'RF03126':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02931.ali':
+Error in 'RF00671':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00178.ali':
+Error in 'RF00470':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02012.ali':
+Error in 'RF02966':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01691.ali':
+Error in 'RF00720':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00756.ali':
+Error in 'RF02678':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02680.ali':
+Error in 'RF01707':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02266.ali':
+Error in 'RF00457':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02968.ali':
+Error in 'RF01688':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03098.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF00947.ali':
+Error in 'RF02931':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03292.ali':
+Error in 'RF00178':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00783.ali':
+Error in 'RF02012':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF01959.ali':
-Error opening tree file: './data/Rfam.seed_tree/fixed/RF01959.seed_tree'
 
-Error for file 'RF03006.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF00991.ali':
+Error in 'RF01691':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00999.ali':
+Error in 'RF00756':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF03021.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF03064.ali':
+Error in 'RF02680':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01751.ali':
+Error in 'RF02266':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03144.ali':
+Error in 'RF02968':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01758.ali':
+Error in 'RF00947':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01726.ali':
+Error in 'RF03292':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00268.ali':
+Error in 'RF00783':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00239.ali':
+Error in 'RF00991':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02344.ali':
+Error in 'RF00999':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01830.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF01709.ali':
+Error in 'RF03064':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00242.ali':
+Error in 'RF01751':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00306.ali':
+Error in 'RF03144':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF00029.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF02977.ali':
+Error in 'RF01758':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01886.ali':
+Error in 'RF01726':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02676.ali':
-Error reading tree number 1: Unable to read branch length.
-
-Error for file 'RF02929.ali':
+Error in 'RF00268':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00716.ali':
+Error in 'RF00239':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03052.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF00189.ali':
+Error in 'RF02344':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00939.ali':
+Error in 'RF01709':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01695.ali':
+Error in 'RF00242':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00500.ali':
+Error in 'RF00306':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03054.ali':
+Error in 'RF02977':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00781.ali':
+Error in 'RF01886':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02347.ali':
+Error in 'RF02929':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00353.ali':
+Error in 'RF00716':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00803.ali':
+Error in 'RF00189':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02156.ali':
+Error in 'RF00939':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00241.ali':
+Error in 'RF01695':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02552.ali':
+Error in 'RF00500':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00216.ali':
+Error in 'RF03054':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01456.ali':
+Error in 'RF00781':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00709.ali':
+Error in 'RF02347':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF02986.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF03025.ali':
+Error in 'RF00353':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00126.ali':
-Error reading tree number 1: Unable to read branch length.
-
-Error for file 'RF00327.ali':
+Error in 'RF00803':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00026.ali':
+Error in 'RF02156':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02943.ali':
+Error in 'RF00241':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00888.ali':
+Error in 'RF02552':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02935.ali':
+Error in 'RF00216':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03479.ali':
+Error in 'RF01456':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00314.ali':
+Error in 'RF00709':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01764.ali':
+Error in 'RF03025':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03016.ali':
+Error in 'RF00327':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03140.ali':
+Error in 'RF00026':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02105.ali':
+Error in 'RF02943':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF02597.ali':
-Error reading tree number 1: Unable to read branch length.
 
-Error for file 'RF03082.ali':
+Error in 'RF00888':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03070.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF02158.ali':
+Error in 'RF02935':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01014.ali':
+Error in 'RF03479':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03060.ali':
+Error in 'RF00314':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00324.ali':
+Error in 'RF01764':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF03062.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF02221.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF03301.ali':
+Error in 'RF03016':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF02440.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF03031.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF00226.ali':
+Error in 'RF03140':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02951.ali':
+Error in 'RF02105':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00752.ali':
+Error in 'RF02597':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01852.ali':
+Error in 'RF03082':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00039.ali':
-Error reading tree number 1: Unable to read branch length.
-
-Error for file 'RF00438.ali':
+Error in 'RF02158':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF03112.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF00456.ali':
+Error in 'RF01014':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02373.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF00767.ali':
+Error in 'RF03060':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03057.ali':
+Error in 'RF00324':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02263.ali':
+Error in 'RF02221':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00740.ali':
+Error in 'RF03301':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01895.ali':
+Error in 'RF02440':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02343.ali':
+Error in 'RF03031':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00515.ali':
+Error in 'RF00226':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03067.ali':
+Error in 'RF02951':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02261.ali':
+Error in 'RF00752':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03141.ali':
+Error in 'RF01852':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01854.ali':
+Error in 'RF00438':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01701.ali':
+Error in 'RF00456':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00165.ali':
+Error in 'RF00767':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01972.ali':
+Error in 'RF03057':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02235.ali':
+Error in 'RF02263':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00255.ali':
+Error in 'RF00740':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01727.ali':
+Error in 'RF01895':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04247.ali':
+Error in 'RF02343':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00651.ali':
+Error in 'RF00515':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01410.ali':
+Error in 'RF03067':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04290.ali':
+Error in 'RF02261':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01458.ali':
+Error in 'RF03141':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02262.ali':
+Error in 'RF01854':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00741.ali':
+Error in 'RF01701':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02037.ali':
+Error in 'RF00165':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00732.ali':
+Error in 'RF01972':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF02971.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF02945.ali':
-Error opening tree file: './data/Rfam.seed_tree/fixed/RF02945.seed_tree'
-
-Error for file 'RF00678.ali':
+Error in 'RF02235':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01438.ali':
+Error in 'RF00255':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00764.ali':
+Error in 'RF01727':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03069.ali':
+Error in 'RF04247':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00649.ali':
+Error in 'RF00651':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03160.ali':
+Error in 'RF01410':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03037.ali':
+Error in 'RF04290':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02928.ali':
+Error in 'RF01458':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03436.ali':
+Error in 'RF02262':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00705.ali':
+Error in 'RF00741':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00729.ali':
+Error in 'RF02037':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01973.ali':
+Error in 'RF00732':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00733.ali':
+Error in 'RF02971':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02265.ali':
+Error in 'RF00678':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00285.ali':
+Error in 'RF01438':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04183.ali':
+Error in 'RF00764':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00936.ali':
+Error in 'RF03069':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02219.ali':
+Error in 'RF00649':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00238.ali':
+Error in 'RF03160':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01400.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF01981.ali':
+Error in 'RF03037':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00701.ali':
+Error in 'RF02928':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00468.ali':
+Error in 'RF03436':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00744.ali':
+Error in 'RF00705':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01897.ali':
+Error in 'RF00729':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02218.ali':
+Error in 'RF01973':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04152.ali':
+Error in 'RF00733':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03015.ali':
+Error in 'RF02265':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00775.ali':
+Error in 'RF00285':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00839.ali':
+Error in 'RF04183':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03157.ali':
+Error in 'RF00936':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00749.ali':
+Error in 'RF02219':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF02942.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF01708.ali':
+Error in 'RF00238':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03023.ali':
+Error in 'RF01981':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00192.ali':
+Error in 'RF00701':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04271.ali':
+Error in 'RF00468':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01933.ali':
+Error in 'RF00744':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03258.ali':
+Error in 'RF01897':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02969.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF00686.ali':
+Error in 'RF02218':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01330.ali':
+Error in 'RF04152':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01922.ali':
+Error in 'RF03015':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00482.ali':
+Error in 'RF00775':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00708.ali':
+Error in 'RF00839':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF01859.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF00207.ali':
+Error in 'RF03157':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02996.ali':
+Error in 'RF00749':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01403.ali':
+Error in 'RF02942':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03143.ali':
+Error in 'RF01708':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02224.ali':
+Error in 'RF03023':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00015.ali':
+Error in 'RF00192':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00652.ali':
+Error in 'RF04271':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04184.ali':
+Error in 'RF01933':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00765.ali':
+Error in 'RF03258':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00762.ali':
+Error in 'RF02969':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03142.ali':
+Error in 'RF00686':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00140.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF00091.ali':
+Error in 'RF01330':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01730.ali':
+Error in 'RF01922':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00387.ali':
+Error in 'RF00482':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01738.ali':
+Error in 'RF00708':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03078.ali':
+Error in 'RF00207':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04292.ali':
+Error in 'RF02996':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02032.ali':
+Error in 'RF01403':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00180.ali':
+Error in 'RF03143':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00872.ali':
+Error in 'RF02224':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02914.ali':
+Error in 'RF00015':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03001.ali':
+Error in 'RF00652':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF00005.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF03115.ali':
+Error in 'RF04184':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01249.ali':
+Error in 'RF00765':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02694.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF04285.ali':
+Error in 'RF00762':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01685.ali':
+Error in 'RF03142':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF03531.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF00637.ali':
+Error in 'RF00091':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01732.ali':
+Error in 'RF01730':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02234.ali':
+Error in 'RF00387':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00915.ali':
+Error in 'RF01738':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02940.ali':
+Error in 'RF03078':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01694.ali':
+Error in 'RF04292':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03327.ali':
+Error in 'RF02032':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00703.ali':
+Error in 'RF00180':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02683.ali':
+Error in 'RF00872':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02348.ali':
-Error reading tree number 1: Closing bracket missing.
-
-Error for file 'RF01015.ali':
+Error in 'RF02914':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03138.ali':
+Error in 'RF03001':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00656.ali':
+Error in 'RF03115':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03139.ali':
+Error in 'RF01249':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00670.ali':
+Error in 'RF04285':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00454.ali':
+Error in 'RF01685':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00813.ali':
+Error in 'RF00637':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02913.ali':
+Error in 'RF01732':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
-
-Error for file 'RF02924.ali':
-Error reading tree number 1: Closing bracket missing.
 
-Error for file 'RF03050.ali':
+Error in 'RF02234':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00235.ali':
+Error in 'RF00915':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04295.ali':
+Error in 'RF02940':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01896.ali':
+Error in 'RF01694':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02131.ali':
+Error in 'RF03327':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00391.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF00703':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00004.ali':
+Error in 'RF02683':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02203.ali':
+Error in 'RF01015':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00927.ali':
+Error in 'RF03138':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03469.ali':
+Error in 'RF00656':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00560.ali':
+Error in 'RF03139':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00928.ali':
+Error in 'RF00670':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04220.ali':
+Error in 'RF00454':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01747.ali':
+Error in 'RF00813':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00639.ali':
+Error in 'RF02913':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02129.ali':
+Error in 'RF02924':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01083.ali':
+Error in 'RF03050':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02750.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF00235':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01748.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF04295':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03532.ali':
+Error in 'RF01896':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00017.ali':
+Error in 'RF02131':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03131.ali':
+Error in 'RF00004':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01923.ali':
+Error in 'RF02203':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00220.ali':
+Error in 'RF00927':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02999.ali':
+Error in 'RF03469':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00318.ali':
+Error in 'RF00560':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00745.ali':
+Error in 'RF00928':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02226.ali':
+Error in 'RF04220':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01033.ali':
+Error in 'RF01747':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01302.ali':
+Error in 'RF00639':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02973.ali':
+Error in 'RF02129':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00715.ali':
+Error in 'RF01083':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04219.ali':
+Error in 'RF01748':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00877.ali':
+Error in 'RF03532':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00222.ali':
+Error in 'RF00017':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00131.ali':
+Error in 'RF03131':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03058.ali':
+Error in 'RF01923':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00007.ali':
+Error in 'RF00220':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00186.ali':
+Error in 'RF02999':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00498.ali':
+Error in 'RF00318':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04291.ali':
+Error in 'RF00745':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04221.ali':
+Error in 'RF02226':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04085.ali':
+Error in 'RF01033':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00693.ali':
+Error in 'RF01302':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03167.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF02973':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02548.ali':
+Error in 'RF00715':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01045.ali':
+Error in 'RF04219':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00758.ali':
+Error in 'RF00877':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00020.ali':
+Error in 'RF00222':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02102.ali':
+Error in 'RF00131':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02972.ali':
+Error in 'RF03058':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03029.ali':
+Error in 'RF00007':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01044.ali':
+Error in 'RF00186':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04296.ali':
+Error in 'RF00498':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00784.ali':
+Error in 'RF04291':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01394.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF04221':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00737.ali':
+Error in 'RF04085':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01731.ali':
+Error in 'RF00693':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00246.ali':
+Error in 'RF02548':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00169.ali':
+Error in 'RF01045':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00209.ali':
+Error in 'RF00758':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03039.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF00020':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03024.ali':
+Error in 'RF02102':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00329.ali':
+Error in 'RF02972':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00615.ali':
+Error in 'RF03029':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00946.ali':
+Error in 'RF01044':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00668.ali':
+Error in 'RF04296':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00684.ali':
+Error in 'RF00784':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02232.ali':
+Error in 'RF00737':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00687.ali':
+Error in 'RF01731':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00129.ali':
+Error in 'RF00246':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02926.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF00169':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00891.ali':
+Error in 'RF00209':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03458.ali':
+Error in 'RF03039':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01051.ali':
+Error in 'RF03024':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00683.ali':
+Error in 'RF00329':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00361.ali':
+Error in 'RF00615':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01719.ali':
+Error in 'RF00946':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03020.ali':
+Error in 'RF00668':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03075.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF00684':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00620.ali':
+Error in 'RF02232':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02702.ali':
-Error reading tree number 1: Unable to read branch length.
+Error in 'RF00687':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03085.ali':
+Error in 'RF00129':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00257.ali':
+Error in 'RF02926':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01705.ali':
+Error in 'RF00891':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01728.ali':
+Error in 'RF03458':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01704.ali':
+Error in 'RF01051':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00718.ali':
+Error in 'RF00683':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03071.ali':
+Error in 'RF00361':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00343.ali':
+Error in 'RF01719':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02838.ali':
-Error reading tree number 1: Comma missing.
+Error in 'RF03020':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03130.ali':
+Error in 'RF00620':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01740.ali':
+Error in 'RF03085':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00081.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF00257':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01914.ali':
+Error in 'RF01705':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04029.ali':
+Error in 'RF01728':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03042.ali':
+Error in 'RF01704':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01414.ali':
+Error in 'RF00718':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03073.ali':
+Error in 'RF03071':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02925.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF00343':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00897.ali':
+Error in 'RF03130':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02927.ali':
+Error in 'RF01740':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02225.ali':
+Error in 'RF01914':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01759.ali':
+Error in 'RF04029':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00455.ali':
+Error in 'RF03042':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04100.ali':
+Error in 'RF01414':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02916.ali':
+Error in 'RF03073':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01885.ali':
+Error in 'RF02925':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00921.ali':
+Error in 'RF00897':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00669.ali':
+Error in 'RF02927':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02083.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF02225':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02208.ali':
+Error in 'RF01759':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01749.ali':
+Error in 'RF00455':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01742.ali':
+Error in 'RF04100':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03161.ali':
+Error in 'RF02916':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01467.ali':
+Error in 'RF01885':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00755.ali':
+Error in 'RF00921':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01938.ali':
+Error in 'RF00669':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00666.ali':
+Error in 'RF02208':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02703.ali':
-Error reading tree number 1: Unable to read branch length.
+Error in 'RF01749':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00707.ali':
+Error in 'RF01742':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01693.ali':
+Error in 'RF03161':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03074.ali':
+Error in 'RF01467':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00722.ali':
+Error in 'RF00755':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02938.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF01938':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00205.ali':
+Error in 'RF00666':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04293.ali':
+Error in 'RF00707':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01380.ali':
+Error in 'RF01693':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01404.ali':
+Error in 'RF03074':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00023.ali':
+Error in 'RF00722':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00760.ali':
+Error in 'RF02938':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00501.ali':
+Error in 'RF00205':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01672.ali':
+Error in 'RF04293':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02231.ali':
+Error in 'RF01380':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01794.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF01404':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00700.ali':
+Error in 'RF00023':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00240.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF00760':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02345.ali':
+Error in 'RF00501':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00919.ali':
+Error in 'RF01672':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01038.ali':
+Error in 'RF02231':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02036.ali':
+Error in 'RF00700':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01811.ali':
+Error in 'RF02345':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00113.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF00919':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00130.ali':
+Error in 'RF01038':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01042.ali':
+Error in 'RF02036':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01405.ali':
+Error in 'RF01811':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03135.ali':
+Error in 'RF00130':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00290.ali':
+Error in 'RF01042':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00664.ali':
+Error in 'RF01405':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00719.ali':
+Error in 'RF03135':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00935.ali':
+Error in 'RF00290':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03014.ali':
+Error in 'RF00664':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00766.ali':
+Error in 'RF00719':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01754.ali':
+Error in 'RF00935':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02751.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF03014':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02495.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF00766':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01716.ali':
+Error in 'RF01754':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00245.ali':
+Error in 'RF01716':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02220.ali':
+Error in 'RF00245':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03061.ali':
+Error in 'RF02220':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00769.ali':
+Error in 'RF03061':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02191.ali':
+Error in 'RF00769':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00910.ali':
+Error in 'RF02191':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00644.ali':
+Error in 'RF00910':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02128.ali':
+Error in 'RF00644':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01786.ali':
+Error in 'RF02128':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01753.ali':
+Error in 'RF01786':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02117.ali':
+Error in 'RF01753':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02223.ali':
+Error in 'RF02117':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02260.ali':
+Error in 'RF02223':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02978.ali':
+Error in 'RF02260':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF04052.ali':
+Error in 'RF02978':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00042.ali':
-Error reading tree number 1: Closing bracket missing.
+Error in 'RF04052':
+This tree contains nodes which aren't bifurcations. Resolve the node
+with zero branch lengths to obtain correct results. This can be done
+with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00730.ali':
+Error in 'RF00730':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02118.ali':
+Error in 'RF02118':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00557.ali':
+Error in 'RF00557':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01720.ali':
+Error in 'RF01720':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01921.ali':
+Error in 'RF01921':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02108.ali':
+Error in 'RF02108':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00198.ali':
+Error in 'RF00198':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00144.ali':
+Error in 'RF00144':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02555.ali':
+Error in 'RF02555':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00038.ali':
+Error in 'RF00038':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03032.ali':
+Error in 'RF03032':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03066.ali':
+Error in 'RF03066':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03163.ali':
+Error in 'RF03163':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF00228.ali':
+Error in 'RF00228':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02109.ali':
+Error in 'RF02109':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01734.ali':
+Error in 'RF01734':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02994.ali':
+Error in 'RF02994':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF02153.ali':
+Error in 'RF02153':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF01881.ali':
+Error in 'RF01881':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
 
-Error for file 'RF03158.ali':
+Error in 'RF03158':
 This tree contains nodes which aren't bifurcations. Resolve the node
 with zero branch lengths to obtain correct results. This can be done
 with a program called TreeEdit: http://evolve.zoo.ox.ac.uk/software/TreeEdit
