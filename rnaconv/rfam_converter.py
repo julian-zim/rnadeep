@@ -11,14 +11,13 @@ def ct_to_nei(inpath, filename, outpath):
 	with open(inpath + filename, 'r') as file:
 		with open(outpath + filename + '.nei', 'w') as outfile:
 			file.readline()
-			outfile.write('Pos    0|\n')
 			line = file.readline()
 			while line != '':
 				data = line.split()
-				pos1 = data[0]
-				pos2 = data[4]
+				pos1 = str(int(data[0]) - 1)
+				pos2 = str(int(data[4]) - 1)
 				gap = ' ' * (5 - len(str(pos1)))
-				outfile.write('Pos' + gap + pos1 + '|' + ((' ' + pos2 + ':(1.000000)\n') if pos2 != '0' else '\n'))
+				outfile.write('Pos' + gap + pos1 + '|' + ((' ' + pos2 + ':(1.000000)\n') if pos2 != '-1' else '\n'))
 				line = file.readline()
 
 
@@ -55,7 +54,9 @@ def wuss_to_dotbracket(inpath, filename, outpath):
 				fixed_line += '('
 			elif char == '>' or char == '}' or char == ']':
 				fixed_line += ')'
-			elif char == ',' or char == '-' or char == '_' or char == '~' or char == ':' or char == 'A' or char == 'a' or char == 'B' or char == 'b' or char == 'C' or char == 'c' or char == 'D' or char == 'd':
+			elif char == ',' or char == '-' or char == '_' or char == '~' or char == ':' \
+				or char == 'A' or char == 'a' or char == 'B' or char == 'b' \
+				or char == 'C' or char == 'c' or char == 'D' or char == 'd':
 				fixed_line += '.'
 			elif char == '(' or char == ')' or char == '.':
 				fixed_line += char
@@ -101,6 +102,10 @@ def stockholm_to_wuss(inpath, filename, outpath):
 						pass  # skip other compulsory fields
 
 			elif line[0:2] == '//':
+				# TODO: remove
+				if temp_name != '' and ali_name != temp_name:
+					line = file.readline()
+					continue
 				with open(outpath + ali_name + '.fa', 'w') as outfile:
 					outfile.write(ali_cons_sequence + '\n')
 					outfile.write(ali_cons_structure + '\n')
@@ -164,6 +169,10 @@ def stockholm_to_frequencies(inpath, filename, outpath):
 					pass  # skip other markups
 
 			elif line[0:2] == '//':
+				# TODO: remove
+				if temp_name != '' and ali_name != temp_name:
+					line = file.readline()
+					continue
 				with open(outpath + 'fa/' + ali_name + '.fa', 'w') as outfile:
 					for seq in ali:
 						outfile.write(seq + '\n')
@@ -200,10 +209,68 @@ def stockholm_to_frequencies(inpath, filename, outpath):
 						  str(amounts[3] / count))
 
 
+def fix_newick_string(inpath, filename, outpath):
+	try:
+		os.makedirs(outpath)
+	except FileExistsError:
+		pass
+
+	with open(inpath + filename, 'r') as file:
+		newick_string = file.read()
+
+		fixed_newick_string_1 = ''
+		alert = False
+		for char in newick_string:
+			if alert:
+				if char == ':' or char == ';':
+					fixed_newick_string_1 += char
+					alert = False
+				else:
+					pass  # remove non-leaf names
+			else:
+				if char == ')':
+					alert = True
+				fixed_newick_string_1 += char
+
+		fixed_newick_string_2 = ''
+		predict_name = False
+		name = False
+		for char in fixed_newick_string_1:
+
+			if predict_name:
+				if char != '(' and char != ',':
+					name = True
+					predict_name = False
+
+			if name:
+				if char == '(' or char == ')':
+					fixed_newick_string_2 += '_'  # replace brackets in names with underscores
+				elif char == ':':
+					name = False
+					fixed_newick_string_2 += char
+				else:
+					fixed_newick_string_2 += char
+
+			else:
+				if not predict_name and (char == '(' or char == ','):
+					predict_name = True
+				fixed_newick_string_2 += char
+
+	with open(outpath + filename, 'w') as outfile:
+		outfile.write(fixed_newick_string_2)
+
+
 def main():
-	stockholm_to_frequencies('./data/', 'Rfam_fixed.seed', './data/out/Rfam.seed_frequency/')
-	stockholm_to_neighbourhoods('./data/', 'Rfam_fixed.seed', './data/out/Rfam.seed_neighbourhood/')
+	stockholm_to_frequencies('./data/', 'Rfam_fixed.seed', './data/Rfam.seed_frequency/')
+	stockholm_to_neighbourhoods('./data/', 'Rfam_fixed.seed', './data/Rfam.seed_neighbourhood/')
+	filenames = os.listdir('./data/Rfam.seed_tree/original/')
+	for filename in filenames:
+		# TODO: remove
+		if temp_name != '' and filename.split('.')[0] != temp_name:
+			continue
+		fix_newick_string('./data/Rfam.seed_tree/original/', filename, './data/Rfam.seed_tree/fixed/')
 
 
 if __name__ == '__main__':
+	temp_name = ''
 	main()
