@@ -2,13 +2,18 @@ import os
 import subprocess
 
 
-def ct_to_nei(inpath, filename, outpath):
+temp_name = ''
+
+
+def ct_to_nei(filepath, outpath):
 	try:
 		os.makedirs(outpath)
 	except FileExistsError:
 		pass
 
-	with open(inpath + filename, 'r') as file:
+	filename = filepath.split('/')[-1].split('.')[0]
+
+	with open(filepath, 'r') as file:
 		with open(outpath + filename + '.nei', 'w') as outfile:
 			file.readline()
 			line = file.readline()
@@ -21,30 +26,34 @@ def ct_to_nei(inpath, filename, outpath):
 				line = file.readline()
 
 
-def dotbracket_to_ct(inpath, filename, outpath):
+def db_to_ct(filepath, outpath):
 	try:
 		os.makedirs(outpath)
 	except FileExistsError:
 		pass
 
+	filename = filepath.split('/')[-1].split('.')[0]
+
 	result = subprocess.run('RNAfold --version', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 	if result.returncode != 0:
 		raise RuntimeError('ViennaRNA is not installed.')
 
-	command = 'b2ct < ' + inpath + filename + '> ' + outpath + filename + '.ct'
+	command = 'b2ct < ' + filepath + '> ' + outpath + filename + '.ct'
 	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 	if result.returncode != 0:
 		print('Warning: Couldn\'t convert file ' + filename + ' to ct.')
 		os.remove(outpath + filename + '.ct')
 
 
-def wuss_to_dotbracket(inpath, filename, outpath):
+def wuss_to_db(filepath, outpath):
 	try:
 		os.makedirs(outpath)
 	except FileExistsError:
 		pass
 
-	with open(inpath + filename, 'r') as file:
+	filename = filepath.split('/')[-1].split('.')[0]
+
+	with open(filepath, 'r') as file:
 		content = file.read()
 
 		content_lines = content.split('\n')
@@ -65,17 +74,17 @@ def wuss_to_dotbracket(inpath, filename, outpath):
 
 		fixed_content = content_lines[0] + '\n' + fixed_line + ' (0)\n'
 
-	with open(outpath + filename, 'w') as outfile:
+	with open(outpath + filename + '.dbs', 'w') as outfile:
 		outfile.write(fixed_content)
 
 
-def stockholm_to_wuss(inpath, filename, outpath):
+def stockholm_to_wuss(filepath, outpath):
 	try:
 		os.makedirs(outpath)
 	except FileExistsError:
 		pass
 
-	with open(inpath + filename, 'r') as file:
+	with open(filepath, 'r') as file:
 		ali_name = ''
 		ali_cons_structure = ''
 
@@ -106,7 +115,7 @@ def stockholm_to_wuss(inpath, filename, outpath):
 				if temp_name != '' and ali_name != temp_name:
 					line = file.readline()
 					continue
-				with open(outpath + ali_name + '.fa', 'w') as outfile:
+				with open(outpath + ali_name + '.wuss', 'w') as outfile:
 					outfile.write(ali_cons_sequence + '\n')
 					outfile.write(ali_cons_structure + '\n')
 
@@ -116,28 +125,28 @@ def stockholm_to_wuss(inpath, filename, outpath):
 			line = file.readline()
 
 
-def stockholm_to_neighbourhoods(inpath, filename, outpath):
+def stockholm_to_neighbourhoods(filepath, outpath):
 	try:
 		os.makedirs(outpath)
 	except FileExistsError:
 		pass
 
-	stockholm_to_wuss(inpath, filename, outpath + 'wuss/')
+	stockholm_to_wuss(filepath, outpath + 'wuss/')
 
 	filenames = os.listdir(outpath + 'wuss/')
 	for filename in filenames:
-		wuss_to_dotbracket(outpath + 'wuss/', filename, outpath + 'dotbracket/')
+		wuss_to_db(outpath + 'wuss/' + filename, outpath + 'dbs/')
 
-	filenames = os.listdir(outpath + 'dotbracket/')
+	filenames = os.listdir(outpath + 'dbs/')
 	for filename in filenames:
-		dotbracket_to_ct(outpath + 'dotbracket/', filename, outpath + 'ct/')
+		db_to_ct(outpath + 'dbs/' + filename, outpath + 'ct/')
 
 	filenames = os.listdir(outpath + 'ct/')
 	for filename in filenames:
-		ct_to_nei(outpath + 'ct/', filename, outpath + 'nei/')
+		ct_to_nei(outpath + 'ct/' + filename, outpath + 'nei/')
 
 
-def stockholm_to_frequencies(inpath, filename, outpath):
+def stockholm_to_frequencies(filepath, outpath):
 	try:
 		os.makedirs(outpath)
 	except FileExistsError:
@@ -145,10 +154,10 @@ def stockholm_to_frequencies(inpath, filename, outpath):
 
 	# stockholm to ali
 	try:
-		os.makedirs(outpath + 'fa/')
+		os.makedirs(outpath + 'ali/')
 	except FileExistsError:
 		pass
-	with open(inpath + filename, 'r') as file:
+	with open(filepath, 'r') as file:
 		ali_name = ''
 		ali = list()
 
@@ -173,7 +182,7 @@ def stockholm_to_frequencies(inpath, filename, outpath):
 				if temp_name != '' and ali_name != temp_name:
 					line = file.readline()
 					continue
-				with open(outpath + 'fa/' + ali_name + '.fa', 'w') as outfile:
+				with open(outpath + 'ali/' + ali_name + '.ali', 'w') as outfile:
 					for seq in ali:
 						outfile.write(seq + '\n')
 
@@ -189,10 +198,10 @@ def stockholm_to_frequencies(inpath, filename, outpath):
 		os.makedirs(outpath + 'freq/')
 	except FileExistsError:
 		pass
-	filenames = os.listdir(outpath + 'fa/')
+	filenames = os.listdir(outpath + 'ali/')
 	for filename in filenames:
 		amounts = [0, 0, 0, 0]
-		with open(outpath + 'fa/' + filename, 'r') as file:
+		with open(outpath + 'ali/' + filename, 'r') as file:
 			line = file.readline()
 			while line != '':
 				amounts[0] += line.count('A')
@@ -202,20 +211,20 @@ def stockholm_to_frequencies(inpath, filename, outpath):
 				line = file.readline()
 		count = sum(amounts)
 		amounts = [amount / count for amount in amounts]
-		with open(outpath + 'freq/' + filename + '.freq', 'w') as outfile:
+		with open(outpath + 'freq/' + filename.split('.')[0] + '.freq', 'w') as outfile:
 			outfile.write(str(amounts[0] / count) + '  ' +
 						  str(amounts[1] / count) + '  ' +
 						  str(amounts[2] / count) + '  ' +
 						  str(amounts[3] / count))
 
 
-def fix_newick_string(inpath, filename, outpath):
+def fix_newick_string(filepath, outpath):
 	try:
 		os.makedirs(outpath)
 	except FileExistsError:
 		pass
 
-	with (open(inpath + filename, 'r') as file):
+	with (open(filepath, 'r') as file):
 		newick_string = file.read()
 
 		fixed_newick_string_1 = ''
@@ -256,21 +265,28 @@ def fix_newick_string(inpath, filename, outpath):
 					predict_name = True
 				fixed_newick_string_2 += char
 
-	with open(outpath + filename, 'w') as outfile:
+	with open(outpath + filepath.split('/')[-1], 'w') as outfile:
 		outfile.write(fixed_newick_string_2)
 
 
-def main():
-	stockholm_to_frequencies('./data/', 'Rfam_fixed.seed', './data/Rfam.seed_frequency/')
-	stockholm_to_neighbourhoods('./data/', 'Rfam_fixed.seed', './data/Rfam.seed_neighbourhood/')
-	filenames = os.listdir('./data/Rfam.seed_tree/original/')
+def convert_rfam_data(seed_filepath, tree_path, tree_outpath, freq_outpath, nei_outpath):
+	filenames = os.listdir(tree_path)
 	for filename in filenames:
 		# TODO: remove
 		if temp_name != '' and filename.split('.')[0] != temp_name:
 			continue
-		fix_newick_string('./data/Rfam.seed_tree/original/', filename, './data/Rfam.seed_tree/fixed/')
+		fix_newick_string(tree_path + filename, tree_outpath)
+	stockholm_to_frequencies(seed_filepath, freq_outpath)
+	stockholm_to_neighbourhoods(seed_filepath, nei_outpath)
+
+
+def main():
+	convert_rfam_data('./data/rfam/Rfam_fixed.seed',
+					  './data/rfam/seed_tree/original/',
+					  './data/rfam/seed_tree/fixed/',
+					  './data/rfam/seed_frequency/',
+					  './data/rfam/seed_neighbourhood/')
 
 
 if __name__ == '__main__':
-	temp_name = ''
 	main()

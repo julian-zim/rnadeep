@@ -1,2 +1,1 @@
-python ./rfam_converter.py
-python ./alignment_generator.py > ./data/output.txt
+python ./alignment_generator.py 1 ./data/rfam/ ./data/sissi/ > ./data/output.txt

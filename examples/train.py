@@ -6,9 +6,9 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
 
 from rnadeep import __version__
-from rnadeep.models import spotrna_models, spotrna_alignment_models
+from rnadeep.models import spotrna_models
 from rnadeep.metrics import mcc, f1, sensitivity
-from rnadeep.data_generators import PaddedMatrixEncoding, PaddedAlignmentMatrixEncoding
+from rnadeep.data_generators import PaddedMatrixEncoding
 from rnadeep.sampling import draw_sets
 
 import absl.logging
@@ -31,7 +31,7 @@ def training(datatag, ftrain, fvalid,
 	if basemodel is None:
 		assert epoch0 == 0
 		logname = os.path.join(savedir, f"sm{spotmodel}_{datatag}")
-		model = spotrna_alignment_models(spotmodel, True)
+		model = spotrna_models(spotmodel, True)
 		model.compile(optimizer="adam",
 					  loss="binary_crossentropy",
 					  metrics=["acc", mcc, f1, sensitivity],
@@ -58,12 +58,12 @@ def training(datatag, ftrain, fvalid,
 	# Get the data for analysis
 	[train] = list(draw_sets(ftrain))
 	[train_tags, train_seqs, train_dbrs] = zip(*train)
-	train_alis = [[seq] for seq in train_seqs]
-	train_generator = PaddedAlignmentMatrixEncoding(batch_size, train_alis, train_dbrs)
+	train_generator = PaddedMatrixEncoding(batch_size, train_seqs, train_dbrs)
+
 	[valid] = list(draw_sets(fvalid))
 	[valid_tags, valid_seqs, valid_dbrs] = zip(*valid)
-	valid_alis = [[seq] for seq in valid_seqs]
-	valid_generator = PaddedAlignmentMatrixEncoding(batch_size, valid_alis, valid_dbrs)
+	valid_generator = PaddedMatrixEncoding(batch_size, valid_seqs, valid_dbrs)
+
 	model.fit(
 		x=train_generator,
 		validation_data=valid_generator,

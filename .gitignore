@@ -10,5 +10,4 @@ examples/models/
 rnaconv/data/rfam/seed_frequency
 rnaconv/data/rfam/seed_neighbourhood
 rnaconv/data/rfam/seed_tree/fixed
-rnaconv/data/rfam/seed_tree/original
 rnaconv/data/sissi
