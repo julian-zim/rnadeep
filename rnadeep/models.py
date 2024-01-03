@@ -179,7 +179,7 @@ def spotrna_alignment_models(model=1, use_mask=True):
 		fc_blocks = 1
 		fc_neurons = 512
 
-	inputs = Input(shape=(None, None, 16), dtype="float32")
+	inputs = Input(shape=(None, None, 25), dtype="float32")
 
 	# ResNet -- Initial 3x3 convolution
 	x = layers.Conv2D(rn_filters, 3, padding="same", dilation_rate=rn_dilation)(inputs)

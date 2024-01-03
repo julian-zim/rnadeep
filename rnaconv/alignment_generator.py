@@ -9,7 +9,7 @@ def generate_alignment(n, directory, filename, outpath):
 	neigh_filepath = directory + 'seed_neighbourhood/nei/' + filename + '.nei'
 	freq_filepath = directory + 'seed_frequency/freq/' + filename + '.freq'
 	tree_filepath = directory + 'seed_tree/fixed/' + filename + '.seed_tree'
-	out_filepath = outpath + filename + '.alis'
+	out_filepath = outpath + filename + '.ali'
 
 	with open(neigh_filepath) as nei_file:
 		seq_length = sum(1 for _ in nei_file)
@@ -47,6 +47,8 @@ def generate_alignments(n, directory, outpath):
 		else:
 			print('Warning: Skipping \'' + filename_base + '\' as it is missing a neighbourhood or frequency file.')
 
+	print('Done.')
+
 
 def main():
 	if len(sys.argv) != 4:
@@ -61,11 +63,14 @@ def main():
 		print('Required rfam folder structure:\n- rfam\n\tRfam.seed\n\t- seed_tree\n\t\t- original\n\t\t\t<tree files>')
 		return -1
 
+	print('========== CONVERTING RFAM DATA POINTS ==========')
 	convert_rfam_data(rfam_path + 'Rfam.seed',
 					  rfam_path + 'seed_tree/original/',
 					  rfam_path + 'seed_tree/fixed/',
 					  rfam_path + 'seed_frequency/',
 					  rfam_path + 'seed_neighbourhood/')
+
+	print('\n========== GENERATING SISSI ALIGNMENTS ==========')
 	generate_alignments(n, rfam_path, outpath)
 
 

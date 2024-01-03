@@ -1,37 +1,10 @@
 import os
+import numpy as np
 
 
-def parse_seed_alignment(ali_path, dbs_path, filename):
-	with open(ali_path + filename + '.ali') as ali_file:
-		alignment = list()
-		line = ali_file.readline()
-		while line != '':
-			alignment.append(line[:-1])
-			line = ali_file.readline()
-	with open(dbs_path + filename + '.dbs') as dbs_file:
-		dbs = dbs_file.readlines()[1].split()[0]
-
-	return alignment, dbs
-
-
-def parse_seed_alignments(ali_directory, dbs_directory):
-	alignments = list()
-	dbss = list()
-	filenames = os.listdir(ali_directory)
-	for filename in filenames:
-		filename_base = filename.split('.')[0]
-		if os.path.exists(dbs_directory + filename_base + '.dbs'):
-			alignment, dbs = parse_seed_alignment(ali_directory, dbs_directory, filename_base)
-			alignments.append(alignment)
-			dbss.append(dbs)
-		else:
-			print('Warning: No dbs data found for \'' + filename + '\'.')
-	return alignments, dbss
-
-
-def parse_alignments_dataset(ali_set_path, dbs_path, filename):
-	with open(ali_set_path + filename + '.alis') as file:
-		alignments = list()
+def parse_alignment_set(ali_path, dbn_path, filename):
+	with open(ali_path + filename + '.ali') as file:
+		alis = list()
 		ali_idx = -1
 		line = file.readline()
 		while line != '':
@@ -39,46 +12,49 @@ def parse_alignments_dataset(ali_set_path, dbs_path, filename):
 
 			if content[1].isnumeric():
 				ali_idx += 1
-				alignments.append(list())
+				alis.append(list())
 			else:
-				alignments[ali_idx].append(content[1])
+				alis[ali_idx].append(content[1])
 
 			line = file.readline()
 
-	with open(dbs_path + filename + '.dbs') as dbs_file:
-		dbs = dbs_file.readlines()[1].split()[0]
+	with open(dbn_path + filename + '.dbn') as dbn_file:
+		dbn = dbn_file.readlines()[1].split()[0]
+	dbns = [dbn for _ in alis]
 
-	return alignments, dbs
+	return alis, dbns
 
 
-def parse_alignments_datasets(ali_sets_directory, dbs_directory):
-	alignments_sets = list()
-	dbss = list()
-	filenames = os.listdir(ali_sets_directory)
+def parse_alignments(ali_directory, dbn_directory):
+	alis = list()
+	dbns = list()
+	filenames = os.listdir(ali_directory)
 	for filename in filenames:
 		filename_base = filename.split('.')[0]
-		if os.path.exists(dbs_directory + filename_base + '.dbs'):
-			alignments, dbs = parse_alignments_dataset(ali_sets_directory, dbs_directory, filename_base)
-			alignments_sets.append(alignments)
-			dbss.append(dbs)
+		if os.path.exists(dbn_directory + filename_base + '.dbn'):
+			new_alis, new_dbns = parse_alignment_set(ali_directory, dbn_directory, filename_base)
+			alis += new_alis
+			dbns += new_dbns
 		else:
-			print('Warning: No dbs data found for \'' + filename + '\'.')
+			print('Warning: No dbn data found for \'' + filename + '\'.')
 
-	alignments_sets_consecutively = list()
-	dbss_consecutively = list()
-	for alignments_set, dbs in zip(alignments_sets, dbss):
-		for alignment in alignments_set:
-			alignments_sets_consecutively.append(alignment)
-			dbss_consecutively.append(dbs)
-	return alignments_sets_consecutively, dbss_consecutively
+	return alis, dbns
 
 
-def main():
-	seed_alignments, seed_dbss = parse_seed_alignments('../rnaconv/data/Rfam.seed_frequency/ali/',
-									  '../rnaconv/data/Rfam.seed_neighbourhood/dbs/')
-	sissi_alignment_datasets, sissi_dbss = parse_alignments_datasets('../rnaconv/data/sissi/',
-														 '../rnaconv/data/Rfam.seed_neighbourhood/dbs/')
+def draw_ali_sets(ali_directory, dbn_directory, splits=None):
+	if splits is None:
+		splits = [1]
+	assert sum(splits) <= 1
 
+	alis, dbns = parse_alignments(ali_directory, dbn_directory)
 
-if __name__ == '__main__':
-	main()
+	if not (len(alis) == len(dbns)):
+		raise ValueError('Something about the input file is odd.')
+
+	num = len(alis)
+
+	a = np.arange(num)
+	for s in splits:
+		ids = np.random.choice(a, int(num * s), replace=False)
+		yield [(alis[i], dbns[i]) for i in sorted(ids)]
+		a = [i for i in a if i not in ids]

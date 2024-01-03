@@ -1,8 +1,39 @@
 import os
 import subprocess
+import random
 
 
 temp_name = ''
+
+
+def generate_nucleotide(ambiguous_char):
+	match ambiguous_char:
+		case 'A' | 'C' | 'G' | 'U' | '-':
+			return ambiguous_char
+		case 'Y':
+			return ['C', 'U'][random.randint(0, 1)]
+		case 'R':
+			return ['A', 'G'][random.randint(0, 1)]
+		case 'W':
+			return ['A', 'U'][random.randint(0, 1)]
+		case 'S':
+			return ['C', 'G'][random.randint(0, 1)]
+		case 'K':
+			return ['G', 'U'][random.randint(0, 1)]
+		case 'M':
+			return ['A', 'C'][random.randint(0, 1)]
+		case 'D':
+			return ['A', 'G', 'U'][random.randint(0, 2)]
+		case 'V':
+			return ['A', 'C', 'G'][random.randint(0, 2)]
+		case 'H':
+			return ['A', 'C', 'U'][random.randint(0, 2)]
+		case 'B':
+			return ['C', 'G', 'U'][random.randint(0, 2)]
+		case 'N':
+			return ['A', 'C', 'G', 'U'][random.randint(0, 3)]
+
+	raise ValueError('\'' + ambiguous_char + '\' is not part of the IUPAC ambiguity code.')
 
 
 def ct_to_nei(filepath, outpath):
@@ -74,7 +105,7 @@ def wuss_to_db(filepath, outpath):
 
 		fixed_content = content_lines[0] + '\n' + fixed_line + ' (0)\n'
 
-	with open(outpath + filename + '.dbs', 'w') as outfile:
+	with open(outpath + filename + '.dbn', 'w') as outfile:
 		outfile.write(fixed_content)
 
 
@@ -135,11 +166,11 @@ def stockholm_to_neighbourhoods(filepath, outpath):
 
 	filenames = os.listdir(outpath + 'wuss/')
 	for filename in filenames:
-		wuss_to_db(outpath + 'wuss/' + filename, outpath + 'dbs/')
+		wuss_to_db(outpath + 'wuss/' + filename, outpath + 'dbn/')
 
-	filenames = os.listdir(outpath + 'dbs/')
+	filenames = os.listdir(outpath + 'dbn/')
 	for filename in filenames:
-		db_to_ct(outpath + 'dbs/' + filename, outpath + 'ct/')
+		db_to_ct(outpath + 'dbn/' + filename, outpath + 'ct/')
 
 	filenames = os.listdir(outpath + 'ct/')
 	for filename in filenames:
@@ -152,9 +183,9 @@ def stockholm_to_frequencies(filepath, outpath):
 	except FileExistsError:
 		pass
 
-	# stockholm to ali
+	# stockholm to ali_amb
 	try:
-		os.makedirs(outpath + 'ali/')
+		os.makedirs(outpath + 'ali_amb/')
 	except FileExistsError:
 		pass
 	with open(filepath, 'r') as file:
@@ -182,9 +213,12 @@ def stockholm_to_frequencies(filepath, outpath):
 				if temp_name != '' and ali_name != temp_name:
 					line = file.readline()
 					continue
-				with open(outpath + 'ali/' + ali_name + '.ali', 'w') as outfile:
+				with open(outpath + 'ali_amb/' + ali_name + '.ali', 'w') as outfile:
+					number = len(ali)
+					length = 0 if number == 0 else len(ali[0])
+					outfile.write(' ' + str(number) + ' ' + str(length) + '\n')
 					for seq in ali:
-						outfile.write(seq + '\n')
+						outfile.write('_ ' + seq + '\n')
 
 				ali = list()
 
@@ -192,6 +226,24 @@ def stockholm_to_frequencies(filepath, outpath):
 				ali.append(line.split()[1])
 
 			line = file.readline()
+
+	# ali_amb to ali
+	try:
+		os.makedirs(outpath + 'ali/')
+	except FileExistsError:
+		pass
+	filenames = os.listdir(outpath + 'ali_amb/')
+	for filename in filenames:
+		with open(outpath + 'ali_amb/' + filename, 'r') as file:
+			with open(outpath + 'ali/' + filename, 'w') as outfile:
+				line = file.readline()
+				while line != '':
+					split_line = line.split()
+					if all([seg.isnumeric() for seg in split_line]):
+						outfile.write(line)
+					else:
+						outfile.write(split_line[0] + ' ' + ''.join([generate_nucleotide(c) for c in split_line[1]]) + '\n')
+					line = file.readline()
 
 	# ali to freq
 	try:
@@ -278,6 +330,7 @@ def convert_rfam_data(seed_filepath, tree_path, tree_outpath, freq_outpath, nei_
 		fix_newick_string(tree_path + filename, tree_outpath)
 	stockholm_to_frequencies(seed_filepath, freq_outpath)
 	stockholm_to_neighbourhoods(seed_filepath, nei_outpath)
+	print('Done.')
 
 
 def main():

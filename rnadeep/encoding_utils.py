@@ -27,9 +27,10 @@ def profile_hot_encode(char):
 			return 2
 		case 'U':
 			return 3
+		case '-':
+			return 4
 
-	print('WARNING! TRYING TO USE NOT IMPLEMENTED FEATURE OF INDELS')
-	return 4  # indel (TODO)
+	raise ValueError('Char ' + char + ' is not allowed in an alignment sequence!')
 
 
 def one_hot_matrix(seq):
@@ -44,7 +45,7 @@ def one_hot_matrix(seq):
 
 
 def profile_hot_matrix(ali):
-	matrix = np.zeros((len(ali[0]), len(ali[0]), 16), dtype=float)
+	matrix = np.zeros((len(ali[0]), len(ali[0]), 25), dtype=float)
 	seq_count = len(ali)
 
 	for i in range(len(ali[0])):
@@ -164,7 +165,7 @@ def encode_padded_alignment_matrix(alignments, max_length=None):
 		max_length = max(len(ali[0]) for ali in alignments)
 	batch_size = len(alignments)
 
-	xs = np.zeros((batch_size, max_length, max_length, 16), dtype=np.float32)
+	xs = np.zeros((batch_size, max_length, max_length, 25), dtype=np.float32)
 	masks = np.zeros((batch_size, max_length, max_length), dtype=np.float32)
 
 	for i, ali in enumerate(alignments):

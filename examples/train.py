@@ -84,7 +84,6 @@ def parse_rnadeep_args(p):
 	"""Arguments that are used by RNAdeep."""
 	p.add_argument('--version', action='version',
 				   version='%(prog)s ' + __version__)
-
 	p.add_argument("-d", "--data-tag", action='store', required=True,
 				   metavar='<str>', default=None,
 				   help="Provide a tag to describe training data.")
@@ -107,7 +106,7 @@ def parse_rnadeep_args(p):
 	p.add_argument("-e", "--epochs", type=int,
 				   metavar='<int>', default=50,
 				   help="Train for --epochs.")
-	p.add_argument("--epoch0", type=int,
+	p.add_argument("-e0", "--epoch0", type=int,
 				   metavar='<int>', default=0,
 				   help="Start at this epoch.")
 	p.add_argument("-b", "--batch-size", type=int,

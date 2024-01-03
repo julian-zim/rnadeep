@@ -1,2 +1,15 @@
-#python train.py -t ./data/uniform_len25-30_n10000.fa-train -v ./data/uniform_len25-30_n2000.fa-test --data-tag l30 --smodel 3 --batch-size 50 --epochs 5
-python train_ali.py --ali-dir ../rnaconv/data/sissi/ --dbrs-dir ../rnaconv/data/rfam/seed_neighbourhood/dbs/ --data-tag l30 --smodel 3 --batch-size 10 --epochs 5
+#!/usr/bin/bash
+
+source /home/julian-zim/Programs/anaconda3/etc/profile.d/conda.sh
+conda activate spb
+
+
+python train_ali.py --ali-dir ../rnaconv/data/dummy/sissi/ \
+                    --dbn-dir ../rnaconv/data/dummy/rfam/seed_neighbourhood/dbn/ \
+                    --model-log-dir models \
+                    --data-tag rfam-sissi --smodel 0 --batch-size 10 --epochs 2
+
+python train_ali.py --ali-dir ../rnaconv/data/dummy/rfam/seed_frequency/ali/ \
+                    --dbn-dir ../rnaconv/data/dummy/rfam/seed_neighbourhood/dbn/ \
+                    --model-log-dir models \
+                    --data-tag rfam-sissi --load-model ./models/sm0_rfam-sissi_002 --epoch0 2 --batch-size 10 --epochs 4
