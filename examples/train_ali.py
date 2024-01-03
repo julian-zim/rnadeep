@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import math
 import os
 import argparse
 
@@ -19,8 +20,9 @@ absl.logging.set_verbosity(absl.logging.ERROR)
 
 
 def training(datatag,
-			 ali_dir,
 			 dbrs_dir,
+			 seed_ali_dir,
+			 gen_ali_dir,
 			 spotmodel=None,
 			 basemodel=None,
 			 savedir='.',
@@ -60,27 +62,31 @@ def training(datatag,
 	model_checkpoint = ModelCheckpoint(filepath=logname + '_{epoch:03d}',
 									   save_weights_only=False)
 	# Get the data for analysis
-	train_generator = None
-	valid_generator = None
 
-	seed = False
-	if seed:
-		seed_alis, seed_dbrs = parse_seed_alignments(ali_dir, dbrs_dir)
-		# TODO: finetune with actual rfam data
-	else:
-		generated_alis, generated_dbrs = parse_alignments_datasets(ali_dir, dbrs_dir)
+	seed_alis, seed_dbrs = parse_seed_alignments(seed_ali_dir, dbrs_dir)
+	assert(len(seed_alis) == len(seed_dbrs))
 
-		#train_share = int(len(generated_alis) * 0.01)
-		#valid_share = int(len(generated_alis) * 0.001)
-		train_share = 2
-		valid_share = 2
-		train_gen_alis = generated_alis[:train_share]
-		train_gen_dbrs = generated_dbrs[:train_share]
-		valid_gen_alis = generated_alis[-valid_share:]
-		valid_gen_dbrs = generated_dbrs[-valid_share:]
+	gen_alis, gen_dbrs = parse_alignments_datasets(gen_ali_dir, dbrs_dir)
+	assert(len(gen_alis) == len(gen_dbrs))
 
-		train_generator = PaddedAlignmentMatrixEncoding(batch_size, train_gen_alis, train_gen_dbrs)
-		valid_generator = PaddedAlignmentMatrixEncoding(batch_size, valid_gen_alis, valid_gen_dbrs)
+	train_share = 0.8
+
+	train_gen_alis = gen_alis[:int(len(gen_alis) * train_share)]
+	train_gen_dbrs = gen_alis[:int(len(gen_dbrs) * train_share)]
+	valid_gen_alis = gen_dbrs[int(len(gen_alis) * train_share):]
+	valid_gen_dbrs = gen_dbrs[int(len(gen_dbrs) * train_share):]
+
+	train_seed_alis = seed_alis[:int(len(seed_alis) * train_share)]
+	train_seed_dbrs = seed_alis[:int(len(seed_dbrs) * train_share)]
+	valid_seed_alis = seed_dbrs[int(len(seed_alis) * train_share):]
+	valid_seed_dbrs = seed_dbrs[int(len(seed_dbrs) * train_share):]
+
+	#train_share = int(len(generated_alis) * 0.01)
+	#valid_share = int(len(generated_alis) * 0.001)
+	train_share = 2
+	valid_share = 2
+	train_generator = PaddedAlignmentMatrixEncoding(batch_size, train_gen_alis, train_gen_dbrs)
+	valid_generator = PaddedAlignmentMatrixEncoding(batch_size, valid_gen_alis, valid_gen_dbrs)
 
 	model.fit(
 		x=train_generator,
@@ -105,12 +111,15 @@ def parse_rnadeep_args(p):
 	p.add_argument("-d", "--data-tag", action='store', required=True,
 				   metavar='<str>', default=None,
 				   help="Provide a tag to describe training data.")
-	p.add_argument("-ad", "--ali-dir", action='store', required=True,
-				   metavar='<str>', default=None,
-				   help="Provide a directory with alignment data for training or validation.")
 	p.add_argument("-dd", "--dbrs-dir", action='store', required=True,
 				   metavar='<str>', default=None,
-				   help="Provide a directory with dbrs data for training or validation.")
+				   help="Provide a directory with seed dbrs data for training and validation.")
+	p.add_argument("-sd", "--seed-ali-dir", action='store', required=True,
+				   metavar='<str>', default=None,
+				   help="Provide a directory with seed alignment data for training and validation.")
+	p.add_argument("-gd", "--gen-ali-dir", action='store', required=True,
+				   metavar='<str>', default=None,
+				   help="Provide a directory with generated alignment data for training and validation.")
 	p.add_argument("-m", "--smodel", type=int,
 				   metavar='<int>', default=None,
 				   choices=(0, 1, 2, 3, 4),
@@ -124,7 +133,7 @@ def parse_rnadeep_args(p):
 	p.add_argument("-e", "--epochs", type=int,
 				   metavar='<int>', default=50,
 				   help="Train for --epochs.")
-	p.add_argument("--epoch0", type=int,
+	p.add_argument("-e0", "--epoch0", type=int,
 				   metavar='<int>', default=0,
 				   help="Start at this epoch.")
 	p.add_argument("-b", "--batch-size", type=int,
@@ -150,8 +159,9 @@ def main():
 		raise SystemExit(('Load exisiting model with --load-model ',
 						  'or specify which model to train with --smodel'))
 	m = training(args.data_tag,
-				 args.ali_dir,
 				 args.dbrs_dir,
+				 args.seed_ali_dir,
+				 args.gen_ali_dir,
 				 spotmodel=args.smodel,
 				 basemodel=args.load_model,
 				 savedir=args.model_log_dir,
