@@ -3,10 +3,7 @@ import subprocess
 import random
 
 
-temp_name = ''
-
-
-def generate_nucleotide(ambiguous_char):
+def _generate_nucleotide(ambiguous_char):
 	match ambiguous_char:
 		case 'A' | 'C' | 'G' | 'U' | '-':
 			return ambiguous_char
@@ -142,10 +139,6 @@ def stockholm_to_wuss(filepath, outpath):
 						pass  # skip other compulsory fields
 
 			elif line[0:2] == '//':
-				# TODO: remove
-				if temp_name != '' and ali_name != temp_name:
-					line = file.readline()
-					continue
 				with open(outpath + ali_name + '.wuss', 'w') as outfile:
 					outfile.write(ali_cons_sequence + '\n')
 					outfile.write(ali_cons_structure + '\n')
@@ -183,9 +176,9 @@ def stockholm_to_frequencies(filepath, outpath):
 	except FileExistsError:
 		pass
 
-	# stockholm to ali_amb
+	# stockholm to ali
 	try:
-		os.makedirs(outpath + 'ali_amb/')
+		os.makedirs(outpath + 'ali/')
 	except FileExistsError:
 		pass
 	with open(filepath, 'r') as file:
@@ -209,11 +202,7 @@ def stockholm_to_frequencies(filepath, outpath):
 					pass  # skip other markups
 
 			elif line[0:2] == '//':
-				# TODO: remove
-				if temp_name != '' and ali_name != temp_name:
-					line = file.readline()
-					continue
-				with open(outpath + 'ali_amb/' + ali_name + '.ali', 'w') as outfile:
+				with open(outpath + 'ali/' + ali_name + '.ali', 'w') as outfile:
 					number = len(ali)
 					length = 0 if number == 0 else len(ali[0])
 					outfile.write(' ' + str(number) + ' ' + str(length) + '\n')
@@ -227,15 +216,16 @@ def stockholm_to_frequencies(filepath, outpath):
 
 			line = file.readline()
 
-	# ali_amb to ali
+	# ali to ali unambiguous
+	"""
 	try:
-		os.makedirs(outpath + 'ali/')
+		os.makedirs(outpath + 'ali_unam/')
 	except FileExistsError:
 		pass
-	filenames = os.listdir(outpath + 'ali_amb/')
+	filenames = os.listdir(outpath + 'ali/')
 	for filename in filenames:
-		with open(outpath + 'ali_amb/' + filename, 'r') as file:
-			with open(outpath + 'ali/' + filename, 'w') as outfile:
+		with open(outpath + 'ali/' + filename, 'r') as file:
+			with open(outpath + 'ali_unam/' + filename, 'w') as outfile:
 				line = file.readline()
 				while line != '':
 					split_line = line.split()
@@ -243,7 +233,7 @@ def stockholm_to_frequencies(filepath, outpath):
 						outfile.write(line)
 					else:
 						outfile.write(split_line[0] + ' ' + ''.join([generate_nucleotide(c) for c in split_line[1]]) + '\n')
-					line = file.readline()
+					line = file.readline()"""
 
 	# ali to freq
 	try:
@@ -255,7 +245,7 @@ def stockholm_to_frequencies(filepath, outpath):
 		amounts = [0, 0, 0, 0]
 		with open(outpath + 'ali/' + filename, 'r') as file:
 			line = file.readline()
-			while line != '':
+			while line != '':  # TODO: add ambiguity amounts
 				amounts[0] += line.count('A')
 				amounts[1] += line.count('C')
 				amounts[2] += line.count('G')
@@ -264,10 +254,10 @@ def stockholm_to_frequencies(filepath, outpath):
 		count = sum(amounts)
 		amounts = [amount / count for amount in amounts]
 		with open(outpath + 'freq/' + filename.split('.')[0] + '.freq', 'w') as outfile:
-			outfile.write(str(amounts[0] / count) + '  ' +
-						  str(amounts[1] / count) + '  ' +
-						  str(amounts[2] / count) + '  ' +
-						  str(amounts[3] / count))
+			outfile.write(str(amounts[0]) + '  ' +
+						  str(amounts[1]) + '  ' +
+						  str(amounts[2]) + '  ' +
+						  str(amounts[3]))
 
 
 def fix_newick_string(filepath, outpath):
@@ -324,22 +314,7 @@ def fix_newick_string(filepath, outpath):
 def convert_rfam_data(seed_filepath, tree_path, tree_outpath, freq_outpath, nei_outpath):
 	filenames = os.listdir(tree_path)
 	for filename in filenames:
-		# TODO: remove
-		if temp_name != '' and filename.split('.')[0] != temp_name:
-			continue
 		fix_newick_string(tree_path + filename, tree_outpath)
 	stockholm_to_frequencies(seed_filepath, freq_outpath)
 	stockholm_to_neighbourhoods(seed_filepath, nei_outpath)
 	print('Done.')
-
-
-def main():
-	convert_rfam_data('./data/rfam/Rfam_fixed.seed',
-					  './data/rfam/seed_tree/original/',
-					  './data/rfam/seed_tree/fixed/',
-					  './data/rfam/seed_frequency/',
-					  './data/rfam/seed_neighbourhood/')
-
-
-if __name__ == '__main__':
-	main()

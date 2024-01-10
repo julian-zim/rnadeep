@@ -15,24 +15,6 @@ def one_hot_encode(char):
 		return np.array([0, 0, 0, 0])
 
 
-def profile_hot_encode(char):
-	char = char.upper()
-
-	match char:
-		case 'A':
-			return 0
-		case 'C':
-			return 1
-		case 'G':
-			return 2
-		case 'U':
-			return 3
-		case '-':
-			return 4
-
-	raise ValueError('Char ' + char + ' is not allowed in an alignment sequence!')
-
-
 def one_hot_matrix(seq):
 	matrix = np.zeros((len(seq), len(seq), 8), dtype=int)
 	for i, char_i in enumerate(seq):
@@ -44,17 +26,39 @@ def one_hot_matrix(seq):
 	return matrix
 
 
-def profile_hot_matrix(ali):
-	matrix = np.zeros((len(ali[0]), len(ali[0]), 25), dtype=float)
+def profile_vec_matrix(ali):
 	seq_count = len(ali)
+	seq_len = len(ali[0])
+	print(f'Calculations: {seq_len} x {seq_len} x {seq_count} = {seq_len * seq_len * seq_count}')  # TODO: remove
+	matrix = np.zeros((seq_len, seq_len, 25), dtype=float)
 
-	for i in range(len(ali[0])):
-		for j in range(len(ali[0])):
+	base_to_ids = {
+		'A': np.array([1, 0, 0, 0, 0]),
+		'C': np.array([0, 1, 0, 0, 0]),
+		'G': np.array([0, 0, 1, 0, 0]),
+		'U': np.array([0, 0, 0, 1, 0]),
+		'-': np.array([0, 0, 0, 0, 1]),
+		'M': np.array([0.5, 0.5, 0, 0, 0]),
+		'R': np.array([0.5, 0, 0.5, 0, 0]),
+		'W': np.array([0.5, 0, 0, 0.5, 0]),
+		'S': np.array([0, 0.5, 0.5, 0, 0]),
+		'Y': np.array([0, 0.5, 0, 0.5, 0]),
+		'K': np.array([0, 0, 0.5, 0.5, 0]),
+		'V': np.array([1./3., 1./3., 1./3., 0, 0]),
+		'H': np.array([1./3., 1./3., 0, 1./3., 0]),
+		'D': np.array([1./3., 0, 1./3., 1./3., 0]),
+		'B': np.array([0, 1./3., 1./3., 1./3., 0]),
+		'N': np.array([0.25, 0.25, 0.25, 0.25, 0]),
+	}
+
+	for i in range(seq_len):
+		for j in range(seq_len):
+
 			for k in range(seq_count):
-				char_i = ali[k][i]
-				char_j = ali[k][j]
-				index = profile_hot_encode(char_i) * 4 + profile_hot_encode(char_j)
-				matrix[i][j][index] += 1 / seq_count
+				char_i = ali[k][i].upper()
+				char_j = ali[k][j].upper()
+				matrix[i][j] += np.outer(base_to_ids[char_i], base_to_ids[char_j]).flatten()
+			matrix[i][j] /= seq_count
 
 	return matrix
 
@@ -171,7 +175,7 @@ def encode_padded_alignment_matrix(alignments, max_length=None):
 	for i, ali in enumerate(alignments):
 		wl = max_length - len(ali[0])
 
-		x = profile_hot_matrix(ali)
+		x = profile_vec_matrix(ali)
 		x = np.pad(x, ((0, wl), (0, wl), (0, 0)), 'constant')
 		xs[i] = x
 

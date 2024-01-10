@@ -2,13 +2,10 @@
 *~
 *.swp
 *.tex
-.idea/
+.idea
 build
 dist
 rnadeep.egg-info
 examples/models
 examples/RNAdeep-models
-rnaconv/data/full
-rnaconv/data/ambiguous
-rnaconv/data/small
-rnaconv/data/dummy
+rnaconv/data

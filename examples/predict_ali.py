@@ -6,7 +6,7 @@ from tensorflow.keras.models import load_model
 
 from rnadeep.metrics import mcc, f1, sensitivity
 from rnadeep.data_generators import PaddedAlignmentMatrixEncoding
-from rnadeep.alignment_sampling import draw_ali_sets
+from rnadeep.sampling_ali import draw_ali_sets
 
 import absl.logging
 
@@ -14,8 +14,8 @@ absl.logging.set_verbosity(absl.logging.ERROR)
 
 
 def main():
-	ali_dir = '../rnaconv/data/dummy/rfam/seed_frequency/ali/'
-	dbn_dir = '../rnaconv/data/dummy/rfam/seed_neighbourhood/dbn/'
+	ali_dir = '../rnaconv/data/small/rfam/seed_frequency/ali/'
+	dbn_dir = '../rnaconv/data/small/rfam/seed_neighbourhood/dbn/'
 	model = './models/sm0_rfam-sissi_004'  # choose a trained model here
 	outdir = f"predictions/{model}-rfamseed"
 

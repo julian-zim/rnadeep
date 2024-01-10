@@ -5,7 +5,7 @@ from rfam_converter import convert_rfam_data
 
 
 def generate_alignment(n, directory, filename, outpath):
-	#ct_filepath = base_path + 'Rfam.seed_neighbourhood/ct/' + filename + 'fa.ct'
+	#ct_filepath = directory + 'seed_neighbourhood/ct/' + filename + '.ct'
 	neigh_filepath = directory + 'seed_neighbourhood/nei/' + filename + '.nei'
 	freq_filepath = directory + 'seed_frequency/freq/' + filename + '.freq'
 	tree_filepath = directory + 'seed_tree/fixed/' + filename + '.seed_tree'
@@ -29,7 +29,7 @@ def generate_alignment(n, directory, filename, outpath):
 		print('Error in \'' + filename + '\':\n' + result.stderr)
 		os.remove(out_filepath)
 	else:
-		print('Successfully generated alignment(s) for \'' + filename + '\'.')
+		print('Successfully generated alignment' + ('s' if n > 1 else '') + ' for \'' + filename + '\'.')
 
 
 def generate_alignments(n, directory, outpath):
@@ -55,7 +55,7 @@ def main():
 		print('Usage: ./alignment_generator.py <amount> <rfam path> <outpath>')
 		return -1
 
-	n = sys.argv[1]
+	n = int(sys.argv[1])
 	rfam_path = sys.argv[2]
 	outpath = sys.argv[3]
 

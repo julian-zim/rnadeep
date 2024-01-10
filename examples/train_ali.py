@@ -9,7 +9,7 @@ from rnadeep import __version__
 from rnadeep.models import spotrna_alignment_models
 from rnadeep.metrics import mcc, f1, sensitivity
 from rnadeep.data_generators import PaddedAlignmentMatrixEncoding
-from rnadeep.alignment_sampling import draw_ali_sets
+from rnadeep.sampling_ali import draw_ali_sets
 
 import absl.logging
 
@@ -61,6 +61,10 @@ def training(datatag, dbn_dir, ali_dir,
 	train_generator = PaddedAlignmentMatrixEncoding(batch_size, train_alis, train_dbrs)
 	[valid_alis, valid_dbrs] = zip(*valid)
 	valid_generator = PaddedAlignmentMatrixEncoding(batch_size, valid_alis, valid_dbrs)
+
+	print('generating')
+	for e in valid_generator:
+		print(e)
 
 	model.fit(
 		x=train_generator,
