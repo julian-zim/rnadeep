@@ -1,5 +1,6 @@
-rm -r ./rfam/seed_tree/fixed/
-rm -r ./rfam/seed_frequency/
-rm -r ./rfam/seed_neighbourhood/
+rm -r ./rfam/seed_trees/fixed/
+rm -r ./rfam/seed_alignments/
+rm -r ./rfam/seed_neighbourhoods/
+rm -r ./rfam/seed_frequencies/
 rm -r ./sissi/
 rm -r ./output.txt
