@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/sh
 #SBATCH -J rnadeep
 #SBATCH --partition=zen3_0512_a100x2
 #SBATCH --qos zen3_0512_a100x2
@@ -8,8 +8,10 @@
 #SBATCH --output=/home/fs71475/julianz123/rnadeep/examples/slurm_out/gcn_slurm.%A.out
 #SBATCH --error=/home/fs71475/julianz123/rnadeep/examples/gcn_slurm.%A.error
 
-source /home/julian-zim/Programs/anaconda3/etc/profile.d/conda.sh
-conda activate spb
+spack load cuda
+spack load miniconda3@4.12.0
+source /home/fs71475/julianz123/.bashrc
+conda activate /home/fs71475/julianz123/.conda/envs/jzspb
 
 python train_ali.py --ali-dir ../rnaconv/data/small/sissi/ \
                     --dbn-dir ../rnaconv/data/small/rfam/seed_neighbourhoods/dbn/ \

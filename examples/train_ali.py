@@ -62,10 +62,6 @@ def training(datatag, dbn_dir, ali_dir,
 	[valid_alis, valid_dbrs] = zip(*valid)
 	valid_generator = PaddedAlignmentMatrixEncoding(batch_size, valid_alis, valid_dbrs)
 
-	print('generating')
-	for e in valid_generator:
-		print(e)
-
 	model.fit(
 		x=train_generator,
 		validation_data=valid_generator,
