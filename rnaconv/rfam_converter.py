@@ -1,6 +1,7 @@
 import os
 import subprocess
 import numpy as np
+import math
 
 
 """
@@ -87,8 +88,11 @@ def obtain_doublet_frequencies(alidirpath, neighdirpath, outpath):
 			for seq in alignment:
 				char_i, char_j = seq[pair[0]].upper(), seq[pair[1]].upper()
 				if char_i != '-' and char_j != '-':
-					doublet_frequencies += np.outer(base_to_ids[char_i], base_to_ids[char_j]).flatten()
-		doublet_frequencies /= sum(doublet_frequencies)
+					summand = np.outer(base_to_ids[char_i], base_to_ids[char_j]).flatten()
+					doublet_frequencies += summand
+		sum_freq = sum(doublet_frequencies)
+		if sum_freq > 0:
+			doublet_frequencies /= sum_freq
 
 		with open(outpath + filename_base + '.freq', 'w') as outfile:
 			outfile.write(' '.join([str(e) for e in doublet_frequencies]) + '\n')
@@ -341,12 +345,12 @@ def convert_rfam_data(tree_path, tree_outpath, seed_filepath, ali_outpath, neigh
 
 
 def main():
-	convert_rfam_data('./data/small/rfam/seed_trees/original/',
-					  './data/small/rfam/seed_trees/fixed/',
-					  './data/small/rfam/Rfam.seed',
-					  './data/small/rfam/seed_alignments/',
-					  './data/small/rfam/seed_neighbourhoods/',
-					  './data/small/rfam/seed_frequencies/')
+	convert_rfam_data('./data/ambiguous/rfam/seed_trees/original/',
+					  './data/ambiguous/rfam/seed_trees/fixed/',
+					  './data/ambiguous/rfam/Rfam.seed',
+					  './data/ambiguous/rfam/seed_alignments/',
+					  './data/ambiguous/rfam/seed_neighbourhoods/',
+					  './data/ambiguous/rfam/seed_frequencies/')
 
 
 if __name__ == '__main__':
