@@ -1,4 +1,4 @@
-./install.sh
+#./install.sh
 
 cd ./rnaconv/data/dummy/
 ./run.sh
