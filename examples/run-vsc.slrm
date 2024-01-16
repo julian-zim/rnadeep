@@ -6,7 +6,7 @@
 #SBATCH --mail-user=a12144285@unet.univie.ac.at
 #SBATCH --mail-type=END,FAIL
 #SBATCH --output=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm_out/rnadeep_slurm.%A.out
-#SBATCH --error=/home/fs71475/julianz123/workspace/rnadeep/examples/rnadeep_slurm.%A.error
+#SBATCH --error=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm_out/rnadeep_slurm.%A.error
 
 spack load miniconda3@4.12.0
 source /home/fs71475/julianz123/.bashrc
