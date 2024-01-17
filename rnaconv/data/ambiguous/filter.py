@@ -19,9 +19,12 @@ def main():
 				line = file.readline()
 		if not keep:
 			os.remove(ali_path + filename)
-			del_freq_path = freq_path + filename.split('.')[0] + '.freq'
-			if os.path.exists(del_freq_path):
-				os.remove(del_freq_path)
+			del_single_freq_path = freq_path + 'single/' + filename.split('.')[0] + '.freq'
+			if os.path.exists(del_single_freq_path):
+				os.remove(del_single_freq_path)
+			del_double_freq_path = freq_path + 'doublet/' + filename.split('.')[0] + '.freq'
+			if os.path.exists(del_double_freq_path):
+				os.remove(del_double_freq_path)
 			del_tree_path = tree_path + filename.split('.')[0] + '.seed_tree'
 			if os.path.exists(del_tree_path):
 				os.remove(del_tree_path)
