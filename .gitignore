@@ -8,7 +8,7 @@ build
 dist
 rnadeep.egg-info
 
-examples/slurm_out/*
+examples/slurm/*
 examples/models/*
 examples/RNAdeep-models
 

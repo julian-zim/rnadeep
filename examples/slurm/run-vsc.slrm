@@ -5,13 +5,14 @@
 #SBATCH --gres=gpu:2
 #SBATCH --mail-user=a12144285@unet.univie.ac.at
 #SBATCH --mail-type=END,FAIL
-#SBATCH --output=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm_out/rnadeep_slurm.%A.out
-#SBATCH --error=/home/fs71475/julianz123/workspace/rnadeep/examples/rnadeep_slurm.%A.error
+#SBATCH --output=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/rnadeep_%A.out
+#SBATCH --error=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/rnadeep_%A.error
 
 spack load miniconda3@4.12.0
 source /home/fs71475/julianz123/.bashrc
 conda activate /home/fs71475/julianz123/.conda/envs/jzspb
 
+cd ..
 python train_ali.py --ali-dir ../rnaconv/data/small/sissi/ \
                     --dbn-dir ../rnaconv/data/small/rfam/seed_neighbourhoods/dbn/ \
                     --model-log-dir models \
