@@ -32,9 +32,17 @@ def obtain_single_frequencies(outpath):
 """
 
 
-def obtain_doublet_frequencies(alidirpath, neighdirpath, outpath):
+def obtain_frequencies(alidirpath, neighdirpath, outpath):
 	try:
 		os.makedirs(outpath)
+	except FileExistsError:
+		pass
+	try:
+		os.makedirs(outpath + 'single/')
+	except FileExistsError:
+		pass
+	try:
+		os.makedirs(outpath + 'doublet/')
 	except FileExistsError:
 		pass
 
@@ -59,7 +67,7 @@ def obtain_doublet_frequencies(alidirpath, neighdirpath, outpath):
 	for alifilename in os.listdir(alidirpath):
 		filename_base = alifilename.split('.')[0]
 		if not os.path.exists(neighdirpath + 'nei/' + filename_base + '.nei'):
-			print('Warning: Couldn\'t obtain doublet frequencies of \"' + filename_base +
+			print('Warning: Couldn\'t obtain single/doublet frequencies of \"' + filename_base +
 				  '\" since there is no neighbourhood information.')
 			continue
 
@@ -77,24 +85,34 @@ def obtain_doublet_frequencies(alidirpath, neighdirpath, outpath):
 			while line != '':
 				split_line = line.split()
 				if len(split_line) < 3:
-					line = neifile.readline()
-					continue
+					split_line.append('-1')
 				pair = tuple(sorted((int(split_line[1].split('|')[0]), int(split_line[2].split(':')[0]))))
 				neighbourhood.add(pair)
 				line = neifile.readline()
 
+		single_frequencies = np.zeros(4)
 		doublet_frequencies = np.zeros(16)
 		for pair in neighbourhood:
 			for seq in alignment:
-				char_i, char_j = seq[pair[0]].upper(), seq[pair[1]].upper()
-				if char_i != '-' and char_j != '-':
-					summand = np.outer(base_to_ids[char_i], base_to_ids[char_j]).flatten()
-					doublet_frequencies += summand
-		sum_freq = sum(doublet_frequencies)
-		if sum_freq > 0:
-			doublet_frequencies /= sum_freq
+				if pair[0] == -1:
+					char = seq[pair[1]]
+					if char != '-':
+						single_frequencies += base_to_ids[char]
+				else:
+					char_i, char_j = seq[pair[0]].upper(), seq[pair[1]].upper()
+					if char_i != '-' and char_j != '-':
+						summand = np.outer(base_to_ids[char_i], base_to_ids[char_j]).flatten()
+						doublet_frequencies += summand
+		sum_single_freq = sum(doublet_frequencies)
+		if sum_single_freq > 0:
+			single_frequencies /= sum_single_freq
+		sum_double_freq = sum(doublet_frequencies)
+		if sum_double_freq > 0:
+			doublet_frequencies /= sum_double_freq
 
-		with open(outpath + filename_base + '.freq', 'w') as outfile:
+		with open(outpath + 'single/' + filename_base + '.freq', 'w') as outfile:
+			outfile.write(' '.join([str(e) for e in single_frequencies]) + '\n')
+		with open(outpath + 'doublet/' + filename_base + '.freq', 'w') as outfile:
 			outfile.write(' '.join([str(e) for e in doublet_frequencies]) + '\n')
 
 
@@ -340,17 +358,18 @@ def convert_rfam_data(tree_path, tree_outpath, seed_filepath, ali_outpath, neigh
 	fix_newick_strings(tree_path, tree_outpath)
 	stockholm_to_alignments(seed_filepath, ali_outpath)
 	stockholm_to_neighbourhoods(seed_filepath, neigh_outpath)
-	obtain_doublet_frequencies(ali_outpath, neigh_outpath, freq_outpath)
+	obtain_frequencies(ali_outpath, neigh_outpath, freq_outpath)
 	print('Done.')
 
 
 def main():
-	convert_rfam_data('./data/ambiguous/rfam/seed_trees/original/',
-					  './data/ambiguous/rfam/seed_trees/fixed/',
-					  './data/ambiguous/rfam/Rfam.seed',
-					  './data/ambiguous/rfam/seed_alignments/',
-					  './data/ambiguous/rfam/seed_neighbourhoods/',
-					  './data/ambiguous/rfam/seed_frequencies/')
+	folder = 'dummy'
+	convert_rfam_data('./data/' + folder + '/rfam/seed_trees/original/',
+					  './data/' + folder + '/rfam/seed_trees/fixed/',
+					  './data/' + folder + '/rfam/Rfam.seed',
+					  './data/' + folder + '/rfam/seed_alignments/',
+					  './data/' + folder + '/rfam/seed_neighbourhoods/',
+					  './data/' + folder + '/rfam/seed_frequencies/')
 
 
 if __name__ == '__main__':

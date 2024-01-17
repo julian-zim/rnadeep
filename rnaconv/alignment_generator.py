@@ -4,21 +4,29 @@ import subprocess
 from rfam_converter import convert_rfam_data
 
 
+def readd_indels():
+	pass
+
+
 def generate_alignment(n, directory, filename, outpath):
 	#ct_filepath = directory + 'seed_neighbourhoods/ct/' + filename + '.ct'
 	neigh_filepath = directory + 'seed_neighbourhoods/nei/' + filename + '.nei'
-	freq_filepath = directory + 'seed_frequencies/' + filename + '.freq'
+	single_freq_filepath = directory + 'seed_frequencies/single/' + filename + '.freq'
+	doublet_freq_filepath = directory + 'seed_frequencies/doublet/' + filename + '.freq'
 	tree_filepath = directory + 'seed_trees/fixed/' + filename + '.seed_tree'
 	out_filepath = outpath + filename + '.ali'
 
 	with open(neigh_filepath) as nei_file:
 		seq_length = sum(1 for _ in nei_file)
-	with open(freq_filepath) as freq_file:
-		frequencies = freq_file.readline()[:-1]
+	with open(single_freq_filepath) as single_freq_file:
+		single_frequencies = single_freq_file.readline()[:-1]
+	with open(doublet_freq_filepath) as doublet_freq_file:
+		doublet_frequencies = doublet_freq_file.readline()[:-1]
 	command = ('./sissi099' +
 			  #' -nr' + ct_filepath +
 			   ' -nn ' + neigh_filepath +
-			   ' -fd ' + frequencies +
+			   ' -fs ' + single_frequencies +
+			   ' -fd ' + doublet_frequencies +
 			   ' -l' + str(seq_length) +
 			   ' -a' + str(n) +
 			   ' ' + tree_filepath +
@@ -42,7 +50,8 @@ def generate_alignments(n, directory, outpath):
 	for filename in filenames:
 		filename_base = filename.split('.')[0]
 		if os.path.exists(directory + 'seed_neighbourhoods/nei/' + filename_base + '.nei') \
-			and os.path.exists(directory + 'seed_frequencies/' + filename_base + '.freq'):
+			and os.path.exists(directory + 'seed_frequencies/doublet/' + filename_base + '.freq') \
+			and os.path.exists(directory + 'seed_frequencies/single/' + filename_base + '.freq'):
 			generate_alignment(n, directory, filename_base, outpath)
 		else:
 			print('Warning: Skipping \'' + filename_base + '\' as it is missing a neighbourhood or frequency file.')
@@ -73,6 +82,7 @@ def main():
 
 	print('\n========== GENERATING SISSI ALIGNMENTS ==========')
 	generate_alignments(n, rfam_path, outpath)
+	readd_indels()
 
 
 if __name__ == '__main__':
