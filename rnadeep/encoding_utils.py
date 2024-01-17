@@ -29,7 +29,7 @@ def one_hot_matrix(seq):
 def profile_vec_matrix(ali):
 	seq_count = len(ali)
 	seq_len = len(ali[0])
-	print(f'Calculations: {seq_len} x {seq_len} x {seq_count} = {seq_len * seq_len * seq_count}')
+	#print(f'Calculations: {seq_len} x {seq_len} x {seq_count} = {seq_len * seq_len * seq_count}')
 	matrix = np.zeros((seq_len, seq_len, 25), dtype=float)
 
 	base_to_ids = {
