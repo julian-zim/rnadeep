@@ -3,5 +3,5 @@
 source /home/julian-zim/Programs/anaconda3/etc/profile.d/conda.sh
 conda activate rnadeep
 
-pip install .
-
+cd ../../..
+python ./rfam_converter.py data/rfam/full > ./data/rfam/full/output.txt

@@ -1,48 +1,20 @@
+import sys
 import os
 import subprocess
 import numpy as np
-import math
 
 
-"""
-def obtain_single_frequencies(outpath):
-	# ali to freq
-	try:
-		os.makedirs(outpath + 'freq/')
-	except FileExistsError:
-		pass
-	filenames = os.listdir(outpath + 'ali/')
-	for filename in filenames:
-		amounts = [0, 0, 0, 0]
-		with open(outpath + 'ali/' + filename, 'r') as file:
-			line = file.readline()
-			while line != '':  # TODO: add ambiguity amounts
-				amounts[0] += line.count('A')
-				amounts[1] += line.count('C')
-				amounts[2] += line.count('G')
-				amounts[3] += line.count('U')
-				line = file.readline()
-		count = sum(amounts)
-		amounts = [amount / count for amount in amounts]
-		with open(outpath + 'freq/' + filename.split('.')[0] + '.freq', 'w') as outfile:
-			outfile.write(str(amounts[0]) + '  ' +
-						  str(amounts[1]) + '  ' +
-						  str(amounts[2]) + '  ' +
-						  str(amounts[3]))
-"""
-
-
-def obtain_frequencies(alidirpath, neighdirpath, outpath):
+def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
 	try:
 		os.makedirs(outpath)
 	except FileExistsError:
 		pass
 	try:
-		os.makedirs(outpath + 'single/')
+		os.makedirs(os.path.join(outpath, 'single'))
 	except FileExistsError:
 		pass
 	try:
-		os.makedirs(outpath + 'doublet/')
+		os.makedirs(os.path.join(outpath, 'doublet'))
 	except FileExistsError:
 		pass
 
@@ -66,13 +38,13 @@ def obtain_frequencies(alidirpath, neighdirpath, outpath):
 
 	for alifilename in os.listdir(alidirpath):
 		filename_base = alifilename.split('.')[0]
-		if not os.path.exists(neighdirpath + 'nei/' + filename_base + '.nei'):
-			print('Warning: Couldn\'t obtain single/doublet frequencies of \"' + filename_base +
+		if not os.path.exists(os.path.join(neighdirpath, 'nei', filename_base + '.nei')):
+			print('Warning: Couldn\'t obtain equilibrium frequencies of \"' + filename_base +
 				  '\" since there is no neighbourhood information.')
 			continue
 
 		alignment = list()
-		with open(alidirpath + alifilename) as alifile:
+		with open(os.path.join(alidirpath, alifilename)) as alifile:
 			alifile.readline()
 			line = alifile.readline()
 			while line != '':
@@ -80,7 +52,7 @@ def obtain_frequencies(alidirpath, neighdirpath, outpath):
 				line = alifile.readline()
 
 		neighbourhood = set()
-		with open(neighdirpath + 'nei/' + filename_base + '.nei') as neifile:
+		with open(os.path.join(neighdirpath, 'nei', filename_base + '.nei')) as neifile:
 			line = neifile.readline()
 			while line != '':
 				split_line = line.split()
@@ -110,9 +82,9 @@ def obtain_frequencies(alidirpath, neighdirpath, outpath):
 		if sum_double_freq > 0:
 			doublet_frequencies /= sum_double_freq
 
-		with open(outpath + 'single/' + filename_base + '.freq', 'w') as outfile:
+		with open(os.path.join(outpath, 'single', filename_base + '.freq'), 'w') as outfile:
 			outfile.write(' '.join([str(e) for e in single_frequencies]) + '\n')
-		with open(outpath + 'doublet/' + filename_base + '.freq', 'w') as outfile:
+		with open(os.path.join(outpath, 'doublet', filename_base + '.freq'), 'w') as outfile:
 			outfile.write(' '.join([str(e) for e in doublet_frequencies]) + '\n')
 
 
@@ -125,7 +97,7 @@ def ct_to_nei(filepath, outpath):
 	filename = filepath.split('/')[-1].split('.')[0]
 
 	with open(filepath, 'r') as file:
-		with open(outpath + filename + '.nei', 'w') as outfile:
+		with open(os.path.join(outpath, filename + '.nei'), 'w') as outfile:
 			file.readline()
 			line = file.readline()
 			while line != '':
@@ -149,11 +121,11 @@ def db_to_ct(filepath, outpath):
 	if result.returncode != 0:
 		raise RuntimeError('ViennaRNA is not installed.')
 
-	command = 'b2ct < ' + filepath + '> ' + outpath + filename + '.ct'
+	command = 'b2ct < ' + filepath + '> ' + str(os.path.join(outpath, filename + '.ct'))
 	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 	if result.returncode != 0:
 		print('Warning: Couldn\'t convert file ' + filename + ' to ct.')
-		os.remove(outpath + filename + '.ct')
+		os.remove(os.path.join(outpath, filename + '.ct'))
 
 
 def wuss_to_db(filepath, outpath):
@@ -185,7 +157,7 @@ def wuss_to_db(filepath, outpath):
 
 		fixed_content = content_lines[0] + '\n' + fixed_line + ' (0)\n'
 
-	with open(outpath + filename + '.dbn', 'w') as outfile:
+	with open(os.path.join(outpath, filename + '.dbn'), 'w') as outfile:
 		outfile.write(fixed_content)
 
 
@@ -222,7 +194,7 @@ def stockholm_to_wuss(filepath, outpath):
 						pass  # skip other compulsory fields
 
 			elif line[0:2] == '//':
-				with open(outpath + ali_name + '.wuss', 'w') as outfile:
+				with open(os.path.join(outpath, ali_name + '.wuss'), 'w') as outfile:
 					outfile.write(ali_cons_sequence + '\n')
 					outfile.write(ali_cons_structure + '\n')
 
@@ -238,19 +210,19 @@ def stockholm_to_neighbourhoods(filepath, outpath):
 	except FileExistsError:
 		pass
 
-	stockholm_to_wuss(filepath, outpath + 'wuss/')
+	stockholm_to_wuss(filepath, os.path.join(outpath, 'wuss'))
 
-	filenames = os.listdir(outpath + 'wuss/')
+	filenames = os.listdir(os.path.join(outpath, 'wuss'))
 	for filename in filenames:
-		wuss_to_db(outpath + 'wuss/' + filename, outpath + 'dbn/')
+		wuss_to_db(os.path.join(outpath, 'wuss', filename), os.path.join(outpath, 'dbn'))
 
-	filenames = os.listdir(outpath + 'dbn/')
+	filenames = os.listdir(os.path.join(outpath, 'dbn'))
 	for filename in filenames:
-		db_to_ct(outpath + 'dbn/' + filename, outpath + 'ct/')
+		db_to_ct(os.path.join(outpath, 'dbn', filename), os.path.join(outpath, 'ct'))
 
-	filenames = os.listdir(outpath + 'ct/')
+	filenames = os.listdir(os.path.join(outpath, 'ct'))
 	for filename in filenames:
-		ct_to_nei(outpath + 'ct/' + filename, outpath + 'nei/')
+		ct_to_nei(os.path.join(outpath, 'ct', filename), os.path.join(outpath, 'nei'))
 
 
 def stockholm_to_alignments(filepath, outpath):
@@ -284,7 +256,7 @@ def stockholm_to_alignments(filepath, outpath):
 					pass  # skip other markups
 
 			elif line[0:2] == '//':
-				with open(outpath + ali_name + '.ali', 'w') as outfile:
+				with open(os.path.join(outpath, ali_name + '.ali'), 'w') as outfile:
 					number = len(ali)
 					length = 0 if number == 0 else len(ali[0])
 					outfile.write(' ' + str(number) + ' ' + str(length) + '\n')
@@ -307,7 +279,7 @@ def fix_newick_strings(dirpath, outpath):
 
 	filenames = os.listdir(dirpath)
 	for filename in filenames:
-		filepath = dirpath + filename
+		filepath = os.path.join(dirpath, filename)
 
 		with (open(filepath, 'r') as file):
 			newick_string = file.read()
@@ -350,7 +322,7 @@ def fix_newick_strings(dirpath, outpath):
 						predict_name = True
 					fixed_newick_string_2 += char
 
-		with open(outpath + filepath.split('/')[-1], 'w') as outfile:
+		with open(os.path.join(outpath, filepath.split('/')[-1]), 'w') as outfile:
 			outfile.write(fixed_newick_string_2)
 
 
@@ -358,18 +330,29 @@ def convert_rfam_data(tree_path, tree_outpath, seed_filepath, ali_outpath, neigh
 	fix_newick_strings(tree_path, tree_outpath)
 	stockholm_to_alignments(seed_filepath, ali_outpath)
 	stockholm_to_neighbourhoods(seed_filepath, neigh_outpath)
-	obtain_frequencies(ali_outpath, neigh_outpath, freq_outpath)
+	obtain_equilibrium_frequencies(ali_outpath, neigh_outpath, freq_outpath)
 	print('Done.')
 
 
 def main():
-	folder = 'dummy'
-	convert_rfam_data('./data/' + folder + '/rfam/seed_trees/original/',
-					  './data/' + folder + '/rfam/seed_trees/fixed/',
-					  './data/' + folder + '/rfam/Rfam.seed',
-					  './data/' + folder + '/rfam/seed_alignments/',
-					  './data/' + folder + '/rfam/seed_neighbourhoods/',
-					  './data/' + folder + '/rfam/seed_frequencies/')
+	if len(sys.argv) != 2:
+		print('Usage: ./rfam_converter.py <rfam_path>')
+		return -1
+
+	rfam_path = sys.argv[1]
+
+	if (not os.path.exists(os.path.join(rfam_path, 'Rfam.seed'))
+			or not os.path.exists(os.path.join(rfam_path, 'seed_trees/original'))):
+		print('Required rfam folder structure:\n- rfam\n\tRfam.seed\n\t- seed_trees\n\t\t- original\n\t\t\t<tree files>')
+		return -1
+
+	print('========== CONVERTING RFAM DATA POINTS ==========')
+	convert_rfam_data(os.path.join(rfam_path, 'seed_trees/original'),
+					  os.path.join(rfam_path, 'seed_trees/fixed'),
+					  os.path.join(rfam_path, 'Rfam.seed'),
+					  os.path.join(rfam_path, 'seed_alignments'),
+					  os.path.join(rfam_path, 'seed_neighbourhoods'),
+					  os.path.join(rfam_path, 'seed_frequencies'))
 
 
 if __name__ == '__main__':

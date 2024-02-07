@@ -3,7 +3,7 @@ import numpy as np
 
 
 def parse_alignment_set(ali_path, dbn_path, filename):
-	with open(ali_path + filename + '.ali') as file:
+	with open(os.path.join(ali_path, filename + '.ali')) as file:
 		alis = list()
 		ali_idx = -1
 		line = file.readline()
@@ -18,7 +18,7 @@ def parse_alignment_set(ali_path, dbn_path, filename):
 
 			line = file.readline()
 
-	with open(dbn_path + filename + '.dbn') as dbn_file:
+	with open(os.path.join(dbn_path, filename + '.dbn')) as dbn_file:
 		dbn = dbn_file.readlines()[1].split()[0]
 	dbns = [dbn for _ in alis]
 
@@ -31,7 +31,7 @@ def parse_alignments(ali_directory, dbn_directory):
 	filenames = os.listdir(ali_directory)
 	for filename in filenames:
 		filename_base = filename.split('.')[0]
-		if os.path.exists(dbn_directory + filename_base + '.dbn'):
+		if os.path.exists(os.path.join(dbn_directory, filename_base + '.dbn')):
 			new_alis, new_dbns = parse_alignment_set(ali_directory, dbn_directory, filename_base)
 			alis += new_alis
 			dbns += new_dbns
