@@ -2,8 +2,8 @@ import os
 
 
 def convert_fa_to_alidbn(infile, outpath):
-	alioutpath = outpath + 'ali/'
-	dbnoutpath = outpath + 'dbn/'
+	alioutpath = os.path.join(outpath, 'ali')
+	dbnoutpath = os.path.join(outpath, 'dbn')
 
 	try:
 		os.makedirs(alioutpath)
@@ -30,15 +30,15 @@ def convert_fa_to_alidbn(infile, outpath):
 			line = seqdbnfile.readline()
 
 	for i in range(len(ids)):
-		id = ids[i]
-		if os.path.exists(alioutpath + id + '.ali'):
-			id = id + '_2'
+		_id = ids[i]
+		if os.path.exists(os.path.join(alioutpath, id + '.ali')):
+			_id = _id + '_2'
 		seq = seqs[i]
 		dbn = dbns[i]
-		with open(alioutpath + id + '.ali', 'w') as outfile:
+		with open(os.path.join(alioutpath, _id + '.ali'), 'w') as outfile:
 			outfile.write(' 1 ' + str(len(seq)) + '\n')
 			outfile.write('_ ' + seq + '\n')
-		with open(dbnoutpath + id + '.dbn', 'w') as outfile:
+		with open(os.path.join(dbnoutpath, _id + '.dbn'), 'w') as outfile:
 			outfile.write(seq + '\n')
 			outfile.write(dbn + ' (0)\n')
 

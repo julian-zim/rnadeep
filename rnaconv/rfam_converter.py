@@ -62,8 +62,8 @@ def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
 				neighbourhood.add(pair)
 				line = neifile.readline()
 
-		single_frequencies = np.zeros(4)
-		doublet_frequencies = np.zeros(16)
+		single_frequencies = np.ones(4)  # ones because of pseudocounts
+		doublet_frequencies = np.ones(16)  # ones because of pseudocounts
 		for pair in neighbourhood:
 			for seq in alignment:
 				if pair[0] == -1:
@@ -75,6 +75,8 @@ def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
 					if char_i != '-' and char_j != '-':
 						summand = np.outer(base_to_ids[char_i], base_to_ids[char_j]).flatten()
 						doublet_frequencies += summand
+
+		# normalization
 		sum_single_freq = sum(doublet_frequencies)
 		if sum_single_freq > 0:
 			single_frequencies /= sum_single_freq

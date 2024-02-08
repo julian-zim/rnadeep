@@ -56,11 +56,9 @@ def training(datatag, ftrain, fvalid,
 	model_checkpoint = ModelCheckpoint(filepath=logname + '_{epoch:03d}',
 									   save_weights_only=False)
 	# Get the data for analysis
-	[train] = list(draw_sets(ftrain))
+	[train], [valid] = list(draw_sets(ftrain)), list(draw_sets(fvalid))
 	[train_tags, train_seqs, train_dbrs] = zip(*train)
 	train_generator = PaddedMatrixEncoding(batch_size, train_seqs, train_dbrs)
-
-	[valid] = list(draw_sets(fvalid))
 	[valid_tags, valid_seqs, valid_dbrs] = zip(*valid)
 	valid_generator = PaddedMatrixEncoding(batch_size, valid_seqs, valid_dbrs)
 
