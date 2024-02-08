@@ -8,9 +8,9 @@ build
 dist
 rnadeep.egg-info
 
-examples/slurm/*
-examples/models/*
 examples/RNAdeep-models
+examples/models/*
+examples/slurm/out/*
 
 rnaconv/data/rfam/full/seed_alignments
 rnaconv/data/rfam/full/seed_frequencies

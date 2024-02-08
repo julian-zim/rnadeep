@@ -1,0 +1,20 @@
+#!/bin/sh
+#SBATCH -J rnadeepz2
+#SBATCH --partition=zen2_0256_a40x2
+#SBATCH --qos zen2_0256_a40x2
+#SBATCH --gres=gpu:1
+#SBATCH --time=1:00:00
+#SBATCH --mail-user=a12144285@unet.univie.ac.at
+#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH --output=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/dummy-sissi.%A.out
+#SBATCH --error=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/dummy-sissi.%A.err
+
+module load miniconda3
+eval "$(conda shell.bash hook)"
+conda activate rnadeep
+
+python train_ali.py --ali-dir ../../rnaconv/data/sissi/dummy/alignments/ \
+                    --dbn-dir ../../rnaconv/data/rfam/dummy/seed_neighbourhoods/dbn/ \
+                    --model-log-dir ../models \
+                    --data-tag sm3-dummy-sissi --smodel 3 --batch-size 50 --epochs 20
+
