@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
-source /home/julian-zim/Programs/anaconda3/etc/profile.d/conda.sh
+module load miniconda3 || true
+eval "$(conda shell.bash hook)"
+source /home/julian-zim/Programs/anaconda3/etc/profile.d/conda.sh || true
 conda activate rnadeep
 
 python ../train.py --train-data-file ../data/uniform_len25-30_n10000.fa-train \

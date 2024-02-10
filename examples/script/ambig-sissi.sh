@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
-source /home/julian-zim/Programs/anaconda3/etc/profile.d/conda.sh
+module load miniconda3 || true
+eval "$(conda shell.bash hook)"
+source /home/julian-zim/Programs/anaconda3/etc/profile.d/conda.sh || true
 conda activate rnadeep
 
 python ../train_ali.py --ali-dir ../../rnaconv/data/sissi/ambiguous/alignments/ \

@@ -32,13 +32,25 @@ rnaconv/data/rfam/dummy/seed_frequencies
 rnaconv/data/rfam/dummy/seed_neighbourhoods
 rnaconv/data/rfam/dummy/seed_trees
 rnaconv/data/rfam/dummy/output.txt
+rnaconv/data/rfam/2543/seed_alignments
+rnaconv/data/rfam/2543/seed_frequencies
+rnaconv/data/rfam/2543/seed_neighbourhoods
+rnaconv/data/rfam/2543/seed_trees
+rnaconv/data/rfam/2543/output.txt
 
 rnaconv/data/sissi/full/alignments
+rnaconv/data/sissi/full/frequencies
 rnaconv/data/sissi/full/output.txt
 rnaconv/data/sissi/ambiguous/alignments
+rnaconv/data/sissi/ambiguous/frequencies
 rnaconv/data/sissi/ambiguous/output.txt
 rnaconv/data/sissi/small/alignments
+rnaconv/data/sissi/small/frequencies
 rnaconv/data/sissi/small/output.txt
 rnaconv/data/sissi/dummy/alignments
+rnaconv/data/sissi/dummy/frequencies
 rnaconv/data/sissi/dummy/output.txt
+rnaconv/data/sissi/2543/alignments
+rnaconv/data/sissi/2543/frequencies
+rnaconv/data/sissi/2543/output.txt
 

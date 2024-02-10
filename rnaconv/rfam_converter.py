@@ -77,7 +77,7 @@ def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
 						doublet_frequencies += summand
 
 		# normalization
-		sum_single_freq = sum(doublet_frequencies)
+		sum_single_freq = sum(single_frequencies)
 		if sum_single_freq > 0:
 			single_frequencies /= sum_single_freq
 		sum_double_freq = sum(doublet_frequencies)
