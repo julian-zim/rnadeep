@@ -2,21 +2,13 @@ import sys
 import os
 import subprocess
 import numpy as np
+from ete3 import TreeNode
 
 
 def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
-	try:
-		os.makedirs(outpath)
-	except FileExistsError:
-		pass
-	try:
-		os.makedirs(os.path.join(outpath, 'single'))
-	except FileExistsError:
-		pass
-	try:
-		os.makedirs(os.path.join(outpath, 'doublet'))
-	except FileExistsError:
-		pass
+	os.makedirs(outpath, exist_ok=True)
+	os.makedirs(os.path.join(outpath, 'single'), exist_ok=True)
+	os.makedirs(os.path.join(outpath, 'doublet'), exist_ok=True)
 
 	base_to_ids = {
 		'A': np.array([1, 0, 0, 0]),
@@ -91,10 +83,7 @@ def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
 
 
 def ct_to_nei(filepath, outpath):
-	try:
-		os.makedirs(outpath)
-	except FileExistsError:
-		pass
+	os.makedirs(outpath, exist_ok=True)
 
 	filename = filepath.split('/')[-1].split('.')[0]
 
@@ -112,10 +101,7 @@ def ct_to_nei(filepath, outpath):
 
 
 def db_to_ct(filepath, outpath):
-	try:
-		os.makedirs(outpath)
-	except FileExistsError:
-		pass
+	os.makedirs(outpath, exist_ok=True)
 
 	filename = filepath.split('/')[-1].split('.')[0]
 
@@ -123,18 +109,15 @@ def db_to_ct(filepath, outpath):
 	if result.returncode != 0:
 		raise RuntimeError('ViennaRNA is not installed.')
 
-	command = 'b2ct < ' + filepath + '> ' + str(os.path.join(outpath, filename + '.ct'))
+	command = 'b2ct < ' + filepath + ' > ' + str(os.path.join(outpath, filename + '.ct'))
 	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 	if result.returncode != 0:
-		print('Warning: Couldn\'t convert file ' + filename + ' to ct.')
+		print('Warning: Couldn\'t convert file ' + filename + ' to ct. Traceback: ' + result.stderr.strip('\n'))
 		os.remove(os.path.join(outpath, filename + '.ct'))
 
 
 def wuss_to_db(filepath, outpath):
-	try:
-		os.makedirs(outpath)
-	except FileExistsError:
-		pass
+	os.makedirs(outpath, exist_ok=True)
 
 	filename = filepath.split('/')[-1].split('.')[0]
 
@@ -164,10 +147,7 @@ def wuss_to_db(filepath, outpath):
 
 
 def stockholm_to_wuss(filepath, outpath):
-	try:
-		os.makedirs(outpath)
-	except FileExistsError:
-		pass
+	os.makedirs(outpath, exist_ok=True)
 
 	with open(filepath, 'r') as file:
 		ali_name = ''
@@ -207,10 +187,7 @@ def stockholm_to_wuss(filepath, outpath):
 
 
 def stockholm_to_neighbourhoods(filepath, outpath):
-	try:
-		os.makedirs(outpath)
-	except FileExistsError:
-		pass
+	os.makedirs(outpath, exist_ok=True)
 
 	stockholm_to_wuss(filepath, os.path.join(outpath, 'wuss'))
 
@@ -228,15 +205,8 @@ def stockholm_to_neighbourhoods(filepath, outpath):
 
 
 def stockholm_to_alignments(filepath, outpath):
-	try:
-		os.makedirs(outpath)
-	except FileExistsError:
-		pass
+	os.makedirs(outpath, exist_ok=True)#
 
-	try:
-		os.makedirs(outpath)
-	except FileExistsError:
-		pass
 	with open(filepath, 'r') as file:
 		ali_name = ''
 		ali = list()
@@ -258,26 +228,25 @@ def stockholm_to_alignments(filepath, outpath):
 					pass  # skip other markups
 
 			elif line[0:2] == '//':
-				with open(os.path.join(outpath, ali_name + '.ali'), 'w') as outfile:
-					number = len(ali)
-					length = 0 if number == 0 else len(ali[0])
-					outfile.write(' ' + str(number) + ' ' + str(length) + '\n')
+				with open(os.path.join(outpath, ali_name + '.aln'), 'w') as outfile:
+					#number = len(ali)
+					#length = 0 if number == 0 else len(ali[0])
+					#outfile.write(' ' + str(number) + ' ' + str(length) + '\n')
+					outfile.write('CLUSTAL ' + '\n')
 					for seq in ali:
-						outfile.write('_ ' + seq + '\n')
+						outfile.write(seq + '\n')
 
 				ali = list()
 
 			else:
-				ali.append(line.split()[1])
+				split_line = line.split()
+				ali.append(split_line[0] + ' ' + split_line[1])
 
 			line = file.readline()
 
 
 def fix_newick_strings(dirpath, outpath):
-	try:
-		os.makedirs(outpath)
-	except FileExistsError:
-		pass
+	os.makedirs(outpath, exist_ok=True)
 
 	filenames = os.listdir(dirpath)
 	for filename in filenames:
@@ -286,44 +255,55 @@ def fix_newick_strings(dirpath, outpath):
 		with (open(filepath, 'r') as file):
 			newick_string = file.read()
 
-			fixed_newick_string_1 = ''
-			alert = False
-			for char in newick_string:
-				if alert:
-					if char == ':' or char == ';':
-						fixed_newick_string_1 += char
-						alert = False
-					else:
-						pass  # remove non-leaf names
+		# fix control characters in names
+		fixed_newick_string_0 = ''
+		predict_name = False
+		name = False
+
+		for i, char in enumerate(newick_string):
+
+			if predict_name:
+				if char != '(' and char != ',':
+					name = True
+					predict_name = False
+
+			if name:
+				if char == ':' and newick_string[i + 1].isdigit() and newick_string[i + 2] == '.':
+					name = False
+					fixed_newick_string_0 += char
 				else:
-					if char == ')':
-						alert = True
-					fixed_newick_string_1 += char
-
-			fixed_newick_string_2 = ''
-			predict_name = False
-			name = False
-			for i, char in enumerate(fixed_newick_string_1):
-
-				if predict_name:
-					if char != '(' and char != ',':
-						name = True
-						predict_name = False
-
-				if name:
-					if char == ':' and fixed_newick_string_1[i + 1].isdigit() and fixed_newick_string_1[i + 2] == '.':
-						name = False
-						fixed_newick_string_2 += char
-					elif char == '(' or char == ')' or char == ',' or char == ':':
-						fixed_newick_string_2 += '_'  # replace brackets and colons in names with underscores
+					if char == '(' or char == ')' or char == ',' or char == ':' or char == '.':
+						char_to_add = '_'  # replace brackets, [semi-]colons and kommas in names with underscores
 					else:
-						fixed_newick_string_2 += char
+						char_to_add = char
+					fixed_newick_string_0 += char_to_add
 
-				else:
-					if not predict_name and (char == '(' or char == ','):
-						predict_name = True
+			else:
+				if not predict_name and (char == '(' or char == ','):
+					predict_name = True
+				fixed_newick_string_0 += char
+
+		# resolve multifurcations
+		tree = TreeNode(fixed_newick_string_0)
+		tree.resolve_polytomy()
+		fixed_newick_string_1 = tree.write()
+
+		# remove non-leaf node names (for whatever reason SISSi cant deal with them)
+		fixed_newick_string_2 = ''
+		alert = False
+		for char in fixed_newick_string_1:
+			if alert:
+				if char == ':' or char == ';':
 					fixed_newick_string_2 += char
+					alert = False
+				else:
+					pass  # remove non-leaf names
+			else:
+				if char == ')':
+					alert = True
+				fixed_newick_string_2 += char
 
+		# save
 		with open(os.path.join(outpath, filepath.split('/')[-1]), 'w') as outfile:
 			outfile.write(fixed_newick_string_2)
 

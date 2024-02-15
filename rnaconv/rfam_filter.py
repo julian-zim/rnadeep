@@ -2,7 +2,7 @@ import sys
 import os
 
 
-default_max_length = 500
+default_max_length = 1000
 
 
 def filter_rfam_data(rfam_path, max_length):
@@ -23,10 +23,10 @@ def filter_rfam_data(rfam_path, max_length):
 
 	for filename in os.listdir(ali_filepath):
 		with open(os.path.join(ali_filepath, filename)) as file:
-			length = int(file.readline().split()[1])
+			file.readline()
+			length = len(file.readline().split()[1])
 
 		filename_base = filename.split('.')[0]
-
 		if length > max_length:
 			os.remove(os.path.join(ali_filepath, filename))
 
@@ -59,7 +59,7 @@ def filter_rfam_data(rfam_path, max_length):
 			except FileNotFoundError:
 				pass
 
-			print('Removed data of alignment \'' + filename_base + '\' due to exceeding a length of ' + str(max_length) + '.')
+			print('Removed data of alignment \'' + filename_base + '\' due to it exceeding a length of ' + str(max_length) + '.')
 
 
 def main():

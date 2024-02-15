@@ -6,4 +6,4 @@ source /home/julian-zim/Programs/anaconda3/etc/profile.d/conda.sh || true
 conda activate rnadeep
 
 cd ../../..
-python ./rfam_postfilter.py data/rfam/full
+python ./rfam_filter.py data/rfam/full > ./data/rfam/full/filter_o.txt

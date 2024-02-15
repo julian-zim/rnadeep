@@ -6,4 +6,4 @@ source /home/julian-zim/Programs/anaconda3/etc/profile.d/conda.sh || true
 conda activate rnadeep
 
 cd ../../..
-python ./alignment_filter.py data/rfam/small data/sissi/small
+python ./sissi_filter.py data/rfam/small data/sissi/small > ./data/sissi/small/filter_o.txt

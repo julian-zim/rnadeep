@@ -2,27 +2,19 @@ import os
 import numpy as np
 
 
-def parse_alignment_set(ali_path, dbn_path, filename):
-	with open(os.path.join(ali_path, filename + '.ali')) as file:
-		alis = list()
-		ali_idx = -1
+def parse_alignment(ali_path, dbn_path, filename):
+	with open(os.path.join(ali_path, filename + '.aln')) as file:
+		ali = list()
 		line = file.readline()
 		while line != '':
-			content = line.split()
-
-			if content[1].isnumeric():
-				ali_idx += 1
-				alis.append(list())
-			else:
-				alis[ali_idx].append(content[1])
-
+			if line != 'CLUSTAL \n':
+				ali.append(line.split()[1])
 			line = file.readline()
 
-	with open(os.path.join(dbn_path, filename + '.dbn')) as dbn_file:
+	with open(os.path.join(dbn_path, filename.split('_')[0] + '.dbn')) as dbn_file:
 		dbn = dbn_file.readlines()[1].split()[0]
-	dbns = [dbn for _ in alis]
 
-	return alis, dbns
+	return ali, dbn
 
 
 def parse_alignments(ali_directory, dbn_directory):
@@ -31,10 +23,10 @@ def parse_alignments(ali_directory, dbn_directory):
 	filenames = os.listdir(ali_directory)
 	for filename in filenames:
 		filename_base = filename.split('.')[0]
-		if os.path.exists(os.path.join(dbn_directory, filename_base + '.dbn')):
-			new_alis, new_dbns = parse_alignment_set(ali_directory, dbn_directory, filename_base)
-			alis += new_alis
-			dbns += new_dbns
+		if os.path.exists(os.path.join(dbn_directory, filename_base.split('_')[0] + '.dbn')):
+			new_ali, new_dbn = parse_alignment(ali_directory, dbn_directory, filename_base)
+			alis.append(new_ali)
+			dbns.append(new_dbn)
 		else:
 			print('Warning: No dbn data found for \'' + filename + '\'.')
 

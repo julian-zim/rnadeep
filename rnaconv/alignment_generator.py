@@ -9,7 +9,6 @@ def generate_alignment(n, directory, filename, outpath):
 	single_freq_filepath = os.path.join(directory, 'seed_frequencies', 'single', filename + '.freq')
 	doublet_freq_filepath = os.path.join(directory, 'seed_frequencies', 'doublet', filename + '.freq')
 	tree_filepath = os.path.join(directory, 'seed_trees', 'fixed', filename + '.seed_tree')
-	out_filepath = os.path.join(outpath, filename + '.ali')
 
 	if (not os.path.exists(neigh_filepath)
 			or not os.path.exists(single_freq_filepath)
@@ -31,22 +30,31 @@ def generate_alignment(n, directory, filename, outpath):
 			   ' -fd ' + doublet_frequencies +
 			   ' -l' + str(seq_length) +
 			   ' -a' + str(n) +
-			   ' ' + str(tree_filepath) +
-			   ' > ' + str(out_filepath))
+			   ' -oc' +
+			   ' ' + str(tree_filepath))
 	result = subprocess.run(command, text=True, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	if os.path.getsize(out_filepath) == 0:
-		#print('Running \'' + command + '\'')
+	if len(result.stdout) == 0:
 		print('Error in \'' + filename + '\':\n' + result.stderr)
-		os.remove(out_filepath)
 	else:
+		result_lines = result.stdout.split('\n')[:-1]  # for some reason a line without content is added in the end
+		ali_sets = list()
+		ali_idx = -1
+		for line in result_lines:
+			if line == 'CLUSTAL ':
+				ali_sets.append(list())
+				ali_idx += 1
+			else:
+				ali_sets[ali_idx].append(line)
+		for idx, ali in enumerate(ali_sets):
+			with open(os.path.join(outpath, filename + '_' + str(idx) + '.aln'), 'w') as outfile:
+				outfile.write('CLUSTAL \n')
+				for line in ali:
+					outfile.write(line + '\n')
 		print('Successfully generated alignment' + ('s' if n > 1 else '') + ' for \'' + filename + '\'.')
 
 
 def generate_alignments(n, directory, outpath, alignments=None):
-	try:
-		os.makedirs(os.path.join(outpath, 'alignments'))
-	except FileExistsError:
-		pass
+	os.makedirs(os.path.join(outpath, 'alignments'), exist_ok=True)
 
 	if alignments is None:
 		filenames = os.listdir(os.path.join(directory, 'seed_trees', 'fixed'))

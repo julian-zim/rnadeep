@@ -9,25 +9,21 @@ def convert(preclean=True, full=True):
 		if preclean:
 			command = 'cd ./rfam/full/; ./clean.sh'
 			print('Running \'' + command + '\'')
-			process = subprocess.Popen(command, shell=True, text=True)
-			process.wait()
+			subprocess.run(command, shell=True, text=True)
 
 		command = 'cd ./rfam/full/; ./convert.sh'
 		print('Running \'' + command + '\'')
-		process = subprocess.Popen(command, shell=True, text=True)
-		process.wait()
+		subprocess.run(command, shell=True, text=True)
 
 	for dataset in datasets:
 		if preclean:
 			command = 'cd ./rfam/' + dataset + '/; ./clean.sh'
 			print('Running \'' + command + '\'')
-			process = subprocess.Popen(command, shell=True, text=True)
-			process.wait()
+			subprocess.run(command, shell=True, text=True)
 
 		command = 'cd ./rfam/' + dataset + '/; ./copy.sh'
 		print('Running \'' + command + '\'')
-		process = subprocess.Popen(command, shell=True, text=True)
-		process.wait()
+		subprocess.run(command, shell=True, text=True)
 
 
 def rfam_filter(full=True):
@@ -36,14 +32,12 @@ def rfam_filter(full=True):
 	if full:
 		command = 'cd ./rfam/full/; ./filter.sh'
 		print('Running \'' + command + '\'')
-		process = subprocess.Popen(command, shell=True, text=True)
-		process.wait()
+		subprocess.run(command, shell=True, text=True)
 
 	for dataset in datasets:
 		command = 'cd ./rfam/' + dataset + '/; ./filter.sh'
 		print('Running \'' + command + '\'')
-		process = subprocess.Popen(command, shell=True, text=True)
-		process.wait()
+		subprocess.run(command, shell=True, text=True)
 
 
 def generate(preclean=True, full=True):
@@ -53,25 +47,21 @@ def generate(preclean=True, full=True):
 		if preclean:
 			command = 'cd ./sissi/full/; ./clean.sh'
 			print('Running \'' + command + '\'')
-			process = subprocess.Popen(command, shell=True, text=True)
-			process.wait()
+			subprocess.run(command, shell=True, text=True)
 
 		command = 'cd ./sissi/full/; ./generate.sh'
 		print('Running \'' + command + '\'')
-		process = subprocess.Popen(command, shell=True, text=True)
-		process.wait()
+		subprocess.run(command, shell=True, text=True)
 
 	for dataset in datasets:
 		if preclean:
 			command = 'cd ./sissi/' + dataset + '/; ./clean.sh'
 			print('Running \'' + command + '\'')
-			process = subprocess.Popen(command, shell=True, text=True)
-			process.wait()
+			subprocess.run(command, shell=True, text=True)
 
 		command = 'cd ./sissi/' + dataset + '/; ./generate.sh'
 		print('Running \'' + command + '\'')
-		process = subprocess.Popen(command, shell=True, text=True)
-		process.wait()
+		subprocess.run(command, shell=True, text=True)
 
 
 def sissi_filter(full=True):
@@ -80,14 +70,12 @@ def sissi_filter(full=True):
 	if full:
 		command = 'cd ./sissi/full/; ./filter.sh'
 		print('Running \'' + command + '\'')
-		process = subprocess.Popen(command, shell=True, text=True)
-		process.wait()
+		subprocess.run(command, shell=True, text=True)
 
 	for dataset in datasets:
 		command = 'cd ./sissi/' + dataset + '/; ./filter.sh'
 		print('Running \'' + command + '\'')
-		process = subprocess.Popen(command, shell=True, text=True)
-		process.wait()
+		subprocess.run(command, shell=True, text=True)
 
 
 def regenerate(preclean=True, rfam_filtering=True, sissi_filtering=True, full=True):

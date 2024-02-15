@@ -1,3 +1,4 @@
 rm -r ./alignments/
 rm -r ./frequencies/
-rm ./output.txt
+rm ./generate_o.txt
+rm ./filter_o.txt

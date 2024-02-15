@@ -1,5 +1,5 @@
 #!/bin/sh
-#SBATCH -J rnadeepz3
+#SBATCH -J rd-ambig
 #SBATCH --partition=zen3_0512_a100x2
 #SBATCH --qos zen3_0512_a100x2
 #SBATCH --gres=gpu:2
