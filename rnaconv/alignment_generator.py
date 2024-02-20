@@ -9,6 +9,7 @@ def generate_alignment(n, directory, filename, outpath):
 	single_freq_filepath = os.path.join(directory, 'seed_frequencies', 'single', filename + '.freq')
 	doublet_freq_filepath = os.path.join(directory, 'seed_frequencies', 'doublet', filename + '.freq')
 	tree_filepath = os.path.join(directory, 'seed_trees', 'fixed', filename + '.seed_tree')
+	ali_filepath = os.path.join(directory, 'seed_alignments', filename + '.aln')
 
 	if (not os.path.exists(neigh_filepath)
 			or not os.path.exists(single_freq_filepath)
@@ -45,6 +46,21 @@ def generate_alignment(n, directory, filename, outpath):
 				ali_idx += 1
 			else:
 				ali_sets[ali_idx].append(line)
+		with open(ali_filepath, 'r') as alifile:
+			alifile.readline()
+			line = alifile.readline()
+			line_idx = 0
+			while line != '':
+				for i, char in enumerate(line.split()[1]):
+					if char == '-':
+						for ali in ali_sets:
+							seq = list(ali[line_idx])
+							seq[i + len(ali[line_idx].split()[0]) + 1] = '-'
+							ali[line_idx] = ''.join(seq)
+
+				line = alifile.readline()
+				line_idx += 1
+
 		for idx, ali in enumerate(ali_sets):
 			with open(os.path.join(outpath, filename + '_' + str(idx) + '.aln'), 'w') as outfile:
 				outfile.write('CLUSTAL \n')
