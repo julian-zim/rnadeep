@@ -1,11 +1,11 @@
 import sys
 import os
-import subprocess
 import numpy as np
+import RNA
 from scipy.spatial.distance import mahalanobis
 
 
-max_dbrs_deviation = 40  # in percent
+max_dbrs_deviation = 20  # in percent
 
 
 def obtain_sissi_frequencies(rfam_path, sissi_path):
@@ -106,27 +106,46 @@ def obtain_sissi_frequencies(rfam_path, sissi_path):
 
 
 def filter_alignments(rfam_path, sissi_path):
-	result = subprocess.run('RNAfold --version', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-	if result.returncode != 0:
-		raise RuntimeError('ViennaRNA is not installed.')
 
 	for ali_filename in os.listdir(os.path.join(sissi_path, 'alignments')):
 		filename = ali_filename.split('.')[0]
 		file_seedname = filename.split('_')[0]
 		with open(os.path.join(rfam_path, 'seed_neighbourhoods/dbn', file_seedname + '.dbn'), 'r') as dbnfile:
-			dbrs = dbnfile.readlines()[-1].split()[0]
+			cons_dbrs = dbnfile.readlines()[-1].split()[0]
 
-		command = 'RNAalifold --noPS < ' + str(os.path.join(sissi_path, 'alignments', ali_filename))
+		with open(os.path.join(sissi_path, 'alignments', ali_filename), 'r') as alifile:
+			ali = alifile.readlines()
+
+		blacklist = list()
+		for i, seq in enumerate([''.join(line.split()[1:]) for line in ali[1:]]):
+			dbrs, _ = RNA.fold(seq)
+
+			bp_diff = RNA.bp_distance(dbrs, cons_dbrs)
+			if bp_diff / len(dbrs) > max_dbrs_deviation / 100:
+				blacklist.append(i)
+				print('Deleting sequence ' + str(i) + ' of alignment ' + filename + ' due to its secondary structure '
+									'predicted by RNAfold deviating '
+									'by over ' + str(max_dbrs_deviation) + '%.')
+		for i in reversed(blacklist):
+			del ali[i+1]
+
+		if len(ali) == 1:
+			os.remove(os.path.join(sissi_path, 'alignments', ali_filename))
+		else:
+			with open(os.path.join(sissi_path, 'alignments', ali_filename), 'w') as alifile:
+				alifile.write(''.join(ali))
+
+		'''command = 'RNAalifold --noPS < ' + str(os.path.join(sissi_path, 'alignments', ali_filename))
 		result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 		if len(result.stdout) == 0:
 			raise RuntimeError('RNAalifold failed to predict the secondary structure for \'' + filename + '\':\n' + result.stderr)
 		mfe_dbrs = result.stdout.split('\n')[1].split()[0]
 
-		dbrs_diff = sum(c1 != c2 for c1, c2 in zip(dbrs, mfe_dbrs))
+		dbrs_diff = RNA.bp_distance(dbrs, mfe_dbrs)
 		if dbrs_diff / len(dbrs) > max_dbrs_deviation / 100:
 			os.remove(os.path.join(sissi_path, 'alignments', ali_filename))
 			print('Removed alignment \'' + filename + '\' due to the secondary structure predicted by RNAalifold deviating '
-									'by over ' + str(max_dbrs_deviation) + '%.')
+									'by over ' + str(max_dbrs_deviation) + '%.')'''
 
 	# TODO: filter alignments who show a frequence distance aboe a certain threshold
 	# or, you know, just dont allow the difference values to be higher or equal to 0.1
@@ -147,7 +166,7 @@ def main():
 	sissi_path = sys.argv[2]
 
 	print('========== FILTERING SISSI ALIGNMENTS ==========')
-	obtain_sissi_frequencies(rfam_path, sissi_path)
+	#obtain_sissi_frequencies(rfam_path, sissi_path)
 	filter_alignments(rfam_path, sissi_path)
 	print('Done.')
 

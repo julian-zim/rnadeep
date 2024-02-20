@@ -2,6 +2,7 @@ import sys
 import os
 import subprocess
 import numpy as np
+import RNA
 from ete3 import TreeNode
 
 
@@ -109,7 +110,7 @@ def db_to_ct(filepath, outpath):
 	if result.returncode != 0:
 		raise RuntimeError('ViennaRNA is not installed.')
 
-	command = 'b2ct < ' + filepath + ' > ' + str(os.path.join(outpath, filename + '.ct'))
+	command = 'b2ct < ' + filepath + ' > ' + str(os.path.join(outpath, filename + '.ct'))  # TODO: use library
 	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 	if result.returncode != 0:
 		print('Warning: Couldn\'t convert file ' + filename + ' to ct. Traceback: ' + result.stderr.strip('\n'))
@@ -123,9 +124,10 @@ def wuss_to_db(filepath, outpath):
 
 	with open(filepath, 'r') as file:
 		content = file.read()
-
 		content_lines = content.split('\n')
-		fixed_line = ''
+
+		fixed_line = RNA.db_from_WUSS(content_lines[1])
+		'''fixed_line = ''
 		for char in content_lines[1]:
 			if char == '<' or char == '{' or char == '[':
 				fixed_line += '('
@@ -138,7 +140,7 @@ def wuss_to_db(filepath, outpath):
 			elif char == '(' or char == ')' or char == '.':
 				fixed_line += char
 			else:
-				raise ValueError('WRONG FORMAT: ' + char + ', in ' + filename)
+				raise ValueError('WRONG FORMAT: ' + char + ', in ' + filename)'''
 
 		fixed_content = content_lines[0] + '\n' + fixed_line + ' (0)\n'
 
