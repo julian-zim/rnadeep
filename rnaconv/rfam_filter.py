@@ -2,7 +2,7 @@ import sys
 import os
 
 
-default_max_length = 1000
+default_max_length = 700
 
 
 def filter_rfam_data(rfam_path, max_length):

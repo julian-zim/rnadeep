@@ -6,32 +6,34 @@ import alignment_generator
 import subprocess
 
 
-def script(seqlength, alicount):
-	tag = 'l' + str(seqlength) + '-c' + str(alicount)
-	filename = 'AT-' + tag
+def script(batchsize, seqlength, alicount):
+	tag_nc = 'l' + str(seqlength) + '-b' + str(batchsize)
+	tag = 'l' + str(seqlength) + '-b' + str(batchsize) + '-c' + str(alicount)
+	filename = 'AT-' + 'l' + str(seqlength) + '-b' + str(batchsize) + '-c' + str(alicount)
+	filename_nb = 'AT-' + 'l' + str(seqlength) + '-c' + str(alicount)
 
 	subprocess.run(['rm', '-rf', str(os.path.join('../examples/slurm', filename + '.slrm'))])
 	subprocess.run(['rm', '-rf', str(os.path.join('../examples/slurm', filename + '.slrm'))])
 
 	with open(os.path.join('../examples/slurm', filename + '.slrm'), 'w') as scriptfile:
 		scriptfile.write('#!/bin/sh\n'
-						 '#SBATCH -J ' + tag + '\n'
+						 '#SBATCH -J ' + tag_nc + '\n'
 						 '#SBATCH --partition=zen2_0256_a40x2\n'
 						 '#SBATCH --qos zen2_0256_a40x2\n'
 						 '#SBATCH --gres=gpu:2\n'
 						 '#SBATCH --mail-user=a12144285@unet.univie.ac.at\n'
 						 '#SBATCH --mail-type=BEGIN,END,FAIL\n'
-						 '#SBATCH --output=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/out/' + filename + '-bs5.%A.out\n'
-						 '#SBATCH --error=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/out/' + filename + '-bs5.%A.err\n'
+						 '#SBATCH --output=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/out/' + filename + '.%A.out\n'
+						 '#SBATCH --error=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/out/' + filename + '.%A.err\n'
 						 '\n'
 						 'module load miniconda3\n'
 						 'eval \"$(conda shell.bash hook)\"\n'
 						 'conda activate rnadeep\n'
 						 '\n'
-						 'python ../train_ali.py --ali-dir ../../rnaconv/data/sissi/' + filename + '/alignments/ \\\n'
-						 '--dbn-dir ../../rnaconv/data/rfam/' + filename + '/seed_neighbourhoods/dbn/ \\\n'
+						 'python ../train_ali.py --ali-dir ../../rnaconv/data/sissi/' + filename_nb + '/alignments/ \\\n'
+						 '--dbn-dir ../../rnaconv/data/rfam/' + filename_nb + '/seed_neighbourhoods/dbn/ \\\n'
 						 '--model-log-dir ../models \\\n'
-						 '--data-tag sm3-' + tag + '-sissi --smodel 3 --batch-size 5 --epochs 4')
+						 '--data-tag sm3-' + tag + '-sissi --smodel 3 --batch-size ' + str(batchsize) + ' --epochs 4')
 
 
 def copy(datasetdir, filenames):
@@ -92,7 +94,7 @@ def copy(datasetdir, filenames):
 						os.path.join(to_path, doublet_freq_path, filename + '.freq'))
 
 
-def create(seqlength, alicount):
+def create(seqlength, alicount, batch_sizes):
 	foldername = 'AT-l' + str(seqlength) + '-c' + str(alicount)
 	subprocess.run(['rm', '-rf', str(os.path.join('data/rfam', foldername))])
 	os.makedirs(os.path.join('data/rfam', foldername), exist_ok=False)
@@ -112,16 +114,18 @@ def create(seqlength, alicount):
 
 	copy(foldername, alilist)
 	alignment_generator.generate_alignments(alicount, os.path.join('data/rfam', foldername), os.path.join('data/sissi', foldername))
-	script(seqlength, alicount)
+	for batch_size in batch_sizes:
+		script(batch_size, seqlength, alicount)
 
 
 def main():
 	seqlengths = [100, 150, 200, 250]
 	alicounts = [5, 10, 20, 40]
+	batch_sizes = [2, 3, 4, 5]
 
 	for seqlength in seqlengths:
 		for alicount in alicounts:
-			create(seqlength, alicount)
+			create(seqlength, alicount, batch_sizes)
 
 
 if __name__ == '__main__':
