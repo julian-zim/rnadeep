@@ -8,6 +8,7 @@ def copy():
 
 	tree_orig_path = 'seed_trees/original'
 	tree_fixed_path = 'seed_trees/fixed'
+	tree_rescaled_path = 'seed_trees/rescaled'
 
 	ali_path = 'seed_alignments'
 
@@ -21,6 +22,7 @@ def copy():
 
 	os.makedirs(os.path.join(to_path, tree_orig_path), exist_ok=True)
 	os.makedirs(os.path.join(to_path, tree_fixed_path), exist_ok=True)
+	os.makedirs(os.path.join(to_path, tree_rescaled_path), exist_ok=True)
 	os.makedirs(os.path.join(to_path, ali_path), exist_ok=True)
 	os.makedirs(os.path.join(to_path, neigh_wuss_path), exist_ok=True)
 	os.makedirs(os.path.join(to_path, neigh_dbn_path), exist_ok=True)
@@ -34,6 +36,7 @@ def copy():
 		filename = filename_full.split('.')[0]
 		condition = [os.path.exists(os.path.join(from_path, tree_orig_path, filename + '.seed_tree')),
 				os.path.exists(os.path.join(from_path, tree_fixed_path, filename + '.seed_tree')),
+				os.path.exists(os.path.join(from_path, tree_rescaled_path, filename + '.seed_tree')),
 				os.path.exists(os.path.join(from_path, ali_path, filename + '.aln')),
 				os.path.exists(os.path.join(from_path, neigh_wuss_path, filename + '.wuss')),
 				os.path.exists(os.path.join(from_path, neigh_dbn_path, filename + '.dbn')),
@@ -57,6 +60,8 @@ def copy():
 						os.path.join(to_path, tree_orig_path, filename + '.seed_tree'))
 			shutil.copy(os.path.join(from_path, tree_fixed_path, filename + '.seed_tree'),
 						os.path.join(to_path, tree_fixed_path, filename + '.seed_tree'))
+			shutil.copy(os.path.join(from_path, tree_rescaled_path, filename + '.seed_tree'),
+						os.path.join(to_path, tree_rescaled_path, filename + '.seed_tree'))
 			shutil.copy(os.path.join(from_path, ali_path, filename + '.aln'),
 						os.path.join(to_path, ali_path, filename + '.aln'))
 			shutil.copy(os.path.join(from_path, neigh_wuss_path, filename + '.wuss'),

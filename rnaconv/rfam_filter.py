@@ -10,7 +10,8 @@ def filter_rfam_data(rfam_path, max_length):
 		global default_max_length
 		max_length = default_max_length
 
-	tree_filepath = os.path.join(rfam_path, 'seed_trees/fixed')
+	treerescaled_filepath = os.path.join(rfam_path, 'seed_trees/fixed')
+	treefixed_filepath = os.path.join(rfam_path, 'seed_trees/fixed')
 	ali_filepath = os.path.join(rfam_path, 'seed_alignments')
 
 	neigh_nei_filepath = os.path.join(rfam_path, 'seed_neighbourhoods/nei')
@@ -31,7 +32,11 @@ def filter_rfam_data(rfam_path, max_length):
 			os.remove(os.path.join(ali_filepath, filename))
 
 			try:
-				os.remove(os.path.join(tree_filepath, filename_base + '.seed_tree'))
+				os.remove(os.path.join(treefixed_filepath, filename_base + '.seed_tree'))
+			except FileNotFoundError:
+				pass
+			try:
+				os.remove(os.path.join(treerescaled_filepath, filename_base + '.seed_tree'))
 			except FileNotFoundError:
 				pass
 			try:

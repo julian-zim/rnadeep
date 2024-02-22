@@ -1,2 +1,0 @@
-Sequence Length:	36
-Alignment Count:	10

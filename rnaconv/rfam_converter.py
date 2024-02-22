@@ -2,8 +2,106 @@ import sys
 import os
 import subprocess
 import numpy as np
+import textdistance
+import shutil
 import RNA
 from ete3 import TreeNode
+
+
+def rescale_newick_strings(treedirpath, alidirpath, outpath):
+	os.makedirs(outpath, exist_ok=True)
+
+	tree_filenames = os.listdir(treedirpath)
+	for tree_filename in tree_filenames:
+		filename = tree_filename.split('.')[0]
+
+		with open(os.path.join(alidirpath, filename + '.aln'), 'r') as file:
+			ali = [line.split()[1] for line in file.readlines()[1:]]
+
+		pdists = np.zeros((len(ali), len(ali)))
+		for i, seq1 in enumerate(ali):
+			for j, seq2 in enumerate(ali):
+				pdists[i, j] = textdistance.hamming(seq1, seq2)
+		mean_pw_distance = np.mean(pdists)
+
+		shutil.copy(os.path.join(treedirpath, tree_filename), outpath)
+		if mean_pw_distance / len(ali[0]) < 0.05:
+			shutil.copy(os.path.join(treedirpath, tree_filename), outpath)
+			with open(os.path.join(outpath, tree_filename), 'r') as file:
+				newick_string = file.read()
+			tree = TreeNode(newick_string)
+			for node in tree.traverse():
+				node.dist *= 2
+			tree_rescaled = tree.write(format=1)
+			with open(os.path.join(outpath, filename.split('.')[0] + '.seed_tree'), 'w+') as file:
+				file.write(tree_rescaled)
+			print('Info: Doubled branch lengths for tree \'' + filename + '\' due to the corresponding'
+				  'alignment\'s sequences being 95% similar.')
+
+
+def fix_newick_strings(treedirpath, outpath):
+	os.makedirs(outpath, exist_ok=True)
+
+	filenames = os.listdir(treedirpath)
+	for filename in filenames:
+		filepath = os.path.join(treedirpath, filename)
+
+		with (open(filepath, 'r') as file):
+			newick_string = file.read()
+
+		# fix control characters in names
+		fixed_newick_string_0 = ''
+		predict_name = False
+		name = False
+
+		for i, char in enumerate(newick_string):
+
+			if predict_name:
+				if char != '(' and char != ',':
+					name = True
+					predict_name = False
+
+			if name:
+				if char == ':' and newick_string[i + 1].isdigit() and newick_string[i + 2] == '.':
+					name = False
+					fixed_newick_string_0 += char
+				else:
+					if char == '(' or char == ')' or char == ',' or char == ':' or char == '.':
+						char_to_add = '_'  # replace brackets, [semi-]colons and kommas in names with underscores
+					else:
+						char_to_add = char
+					fixed_newick_string_0 += char_to_add
+
+			else:
+				if not predict_name and (char == '(' or char == ','):
+					predict_name = True
+				fixed_newick_string_0 += char
+
+		# resolve multifurcations & non-leaf node names
+		tree = TreeNode(fixed_newick_string_0)
+		tree.resolve_polytomy()
+		fixed_newick_string_1 = tree.write(format=1)
+
+		'''
+		# remove non-leaf node names (for whatever reason SISSi cant deal with them)
+		fixed_newick_string_2 = ''
+		alert = False
+		for char in fixed_newick_string_1:
+			if alert:
+				if char == ':' or char == ';':
+					fixed_newick_string_2 += char
+					alert = False
+				else:
+					pass  # remove non-leaf names
+			else:
+				if char == ')':
+					alert = True
+				fixed_newick_string_2 += char
+		'''
+
+		# save
+		with open(os.path.join(outpath, filepath.split('/')[-1]), 'w') as outfile:
+			outfile.write(fixed_newick_string_1)
 
 
 def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
@@ -104,9 +202,7 @@ def ct_to_nei(filepath, outpath):
 def db_to_ct(filepath, outpath):
 	os.makedirs(outpath, exist_ok=True)
 
-	filename = filepath.split('/')[-1].split('.')[0]
-
-	result = subprocess.run('RNAfold --version', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+	'''result = subprocess.run('RNAfold --version', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 	if result.returncode != 0:
 		raise RuntimeError('ViennaRNA is not installed.')
 
@@ -114,7 +210,29 @@ def db_to_ct(filepath, outpath):
 	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 	if result.returncode != 0:
 		print('Warning: Couldn\'t convert file ' + filename + ' to ct. Traceback: ' + result.stderr.strip('\n'))
-		os.remove(os.path.join(outpath, filename + '.ct'))
+		os.remove(os.path.join(outpath, filename + '.ct'))'''
+
+	with open(filepath, 'r') as file:
+		seq = file.readline().split()[0]
+		dbrs = file.readline().split()
+
+	ptable = list(RNA.ptable(dbrs[0]))
+
+	column1 = list(range(1, ptable[0] + 1))
+	column2 = [c for c in seq]
+	column3 = [idx - 1 for idx in column1[:-1]] + [0]
+	column4 = [idx + 1 for idx in column1]
+	column5 = ptable[1:]
+	column6 = column1
+	with open(os.path.join(outpath, os.path.basename(filepath).split('/')[-1].split('.')[0] + '.ct'), 'w') as file:
+		file.write('{: >5}'.format(ptable[0]) + ' ENERGY =     0.0    1\n')
+		for i in column3:
+			file.write('{: >5}'.format(column1[i]) +
+					   ' ' + column2[i] +
+					   '{: >8}'.format(column3[i]) +
+					   '{: >5}'.format(column4[i]) +
+					   '{: >5}'.format(column5[i]) +
+					   '{: >5}'.format(column6[i]) + '\n')
 
 
 def wuss_to_db(filepath, outpath):
@@ -247,74 +365,18 @@ def stockholm_to_alignments(filepath, outpath):
 			line = file.readline()
 
 
-def fix_newick_strings(dirpath, outpath):
-	os.makedirs(outpath, exist_ok=True)
-
-	filenames = os.listdir(dirpath)
-	for filename in filenames:
-		filepath = os.path.join(dirpath, filename)
-
-		with (open(filepath, 'r') as file):
-			newick_string = file.read()
-
-		# fix control characters in names
-		fixed_newick_string_0 = ''
-		predict_name = False
-		name = False
-
-		for i, char in enumerate(newick_string):
-
-			if predict_name:
-				if char != '(' and char != ',':
-					name = True
-					predict_name = False
-
-			if name:
-				if char == ':' and newick_string[i + 1].isdigit() and newick_string[i + 2] == '.':
-					name = False
-					fixed_newick_string_0 += char
-				else:
-					if char == '(' or char == ')' or char == ',' or char == ':' or char == '.':
-						char_to_add = '_'  # replace brackets, [semi-]colons and kommas in names with underscores
-					else:
-						char_to_add = char
-					fixed_newick_string_0 += char_to_add
-
-			else:
-				if not predict_name and (char == '(' or char == ','):
-					predict_name = True
-				fixed_newick_string_0 += char
-
-		# resolve multifurcations
-		tree = TreeNode(fixed_newick_string_0)
-		tree.resolve_polytomy()
-		fixed_newick_string_1 = tree.write()
-
-		# remove non-leaf node names (for whatever reason SISSi cant deal with them)
-		fixed_newick_string_2 = ''
-		alert = False
-		for char in fixed_newick_string_1:
-			if alert:
-				if char == ':' or char == ';':
-					fixed_newick_string_2 += char
-					alert = False
-				else:
-					pass  # remove non-leaf names
-			else:
-				if char == ')':
-					alert = True
-				fixed_newick_string_2 += char
-
-		# save
-		with open(os.path.join(outpath, filepath.split('/')[-1]), 'w') as outfile:
-			outfile.write(fixed_newick_string_2)
-
-
-def convert_rfam_data(tree_path, tree_outpath, seed_filepath, ali_outpath, neigh_outpath, freq_outpath):
-	fix_newick_strings(tree_path, tree_outpath)
+def convert_rfam_data(seed_filepath,
+					  ali_outpath,
+					  neigh_outpath,
+					  freq_outpath,
+					  tree_path,
+					  tree_fixed_outpath,
+					  tree_rescaled_outpath):
 	stockholm_to_alignments(seed_filepath, ali_outpath)
 	stockholm_to_neighbourhoods(seed_filepath, neigh_outpath)
 	obtain_equilibrium_frequencies(ali_outpath, neigh_outpath, freq_outpath)
+	fix_newick_strings(tree_path, tree_fixed_outpath)
+	rescale_newick_strings(tree_fixed_outpath, ali_outpath, tree_rescaled_outpath)
 	print('Done.')
 
 
@@ -331,12 +393,13 @@ def main():
 		return -1
 
 	print('========== CONVERTING RFAM DATA POINTS ==========')
-	convert_rfam_data(os.path.join(rfam_path, 'seed_trees/original'),
-					  os.path.join(rfam_path, 'seed_trees/fixed'),
-					  os.path.join(rfam_path, 'Rfam.seed'),
+	convert_rfam_data(os.path.join(rfam_path, 'Rfam.seed'),
 					  os.path.join(rfam_path, 'seed_alignments'),
 					  os.path.join(rfam_path, 'seed_neighbourhoods'),
-					  os.path.join(rfam_path, 'seed_frequencies'))
+					  os.path.join(rfam_path, 'seed_frequencies'),
+					  os.path.join(rfam_path, 'seed_trees/original'),
+					  os.path.join(rfam_path, 'seed_trees/fixed'),
+					  os.path.join(rfam_path, 'seed_trees/rescaled'))
 
 
 if __name__ == '__main__':

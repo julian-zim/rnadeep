@@ -8,7 +8,7 @@ def generate_alignment(n, directory, filename, outpath):
 	neigh_filepath = os.path.join(directory, 'seed_neighbourhoods', 'nei', filename + '.nei')
 	single_freq_filepath = os.path.join(directory, 'seed_frequencies', 'single', filename + '.freq')
 	doublet_freq_filepath = os.path.join(directory, 'seed_frequencies', 'doublet', filename + '.freq')
-	tree_filepath = os.path.join(directory, 'seed_trees', 'fixed', filename + '.seed_tree')
+	tree_filepath = os.path.join(directory, 'seed_trees', 'rescaled', filename + '.seed_tree')
 	ali_filepath = os.path.join(directory, 'seed_alignments', filename + '.aln')
 
 	if (not os.path.exists(neigh_filepath)
@@ -73,7 +73,7 @@ def generate_alignments(n, directory, outpath, alignments=None):
 	os.makedirs(os.path.join(outpath, 'alignments'), exist_ok=True)
 
 	if alignments is None:
-		filenames = os.listdir(os.path.join(directory, 'seed_trees', 'fixed'))
+		filenames = os.listdir(os.path.join(directory, 'seed_trees', 'rescaled'))
 		for filename in filenames:
 			generate_alignment(n, directory, filename.split('.')[0], os.path.join(outpath, 'alignments'))
 	else:

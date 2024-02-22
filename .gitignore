@@ -16,6 +16,7 @@ rnaconv/data/rfam/full/seed_alignments
 rnaconv/data/rfam/full/seed_frequencies
 rnaconv/data/rfam/full/seed_neighbourhoods
 rnaconv/data/rfam/full/seed_trees/fixed
+rnaconv/data/rfam/full/seed_trees/rescaled
 rnaconv/data/rfam/full/convert_o.txt
 rnaconv/data/rfam/full/filter_o.txt
 rnaconv/data/rfam/ambiguous/seed_alignments

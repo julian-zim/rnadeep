@@ -78,18 +78,12 @@ def sissi_filter(full=True):
 		subprocess.run(command, shell=True, text=True)
 
 
-def regenerate(preclean=True, rfam_filtering=True, sissi_filtering=True, full=True):
-	convert(preclean, full)
-	if rfam_filtering:
-		rfam_filter(full)
-
-	generate(preclean, full)
-	if sissi_filtering:
-		sissi_filter(full)
-
-
 def main():
-	regenerate(True, True, True, True)
+	convert(preclean=True, full=True)
+	rfam_filter(full=True)
+
+	generate(preclean=True, full=True)
+	sissi_filter(full=True)
 
 
 if __name__ == '__main__':
