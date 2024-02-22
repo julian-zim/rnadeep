@@ -1,19 +1,13 @@
-from scipy.spatial.distance import pdist, squareform
+import subprocess
+import tensorflow as tf
+options = tf.profiler.experimental.ProfilerOptions(host_tracer_level = 3,
+                                                   python_tracer_level = 1,
+                                                   device_tracer_level = 1)
 
-# Define a custom distance metric function for strings
-def custom_distance(str1, str2):
-    # Example of a custom distance metric (Hamming distance)
-    distance = sum(c1 != c2 for c1, c2 in zip(str1, str2))
-    return distance
+logdir = "./examples/models/logs/"
 
-# Example dataset of strings
-strings = ["hello", "world", "python", "science"]
+tf.profiler.experimental.start(logdir, options = options)
+print('fick dich')
+tf.profiler.experimental.stop()
 
-# Compute pairwise distances using the custom metric
-distances = pdist(strings, metric=custom_distance)
-
-# Convert pairwise distances to a square matrix
-distance_matrix = squareform(distances)
-
-print("Distance matrix:")
-print(distance_matrix)
+subprocess.run(['tensorboard', '--logdir', logdir])

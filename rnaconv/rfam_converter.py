@@ -35,8 +35,8 @@ def rescale_newick_strings(treedirpath, alidirpath, outpath):
 			tree_rescaled = tree.write(format=1)
 			with open(os.path.join(outpath, filename.split('.')[0] + '.seed_tree'), 'w+') as file:
 				file.write(tree_rescaled)
-			print('Info: Doubled branch lengths for tree \'' + filename + '\' due to the corresponding'
-				  'alignment\'s sequences being 95% similar.')
+			print('Info: Doubled branch lengths for tree \'' + filename + '\' due to the corresponding alignment\'s '
+				  'sequences being 95% similar.')
 
 
 def fix_newick_strings(treedirpath, outpath):

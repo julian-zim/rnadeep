@@ -1,9 +1,8 @@
 import os
-import sys
-import numpy as np
-import shutil
-import alignment_generator
 import subprocess
+import shutil
+import numpy as np
+import alignment_generator
 
 
 def script(batchsize, seqlength, alicount):
@@ -13,7 +12,16 @@ def script(batchsize, seqlength, alicount):
 	filename_nb = 'AT-' + 'l' + str(seqlength) + '-c' + str(alicount)
 
 	subprocess.run(['rm', '-rf', str(os.path.join('../examples/slurm', filename + '.slrm'))])
-	subprocess.run(['rm', '-rf', str(os.path.join('../examples/slurm', filename + '.slrm'))])
+	subprocess.run(['rm', '-rf', str(os.path.join('../examples/script', filename + '.sh'))])
+
+	commands = ('module load miniconda3\n'
+				'eval \"$(conda shell.bash hook)\"\n'
+				'conda activate rnadeep\n'
+				'\n'
+				'python ../train_ali.py --ali-dir ../../rnaconv/data/sissi/' + filename_nb + '/alignments/ \\\n'
+				'\t   --dbn-dir ../../rnaconv/data/rfam/' + filename_nb + '/seed_neighbourhoods/dbn/ \\\n'
+				'\t   --model-log-dir ../models \\\n'
+				'\t   --data-tag sm3-' + tag + '-sissi --smodel 3 --batch-size ' + str(batchsize) + ' --epochs 1\n')
 
 	with open(os.path.join('../examples/slurm', filename + '.slrm'), 'w') as scriptfile:
 		scriptfile.write('#!/bin/sh\n'
@@ -25,15 +33,11 @@ def script(batchsize, seqlength, alicount):
 						 '#SBATCH --mail-type=BEGIN,END,FAIL\n'
 						 '#SBATCH --output=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/out/' + filename + '.%A.out\n'
 						 '#SBATCH --error=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/out/' + filename + '.%A.err\n'
-						 '\n'
-						 'module load miniconda3\n'
-						 'eval \"$(conda shell.bash hook)\"\n'
-						 'conda activate rnadeep\n'
-						 '\n'
-						 'python ../train_ali.py --ali-dir ../../rnaconv/data/sissi/' + filename_nb + '/alignments/ \\\n'
-						 '--dbn-dir ../../rnaconv/data/rfam/' + filename_nb + '/seed_neighbourhoods/dbn/ \\\n'
-						 '--model-log-dir ../models \\\n'
-						 '--data-tag sm3-' + tag + '-sissi --smodel 3 --batch-size ' + str(batchsize) + ' --epochs 4')
+						 '\n' +
+						 commands)
+
+	with open(os.path.join('../examples/script', filename + '.sh'), 'w') as scriptfile:
+		scriptfile.write(commands)
 
 
 def copy(datasetdir, filenames):
@@ -124,9 +128,9 @@ def create(seqlength, alicount, batch_sizes):
 
 
 def main():
-	seqlengths = [100, 150, 200, 250]
-	alicounts = [5, 10, 20, 40]
-	batch_sizes = [2, 3, 4, 5]
+	seqlengths = [19] #[100, 150, 200, 250]
+	alicounts = [2] #[5, 10, 20, 40]
+	batch_sizes = [1] # [2, 3, 4, 5]
 
 	for seqlength in seqlengths:
 		for alicount in alicounts:

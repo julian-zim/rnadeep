@@ -2,7 +2,6 @@ import sys
 import os
 import numpy as np
 import RNA
-from scipy.spatial.distance import mahalanobis
 
 
 max_dbrs_deviation = 20  # in percent
