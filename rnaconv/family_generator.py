@@ -45,7 +45,27 @@ def generate_secondary_structure(sequence_filepath):
 	return dbrs, seq
 
 
-def generate_alignment(out_filepath, length, as_filepath, ss_filepath, tree_filepath, sf_filepath, df_filepath, n):
+# sissi_filepath, tree_filepath, sfreq_dfilepath, dfreq_filepath, ali_filepath, outpath
+def generate_family(out_filepath, length, as_filepath, ss_filepath, tree_filepath, sf_filepath, df_filepath, n):
+	"""
+	Generates n alignments using sissi for given equilibrium frequencies, neighbourhood system and phylogenetic tree.
+	The raw alignments are used to re-add indels.
+
+	Parameters:
+	n (int): The number of alingments to generate
+	directory (str): The path to a directory containing the information mentioned above in this exact folder structure:
+		- seed_alignments: Directory with .aln Files, containing alignments
+		- seed_frequencies:
+			- single: Directory with .freq Files, containing unpaired nucleotide equilibrium frequencies for generation
+			- doublet: Directory with .freq Files, containing paired nucleotide equilibrium frequencies for generation
+		- seed_neighbourhoods:
+			- nei: Directory with .nei files, containing the secondary consensus structure for generation
+		- seed_trees:
+			- rescaled: Directory with .seed_tree files, containing the phylogenetic tree for generation
+	outpath (str): The path to which to write the generated alignments
+	alignments (list): List of alignment file names to pick from the 'seed_alignments' folder for generation.
+		None means all are picked.
+	"""
 	with open(as_filepath, 'w') as file:
 		file.write(generate_ancestral_sequence(length) + '\n')
 

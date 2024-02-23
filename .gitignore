@@ -10,9 +10,13 @@ rnadeep.egg-info
 
 examples/RNAdeep-models
 examples/models/*
+examples/script/AT-*
+examples/script/tf-logs/*
+examples/slurm/AT-*
 examples/slurm/out/*
 examples/slurm/tf-logs/*
 
+rnaconv/data/rfam/AT-*
 rnaconv/data/rfam/full/seed_alignments
 rnaconv/data/rfam/full/seed_frequencies
 rnaconv/data/rfam/full/seed_neighbourhoods
@@ -35,7 +39,13 @@ rnaconv/data/rfam/dummy/seed_frequencies
 rnaconv/data/rfam/dummy/seed_neighbourhoods
 rnaconv/data/rfam/dummy/seed_trees
 rnaconv/data/rfam/dummy/filter_o.txt
+rnaconv/data/rfam/tiny/seed_alignments
+rnaconv/data/rfam/tiny/seed_frequencies
+rnaconv/data/rfam/tiny/seed_neighbourhoods
+rnaconv/data/rfam/tiny/seed_trees
+rnaconv/data/rfam/tiny/filter_o.txt
 
+rnaconv/data/generated/alignment/AT-*
 rnaconv/data/generated/alignment/full/alignments
 rnaconv/data/generated/alignment/full/frequencies
 rnaconv/data/generated/alignment/full/generate_o.txt
@@ -52,5 +62,9 @@ rnaconv/data/generated/alignment/dummy/alignments
 rnaconv/data/generated/alignment/dummy/frequencies
 rnaconv/data/generated/alignment/dummy/generate_o.txt
 rnaconv/data/generated/alignment/dummy/filter_o.txt
+rnaconv/data/generated/alignment/tiny/alignments
+rnaconv/data/generated/alignment/tiny/frequencies
+rnaconv/data/generated/alignment/tiny/generate_o.txt
+rnaconv/data/generated/alignment/tiny/filter_o.txt
 
 rnaconv/data/generated/family/Test*

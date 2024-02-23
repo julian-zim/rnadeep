@@ -1,8 +1,8 @@
 #!/bin/sh
 #SBATCH -J rd-ambig
-#SBATCH --partition=zen2_0256_a40x2
-#SBATCH --qos zen2_0256_a40x2
-#SBATCH --gres=gpu:2
+#SBATCH --partition=zen3_1024
+#SBATCH --qos zen3_1024
+#SBATCH --mem=0
 #SBATCH --mail-user=a12144285@unet.univie.ac.at
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --output=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/out/ambiguous-sissi.%A.out
@@ -10,10 +10,9 @@
 
 module load miniconda3
 eval "$(conda shell.bash hook)"
-conda activate rnadeep
+conda activate rnadeep-cpu
 
-python ../train_ali.py --ali-dir ../../rnaconv/data/sissi/ambiguous/alignments/ \
+python ../train_ali.py --ali-dir ../../rnaconv/data/generated/alignment/ambiguous/alignments/ \
                     --dbn-dir ../../rnaconv/data/rfam/ambiguous/seed_neighbourhoods/dbn/ \
                     --model-log-dir ../models \
-                    --data-tag sm3-ambiguous-sissi --smodel 3 --batch-size 3 --epochs 20
-
+                    --data-tag sm3-ambiguous-sissi --smodel 3 --batch-size 5 --epochs 5

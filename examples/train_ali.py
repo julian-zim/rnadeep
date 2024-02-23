@@ -5,9 +5,6 @@ import argparse
 from tensorflow.keras.models import load_model
 from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
 import tensorflow as tf
-from tensorflow.profiler import Profiler
-from tensorflow.profiler.experimental.client import ProfilerClient
-
 from rnadeep import __version__
 from rnadeep.models import spotrna_alignment_models
 from rnadeep.metrics import mcc, f1, sensitivity
@@ -59,18 +56,14 @@ def training(datatag, dbn_dir, ali_dir,
 	model_checkpoint = ModelCheckpoint(filepath=logname + '_{epoch:03d}',
 									   save_weights_only=False)
 	# Get the data for analysis
-	[train, valid] = list(draw_ali_sets(ali_dir, dbn_dir, [0.8, 0.2]))
+	[train, valid] = list(draw_ali_sets(ali_dir, dbn_dir, [0.5, 0.5]))
 
 	[train_alis, train_dbrs] = zip(*train)
 	train_generator = PaddedAlignmentMatrixEncoding(batch_size, train_alis, train_dbrs)
 	[valid_alis, valid_dbrs] = zip(*valid)
 	valid_generator = PaddedAlignmentMatrixEncoding(batch_size, valid_alis, valid_dbrs)
 
-	logdir = "./tf-logs/"
-	options = tf.profiler.experimental.ProfilerOptions(host_tracer_level=3,
-                                                   python_tracer_level=1,
-                                                   device_tracer_level=1)
-	tf.profiler.experimental.start(logdir, options=options)
+	tf.profiler.experimental.start('./tf-logs/')
 	model.fit(
 		x=train_generator,
 		validation_data=valid_generator,
@@ -80,7 +73,6 @@ def training(datatag, dbn_dir, ali_dir,
 		verbose=1,
 		callbacks=[csv_logger, model_checkpoint]
 	)
-	print('test')
 	tf.profiler.experimental.stop()
 	#
 	# Save final model
