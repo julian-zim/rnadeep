@@ -2,9 +2,11 @@
 
 import os
 import argparse
-import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
+import tensorflow as tf
+from tensorflow.profiler import Profiler
+from tensorflow.profiler.experimental.client import ProfilerClient
 
 from rnadeep import __version__
 from rnadeep.models import spotrna_alignment_models

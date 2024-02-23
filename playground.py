@@ -1,13 +1,14 @@
-import subprocess
 import tensorflow as tf
-options = tf.profiler.experimental.ProfilerOptions(host_tracer_level = 3,
-                                                   python_tracer_level = 1,
-                                                   device_tracer_level = 1)
 
-logdir = "./examples/models/logs/"
 
-tf.profiler.experimental.start(logdir, options = options)
-print('fick dich')
-tf.profiler.experimental.stop()
+path = '/home/julian-zim/Files/Cloud/OneDrive/OneFiles/Linux/Work/Workspaces/Study/UNIVIE/PyCharm/PR_SPB/rnadeep/examples/slurm/tf-logs/plugins/profile/2024_02_22_22_26_40/n3066-005.xplane.pb'
 
-subprocess.run(['tensorboard', '--logdir', logdir])
+# Open the .pb file
+with tf.io.gfile.GFile(path, 'rb') as f:
+	# Load the contents of the .pb file
+	pass
+	while True:
+		profile_proto = f.readline()
+		pass
+
+pass

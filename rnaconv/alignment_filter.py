@@ -4,18 +4,18 @@ import numpy as np
 import RNA
 
 
-max_dbrs_deviation = 20  # in percent
+default_max_dbrs_deviation = 20  # in percent
 
 
-def obtain_sissi_frequencies(rfam_path, sissi_path):
-	os.makedirs(os.path.join(sissi_path, 'frequencies'), exist_ok=True)
-	os.makedirs(os.path.join(sissi_path, 'frequencies/single'), exist_ok=True)
-	os.makedirs(os.path.join(sissi_path, 'frequencies/doublet'), exist_ok=True)
-	os.makedirs(os.path.join(sissi_path, 'frequencies/differences'), exist_ok=True)
-	os.makedirs(os.path.join(sissi_path, 'frequencies/differences/single'), exist_ok=True)
-	os.makedirs(os.path.join(sissi_path, 'frequencies/differences/doublet'), exist_ok=True)
+def obtain_sissi_frequencies(path, rfam_path):
+	os.makedirs(os.path.join(path, 'frequencies'), exist_ok=True)
+	os.makedirs(os.path.join(path, 'frequencies/single'), exist_ok=True)
+	os.makedirs(os.path.join(path, 'frequencies/doublet'), exist_ok=True)
+	os.makedirs(os.path.join(path, 'frequencies/differences'), exist_ok=True)
+	os.makedirs(os.path.join(path, 'frequencies/differences/single'), exist_ok=True)
+	os.makedirs(os.path.join(path, 'frequencies/differences/doublet'), exist_ok=True)
 
-	sissi_alidir_path = os.path.join(sissi_path, 'alignments')
+	sissi_alidir_path = os.path.join(path, 'alignments')
 	freqdir_path = os.path.join(rfam_path, 'seed_frequencies')
 	neidir_path = os.path.join(rfam_path, 'seed_neighbourhoods/nei')
 
@@ -94,25 +94,25 @@ def obtain_sissi_frequencies(rfam_path, sissi_path):
 						   sissi_frequencies[1] - seed_frequencies[1])
 
 		# save
-		with open(os.path.join(sissi_path, 'frequencies/single', filename + '.freq'), 'w') as outfile:
+		with open(os.path.join(path, 'frequencies/single', filename + '.freq'), 'w') as outfile:
 			outfile.write(' '.join([str(e) for e in sissi_frequencies[0]]) + '\n')
-		with open(os.path.join(sissi_path, 'frequencies/doublet', filename + '.freq'), 'w') as outfile:
+		with open(os.path.join(path, 'frequencies/doublet', filename + '.freq'), 'w') as outfile:
 			outfile.write(' '.join([str(e) for e in sissi_frequencies[1]]) + '\n')
-		with open(os.path.join(sissi_path, 'frequencies/differences/single', filename + '.freq'), 'w') as outfile:
+		with open(os.path.join(path, 'frequencies/differences/single', filename + '.freq'), 'w') as outfile:
 			outfile.write(' '.join([str(e) for e in frequency_diffs[0]]) + '\n')
-		with open(os.path.join(sissi_path, 'frequencies/differences/doublet', filename + '.freq'), 'w') as outfile:
+		with open(os.path.join(path, 'frequencies/differences/doublet', filename + '.freq'), 'w') as outfile:
 			outfile.write(' '.join([str(e) for e in frequency_diffs[1]]) + '\n')
 
 
-def filter_alignments(rfam_path, sissi_path):
+def filter_alignments(path, rfam_path, max_dbrs_deviation):
 
-	for ali_filename in os.listdir(os.path.join(sissi_path, 'alignments')):
+	for ali_filename in os.listdir(os.path.join(path, 'alignments')):
 		filename = ali_filename.split('.')[0]
 		file_seedname = filename.split('_')[0]
 		with open(os.path.join(rfam_path, 'seed_neighbourhoods/dbn', file_seedname + '.dbn'), 'r') as dbnfile:
 			cons_dbrs = dbnfile.readlines()[-1].split()[0]
 
-		with open(os.path.join(sissi_path, 'alignments', ali_filename), 'r') as alifile:
+		with open(os.path.join(path, 'alignments', ali_filename), 'r') as alifile:
 			ali = alifile.readlines()
 
 		blacklist = list()
@@ -129,9 +129,9 @@ def filter_alignments(rfam_path, sissi_path):
 			del ali[i+1]
 
 		if len(ali) == 1:
-			os.remove(os.path.join(sissi_path, 'alignments', ali_filename))
+			os.remove(os.path.join(path, 'alignments', ali_filename))
 		else:
-			with open(os.path.join(sissi_path, 'alignments', ali_filename), 'w') as alifile:
+			with open(os.path.join(path, 'alignments', ali_filename), 'w') as alifile:
 				alifile.write(''.join(ali))
 
 		'''command = 'RNAalifold --noPS < ' + str(os.path.join(sissi_path, 'alignments', ali_filename))
@@ -158,15 +158,18 @@ def filter_alignments(rfam_path, sissi_path):
 
 
 def main():
-	if len(sys.argv) != 3:
-		print('Usage: ./sissi_filter.py <rfam path> <sissi path>')
+	if not 3 <= len(sys.argv) <= 4:
+		print('Usage: ./generator_filter.py <path> <rfam path> [<max_ss_deviation>]')
 		return -1
-	rfam_path = sys.argv[1]
-	sissi_path = sys.argv[2]
+	path = sys.argv[1]
+	rfam_path = sys.argv[2]
+	max_dbrs_deviation = None
+	if len(sys.argv) == 4:
+		max_dbrs_deviation = sys.argv[3]
 
 	print('========== FILTERING SISSI ALIGNMENTS ==========')
 	#obtain_sissi_frequencies(rfam_path, sissi_path)
-	filter_alignments(rfam_path, sissi_path)
+	filter_alignments(path, rfam_path, default_max_dbrs_deviation if max_dbrs_deviation is None else max_dbrs_deviation)
 	print('Done.')
 
 

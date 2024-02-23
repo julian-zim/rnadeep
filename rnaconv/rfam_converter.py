@@ -13,6 +13,8 @@ def rescale_newick_strings(treedirpath, alidirpath, outpath):
 
 	tree_filenames = os.listdir(treedirpath)
 	for tree_filename in tree_filenames:
+		# shutil.copy(os.path.join(treedirpath, tree_filename), outpath)
+
 		filename = tree_filename.split('.')[0]
 
 		with open(os.path.join(alidirpath, filename + '.aln'), 'r') as file:
@@ -325,7 +327,7 @@ def stockholm_to_neighbourhoods(filepath, outpath):
 
 
 def stockholm_to_alignments(filepath, outpath):
-	os.makedirs(outpath, exist_ok=True)#
+	os.makedirs(outpath, exist_ok=True)
 
 	with open(filepath, 'r') as file:
 		ali_name = ''

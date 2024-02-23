@@ -5,5 +5,4 @@ eval "$(conda shell.bash hook)"
 source /home/julian-zim/Programs/anaconda3/etc/profile.d/conda.sh || true
 conda activate rnadeep
 
-cd ../../..
-python ./alignment_generator.py 3 data/rfam/dummy data/sissi/dummy > ./data/sissi/dummy/generate_o.txt
+python ../../../../alignment_filter.py . ../../../rfam/dummy > ./filter_o.txt
