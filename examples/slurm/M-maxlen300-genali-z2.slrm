@@ -1,12 +1,12 @@
 #!/bin/sh
-#SBATCH -J ml3dsz3
-#SBATCH --partition=zen3_0512_a100x2
-#SBATCH --qos zen3_0512_a100x2
+#SBATCH -J ml3daz2
+#SBATCH --partition=zen2_0256_a40x2
+#SBATCH --qos zen2_0256_a40x2
 #SBATCH --gres=gpu:2
 #SBATCH --mail-user=a12144285@unet.univie.ac.at
 #SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --output=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/out/maxlen300-sissi-z3.%A.out
-#SBATCH --error=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/out/maxlen300-sissi-z3.%A.err
+#SBATCH --output=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/out/maxlen300-genali-z2.%A.out
+#SBATCH --error=/home/fs71475/julianz123/workspace/rnadeep/examples/slurm/out/maxlen300-genali-z2.%A.err
 
 module load miniconda3
 eval "$(conda shell.bash hook)"
@@ -15,5 +15,5 @@ conda activate rnadeep
 python ../train_ali.py --ali-dir ../../rnaconv/data/generated/alignment/maxlen300/alignments/ \
                     --dbn-dir ../../rnaconv/data/generated/alignment/maxlen300/neighbourhoods/dbn/ \
                     --model-log-dir ../models \
-                    --data-tag maxlen300-sissi-z3 --smodel 3 --batch-size 4 --epochs 10
+                    --data-tag maxlen300-genali-z2 --smodel 3 --batch-size 4 --epochs 5
 
