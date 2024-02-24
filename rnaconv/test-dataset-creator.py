@@ -15,10 +15,10 @@ def get_paths(rfam_path):
 
 
 def script(batchsize, epoch, seqlength, alicount):
-	tag_nc = 'L' + str(seqlength) + '-b' + str(batchsize)
-	tag = 'L' + str(seqlength) + '-b' + str(batchsize) + '-c' + str(alicount) + '-e' + str(epoch)
-	filename = 'AT-' + 'L' + str(seqlength) + '-b' + str(batchsize) + '-c' + str(alicount) + '-e' + str(epoch)
-	filename_nb = 'AT-' + 'L' + str(seqlength) + '-c' + str(alicount)
+	tag = 'L' + str(seqlength) + '-b' + str(batchsize) + '-ac' + str(alicount) + '-e' + str(epoch)
+	filename = 'AT-' + tag
+	filename_lcc = 'AT-' + 'L' + str(seqlength) + '-ac' + str(alicount)
+	jobname = '-ac' + str(alicount)
 
 	subprocess.run(['rm', '-rf', str(os.path.join('../examples/slurm', filename + '.slrm'))])
 	subprocess.run(['rm', '-rf', str(os.path.join('../examples/script', filename + '.sh'))])
@@ -27,14 +27,14 @@ def script(batchsize, epoch, seqlength, alicount):
 				'eval \"$(conda shell.bash hook)\"\n'
 				'conda activate rnadeep\n'
 				'\n'
-				'python ../train_ali.py --ali-dir ../../rnaconv/data/generated/alignment/' + filename_nb + '/alignments/ \\\n'
-				'\t   --dbn-dir ../../rnaconv/data/rfam/' + filename_nb + '/seed_neighbourhoods/dbn/ \\\n'
+				'python ../train_ali.py --ali-dir ../../rnaconv/data/generated/alignment/' + filename_lcc + '/alignments/ \\\n'
+				'\t   --dbn-dir ../../rnaconv/data/rfam/' + filename_lcc + '/seed_neighbourhoods/dbn/ \\\n'
 				'\t   --model-log-dir ../models \\\n'
 				'\t   --data-tag sm3-' + tag + '-sissi --smodel 3 --batch-size ' + str(batchsize) + ' --epochs ' + str(epoch) + '\n')
 
 	with open(os.path.join('../examples/slurm', filename + '.slrm'), 'w') as scriptfile:
 		scriptfile.write('#!/bin/sh\n'
-						 '#SBATCH -J ' + tag_nc + '\n'
+						 '#SBATCH -J ' + jobname + '\n'
 						 '#SBATCH --partition=zen2_0256_a40x2\n'
 						 '#SBATCH --qos zen2_0256_a40x2\n'
 						 '#SBATCH --gres=gpu:2\n'
@@ -111,10 +111,10 @@ def copy(from_path, to_path, filenames):
 			print('Skipping \'' + filename + '\' as it is missing data. (Raw output: ' + str(condition) + ')')
 
 
-def create(seqlength, alicount, batch_sizes, epochs):
+def create(alicount, seqlength, batch_sizes, epochs):
 	rfam_path = 'data/rfam'
 	generated_path = 'data/generated/alignment'
-	foldername = 'AT-L' + str(seqlength) + '-c' + str(alicount)
+	foldername = 'AT-' + 'L' + str(seqlength) + '-ac' + str(alicount)
 	subprocess.run(['rm', '-rf', str(os.path.join(rfam_path, foldername))])
 	os.makedirs(os.path.join(rfam_path, foldername), exist_ok=False)
 	subprocess.run(['rm', '-rf', str(os.path.join(generated_path, foldername))])
@@ -125,9 +125,10 @@ def create(seqlength, alicount, batch_sizes, epochs):
 	while len(alilist) < 1:
 		id = np.random.choice(range(len(filenames)), 1)[0]
 		with open(os.path.join(os.path.join(rfam_path, 'full/seed_alignments'), filenames[id]), 'r') as candidate:
-			candidate.readline()
-			line = candidate.readline().split()[1]
-		if len(line) == seqlength:
+			line = candidate.readline()
+			candidate_seqlength = len(candidate.readline().split()[1])
+
+		if candidate_seqlength == seqlength:
 			alilist.append(filenames[id].split('.')[0])
 		del filenames[id]
 
@@ -142,14 +143,15 @@ def create(seqlength, alicount, batch_sizes, epochs):
 
 
 def main():
-	seqlengths = [100, 200, 301, 401, 503, 604, 673]
-	alicounts = [101, 200, 309, 407, 493]
-	batch_sizes = [1] # [1, 2, 3, 4, 5]
-	epochs = [2] # [1, 2, 3, 4, 5]
+	#seqcounts = [101, 200, 309, 407, 493]
+	alicounts = [50, 100, 200, 400]
+	seqlengths = [200]  # [100, 200, 301, 401, 503, 604, 673]
+	batch_sizes = [5]  # [1, 2, 3, 4, 5]
+	epochs = [2]  # [1, 2, 3, 4, 5]
 
-	for seqlength in seqlengths:
-		for alicount in alicounts:
-			create(seqlength, alicount, batch_sizes, epochs)
+	for alicount in alicounts:
+		for seqlength in seqlengths:
+			create(alicount, seqlength, batch_sizes, epochs)
 
 
 if __name__ == '__main__':
