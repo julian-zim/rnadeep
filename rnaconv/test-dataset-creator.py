@@ -18,7 +18,7 @@ def script(batchsize, epoch, seqlength, alicount):
 	tag = 'L' + str(seqlength) + '-b' + str(batchsize) + '-ac' + str(alicount) + '-e' + str(epoch)
 	filename = 'AT-' + tag
 	filename_lcc = 'AT-' + 'L' + str(seqlength) + '-ac' + str(alicount)
-	jobname = '-ac' + str(alicount)
+	jobname = 'e' + str(epoch) + '-l' + str(seqlength)
 
 	subprocess.run(['rm', '-rf', str(os.path.join('../examples/slurm', filename + '.slrm'))])
 	subprocess.run(['rm', '-rf', str(os.path.join('../examples/script', filename + '.sh'))])
@@ -143,11 +143,10 @@ def create(alicount, seqlength, batch_sizes, epochs):
 
 
 def main():
-	#seqcounts = [101, 200, 309, 407, 493]
-	alicounts = [50, 100, 200, 400]
+	alicounts = [100]
 	seqlengths = [200]  # [100, 200, 301, 401, 503, 604, 673]
-	batch_sizes = [5]  # [1, 2, 3, 4, 5]
-	epochs = [2]  # [1, 2, 3, 4, 5]
+	batch_sizes = [10]  # [1, 2, 3, 4, 5]
+	epochs = [1, 2, 3, 4, 5]
 
 	for alicount in alicounts:
 		for seqlength in seqlengths:

@@ -15,7 +15,7 @@ def clean(full=True):
 
 
 def main():
-	clean(full=True)
+	clean(full=False)
 
 
 if __name__ == '__main__':
