@@ -1,27 +1,48 @@
 import sys
 import os
 import subprocess
+import RNA
+
+
+def db_to_ct(dbn, seq):
+	ptable = list(RNA.ptable(dbn))
+
+	column1 = list(range(1, ptable[0] + 1))
+	column2 = [c for c in seq]
+	column3 = [idx - 1 for idx in column1[:-1]] + [0]
+	column4 = [idx + 1 for idx in column1]
+	column5 = ptable[1:]
+	column6 = column1
+
+	content = list()
+	content.append('{: >5}'.format(ptable[0]) + ' ENERGY =     0.0    1')
+	for i in column3:
+		content.append('{: >5}'.format(column1[i]) +
+					   ' ' + column2[i] +
+					   '{: >8}'.format(column3[i]) +
+					   '{: >5}'.format(column4[i]) +
+					   '{: >5}'.format(column5[i]) +
+					   '{: >5}'.format(column6[i]) + '')
+
+	return '\n'.join(content)
 
 
 def generate_alignments(sissi_filepath, n, tree_filepath, neigh_filepath, sfreq_dfilepath, dfreq_filepath, ali_filepath, outpath):
 	"""
-	Generates n alignments using sissi for given equilibrium frequencies, neighbourhood system and phylogenetic tree.
+	Generates n RNA alignments using sissi for given equilibrium frequencies, neighbourhood system and phylogenetic tree.
 	The raw alignments are used to re-add indels.
+	Note: The given same neighbourhood will also be copied once for each generated alignment to create pairs for
+	easier parsing into the network.
 
 	Parameters:
-	n (int): The number of alingments to generate
-	directory (str): The path to a directory containing the information mentioned above in this exact folder structure:
-		- seed_alignments: Directory with .aln Files, containing alignments
-		- seed_frequencies:
-			- single: Directory with .freq Files, containing unpaired nucleotide equilibrium frequencies for generation
-			- doublet: Directory with .freq Files, containing paired nucleotide equilibrium frequencies for generation
-		- seed_neighbourhoods:
-			- nei: Directory with .nei files, containing the secondary consensus structure for generation
-		- seed_trees:
-			- rescaled: Directory with .seed_tree files, containing the phylogenetic tree for generation
+	sissi_filepath (str): path to the compiled sissi099 file
+	n (int): The number of alignments to generate
+	tree_filepath (str): path to a tree file in the newick string format ('.seed_tree')
+	neigh_filepath (str): path to a neighbourhood file in the sissi01 format ('.nei')
+	sfreq_dfilepath (str): path to a file containing a single frequency vector ('.sfreq')
+	dfreq_filepath (str): path to a file containing a doublet frequency vector ('.dfreq')
+	ali_filepath (str): path to a file containing an alignment in the clustal format ('.aln')
 	outpath (str): The path to which to write the generated alignments
-	alignments (list): List of alignment file names to pick from the 'seed_alignments' folder for generation.
-		None means all are picked.
 	"""
 
 	filename = os.path.basename(tree_filepath).split('.')[0]
@@ -33,18 +54,27 @@ def generate_alignments(sissi_filepath, n, tree_filepath, neigh_filepath, sfreq_
 		print('Warning: Skipping \'' + filename + '\' as it is missing a tree, neighbourhood, frequency or alignment file.')
 		return
 
-	with open(neigh_filepath) as nei_file:
-		seq_length = sum(1 for _ in nei_file)
-	with open(sfreq_dfilepath) as single_freq_file:
+	with open(sfreq_dfilepath, 'r') as single_freq_file:
 		single_frequencies = single_freq_file.readline()[:-1]
-	with open(dfreq_filepath) as doublet_freq_file:
+	with open(dfreq_filepath, 'r') as doublet_freq_file:
 		doublet_frequencies = doublet_freq_file.readline()[:-1]
+
+	with open(neigh_filepath, 'r') as dbn_file:
+		seq = dbn_file.readline()
+		dbn = dbn_file.readline().split()[0]
+	ct = db_to_ct(dbn, seq)
+
+	for i in range(n):
+		with open(os.path.join(outpath, 'neighbourhoods/dbn', filename + '_a' + str(i) + '.dbn'), 'w') as file:
+			file.write(seq + dbn + ' (0.0)\n')
+		with open(os.path.join(outpath, 'neighbourhoods/ct', filename + '_a' + str(i) + '.ct'), 'w') as file:
+			file.write(ct + '\n')
+
 	command = (sissi_filepath +
-			  #' -nr' + ct_filepath +
-			   ' -nn ' + str(neigh_filepath) +
+			   ' -nr' + str(neigh_filepath) +
 			   ' -fs ' + single_frequencies +
 			   ' -fd ' + doublet_frequencies +
-			   ' -l' + str(seq_length) +
+			   ' -l' + str(len(dbn)) +
 			   ' -a' + str(n) +
 			   ' -oc' +
 			   ' ' + str(tree_filepath))
@@ -77,10 +107,11 @@ def generate_alignments(sissi_filepath, n, tree_filepath, neigh_filepath, sfreq_
 				line_idx += 1
 
 		for idx, ali in enumerate(ali_sets):
-			with open(os.path.join(outpath, filename + '_' + str(idx) + '.aln'), 'w') as outfile:
+			with open(os.path.join(outpath, 'alignments', filename + '_a' + str(idx) + '.aln'), 'w') as outfile:
 				outfile.write('CLUSTAL \n')
 				for line in ali:
 					outfile.write(line + '\n')
+
 		print('Successfully generated alignment' + ('s' if n > 1 else '') + ' for \'' + filename + '\'.')
 
 
@@ -89,7 +120,11 @@ def generate_alignment_set(sissi_filepath, n, tree_dirpath, neigh_dirpath, sfreq
 	for path in paths:
 		if not os.path.exists(path):
 			raise FileNotFoundError('No path named \'' + path + '\'')
+
 	os.makedirs(os.path.join(outpath, 'alignments'), exist_ok=True)
+	os.makedirs(os.path.join(outpath, 'neighbourhoods'), exist_ok=True)
+	os.makedirs(os.path.join(outpath, 'neighbourhoods/ct'), exist_ok=True)
+	os.makedirs(os.path.join(outpath, 'neighbourhoods/dbn'), exist_ok=True)
 
 	filenames = os.listdir(tree_dirpath)
 	for filename in filenames:
@@ -97,17 +132,17 @@ def generate_alignment_set(sissi_filepath, n, tree_dirpath, neigh_dirpath, sfreq
 		generate_alignments(sissi_filepath,
 							n,
 							os.path.join(tree_dirpath, filename_base + '.seed_tree'),
-							os.path.join(neigh_dirpath, filename_base + '.nei'),
-							os.path.join(sfreq_dirpath, filename_base + '.freq'),
-							os.path.join(dfreq_dirpath, filename_base + '.freq'),
+							os.path.join(neigh_dirpath, filename_base + '.dbn'),
+							os.path.join(sfreq_dirpath, filename_base + '.sfreq'),
+							os.path.join(dfreq_dirpath, filename_base + '.dfreq'),
 							os.path.join(ali_dirpath, filename_base + '.aln'),
-							os.path.join(outpath, 'alignments'))
+							os.path.join(outpath))
 	print('Done.')
 
 
 def get_paths(rfam_path):
 	tree_dirpath = os.path.join(rfam_path, 'seed_trees', 'rescaled')
-	neigh_dirpath = os.path.join(rfam_path, 'seed_neighbourhoods', 'nei')
+	neigh_dirpath = os.path.join(rfam_path, 'seed_neighbourhoods', 'dbn')
 	sfreq_dirpath = os.path.join(rfam_path, 'seed_frequencies', 'single')
 	dfreq_dirpath = os.path.join(rfam_path, 'seed_frequencies', 'doublet')
 	ali_dirpath = os.path.join(rfam_path, 'seed_alignments')
@@ -131,7 +166,7 @@ def main():
 	else:
 		raise IOError('Impossible!')
 
-	print('========== GENERATING SISSI ALIGNMENTS ==========')
+	print('========== GENERATING ALIGNMENTS ==========')
 	generate_alignment_set(sissi_filepath, n, *paths, outpath)
 
 

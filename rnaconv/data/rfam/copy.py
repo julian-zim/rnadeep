@@ -38,8 +38,8 @@ def copy(from_path, to_path, filenames):
 				os.path.exists(os.path.join(from_path, neigh_dbn_path, filename + '.dbn')),
 				os.path.exists(os.path.join(from_path, neigh_ct_path, filename + '.ct')),
 				os.path.exists(os.path.join(from_path, neigh_nei_path, filename + '.nei')),
-				os.path.exists(os.path.join(from_path, single_freq_path, filename + '.freq')),
-				os.path.exists(os.path.join(from_path, doublet_freq_path, filename + '.freq'))]
+				os.path.exists(os.path.join(from_path, single_freq_path, filename + '.sfreq')),
+				os.path.exists(os.path.join(from_path, doublet_freq_path, filename + '.dfreq'))]
 		if all(condition):
 			shutil.copy(os.path.join(from_path, tree_orig_path, filename + '.seed_tree'),
 						os.path.join(to_path, tree_orig_path, filename + '.seed_tree'))
@@ -57,10 +57,10 @@ def copy(from_path, to_path, filenames):
 						os.path.join(to_path, neigh_ct_path, filename + '.ct'))
 			shutil.copy(os.path.join(from_path, neigh_nei_path, filename + '.nei'),
 						os.path.join(to_path, neigh_nei_path, filename + '.nei'))
-			shutil.copy(os.path.join(from_path, single_freq_path, filename + '.freq'),
-						os.path.join(to_path, single_freq_path, filename + '.freq'))
-			shutil.copy(os.path.join(from_path, doublet_freq_path, filename + '.freq'),
-						os.path.join(to_path, doublet_freq_path, filename + '.freq'))
+			shutil.copy(os.path.join(from_path, single_freq_path, filename + '.sfreq'),
+						os.path.join(to_path, single_freq_path, filename + '.sfreq'))
+			shutil.copy(os.path.join(from_path, doublet_freq_path, filename + '.dfreq'),
+						os.path.join(to_path, doublet_freq_path, filename + '.dfreq'))
 		else:
 			print('Skipping \'' + filename + '\' as it is missing data. (Raw output: ' + str(condition) + ')')
 

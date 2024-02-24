@@ -13,9 +13,9 @@ def rescale_newick_strings(treedirpath, alidirpath, outpath):
 
 	tree_filenames = os.listdir(treedirpath)
 	for tree_filename in tree_filenames:
-		# shutil.copy(os.path.join(treedirpath, tree_filename), outpath)
+		shutil.copy(os.path.join(treedirpath, tree_filename), outpath)  # TODO: remove
 
-		filename = tree_filename.split('.')[0]
+		"""filename = tree_filename.split('.')[0]
 
 		with open(os.path.join(alidirpath, filename + '.aln'), 'r') as file:
 			ali = [line.split()[1] for line in file.readlines()[1:]]
@@ -38,7 +38,7 @@ def rescale_newick_strings(treedirpath, alidirpath, outpath):
 			with open(os.path.join(outpath, filename.split('.')[0] + '.seed_tree'), 'w+') as file:
 				file.write(tree_rescaled)
 			print('Info: Doubled branch lengths for tree \'' + filename + '\' due to the corresponding alignment\'s '
-				  'sequences being 95% similar.')
+				  'sequences being 95% similar.')"""
 
 
 def fix_newick_strings(treedirpath, outpath):
@@ -177,9 +177,9 @@ def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
 		if sum_double_freq > 0:
 			doublet_frequencies /= sum_double_freq
 
-		with open(os.path.join(outpath, 'single', filename_base + '.freq'), 'w') as outfile:
+		with open(os.path.join(outpath, 'single', filename_base + '.sfreq'), 'w') as outfile:
 			outfile.write(' '.join([str(e) for e in single_frequencies]) + '\n')
-		with open(os.path.join(outpath, 'doublet', filename_base + '.freq'), 'w') as outfile:
+		with open(os.path.join(outpath, 'doublet', filename_base + '.dfreq'), 'w') as outfile:
 			outfile.write(' '.join([str(e) for e in doublet_frequencies]) + '\n')
 
 

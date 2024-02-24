@@ -11,7 +11,7 @@ def parse_alignment(ali_path, dbn_path, filename):
 				ali.append(line.split()[1])
 			line = file.readline()
 
-	with open(os.path.join(dbn_path, filename.split('_')[0] + '.dbn')) as dbn_file:
+	with open(os.path.join(dbn_path, filename + '.dbn')) as dbn_file:
 		dbn = dbn_file.readlines()[1].split()[0]
 
 	return ali, dbn
@@ -23,7 +23,7 @@ def parse_alignments(ali_directory, dbn_directory):
 	filenames = os.listdir(ali_directory)
 	for filename in filenames:
 		filename_base = filename.split('.')[0]
-		if os.path.exists(os.path.join(dbn_directory, filename_base.split('_')[0] + '.dbn')):
+		if os.path.exists(os.path.join(dbn_directory, filename_base + '.dbn')):
 			new_ali, new_dbn = parse_alignment(ali_directory, dbn_directory, filename_base)
 			alis.append(new_ali)
 			dbns.append(new_dbn)

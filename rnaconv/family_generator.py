@@ -1,17 +1,15 @@
 import random
+import sys
 import os
 import subprocess
 import RNA
 
 
-def db_to_ct(filepath, outpath):
-	os.makedirs(outpath, exist_ok=True)
+default_min_paired_sites = 25  # in percent
 
-	with open(filepath, 'r') as file:
-		seq = file.readline().split()[0]
-		dbrs = file.readline().split()
 
-	ptable = list(RNA.ptable(dbrs[0]))
+def db_to_ct(dbn, seq):
+	ptable = list(RNA.ptable(dbn))
 
 	column1 = list(range(1, ptable[0] + 1))
 	column2 = [c for c in seq]
@@ -19,112 +17,151 @@ def db_to_ct(filepath, outpath):
 	column4 = [idx + 1 for idx in column1]
 	column5 = ptable[1:]
 	column6 = column1
-	with open(os.path.join(outpath, os.path.basename(filepath).split('/')[-1].split('.')[0] + '.ct'), 'w') as file:
-		file.write('{: >5}'.format(ptable[0]) + ' ENERGY =     0.0    1\n')
-		for i in column3:
-			file.write('{: >5}'.format(column1[i]) +
+
+	content = list()
+	content.append('{: >5}'.format(ptable[0]) + ' ENERGY =     0.0    1')
+	for i in column3:
+		content.append('{: >5}'.format(column1[i]) +
 					   ' ' + column2[i] +
 					   '{: >8}'.format(column3[i]) +
 					   '{: >5}'.format(column4[i]) +
 					   '{: >5}'.format(column5[i]) +
-					   '{: >5}'.format(column6[i]) + '\n')
+					   '{: >5}'.format(column6[i]) + '')
+
+	return '\n'.join(content)
 
 
-def generate_ancestral_sequence(length=50):
+def generate_sequence_structure_pair(length=85, min_paired_sites=0):
 	bases = ['A', 'C', 'G', 'U']
-	seq = ''.join(random.choice(bases) for _ in range(length))
-	return 'CAGUGCGAGCUA'
-	#return seq
-	pass
+	seq = ''
+	dbrs = ''
+	paired_sites = -1
+	while paired_sites < min_paired_sites:
+		seq = ''.join(random.choice(bases) for _ in range(length))
+		dbrs, _ = RNA.fold(seq)
+		paired_sites = 0
+		for char in dbrs:
+			if char == '(' or char == ')':
+				paired_sites += 1
+	return seq, dbrs
 
 
-def generate_secondary_structure(sequence_filepath):
-	with open(sequence_filepath, 'r') as file:
-		seq = file.read().split()[0]
-	dbrs, _ = RNA.fold(seq)
-	return dbrs, seq
-
-
-# sissi_filepath, tree_filepath, sfreq_dfilepath, dfreq_filepath, ali_filepath, outpath
-def generate_family(out_filepath, length, as_filepath, ss_filepath, tree_filepath, sf_filepath, df_filepath, n):
+def generate_family(sissi_filepath, n, length, tree_filepath, sfreq_filepath, dfreq_filepath, outpath):
 	"""
-	Generates n alignments using sissi for given equilibrium frequencies, neighbourhood system and phylogenetic tree.
-	The raw alignments are used to re-add indels.
+	Generates n RNA families (consisting of an alignment and a secondary structure)
+	for given equilibrium frequencies and a phylogenetic tree, using:
+	- a random ancestral sequence
+	- RNAfold to predict a consensus structure
+	- SISSI simulate a corresponding homologous sequence alignment.
 
 	Parameters:
-	n (int): The number of alingments to generate
-	directory (str): The path to a directory containing the information mentioned above in this exact folder structure:
-		- seed_alignments: Directory with .aln Files, containing alignments
-		- seed_frequencies:
-			- single: Directory with .freq Files, containing unpaired nucleotide equilibrium frequencies for generation
-			- doublet: Directory with .freq Files, containing paired nucleotide equilibrium frequencies for generation
-		- seed_neighbourhoods:
-			- nei: Directory with .nei files, containing the secondary consensus structure for generation
-		- seed_trees:
-			- rescaled: Directory with .seed_tree files, containing the phylogenetic tree for generation
-	outpath (str): The path to which to write the generated alignments
-	alignments (list): List of alignment file names to pick from the 'seed_alignments' folder for generation.
-		None means all are picked.
+	sissi_filepath (str): path to the compiled sissi099 file
+	n (int): The number of families to generate
+	length(int): Length of the ancestral sequence used to generate the family
+	tree_filepath (str): path to a tree file in the newick string format ('.seed_tree')
+	sfreq_dfilepath (str): path to a file containing a single frequency vector ('.sfreq')
+	dfreq_filepath (str): path to a file containing a doublet frequency vector ('.dfreq')
+	outpath (str): The path to which to write the generated families
 	"""
-	with open(as_filepath, 'w') as file:
-		file.write(generate_ancestral_sequence(length) + '\n')
 
-	ss = generate_secondary_structure(as_filepath)
-	with open(ss_filepath, 'w') as file:
-		file.write(ss[1] + '\n' + ss[0] + ' (0)\n')
+	filename_base = os.path.basename(tree_filepath).split('.')[0]
+	if (not os.path.exists(tree_filepath)
+			or not os.path.exists(sfreq_filepath)
+			or not os.path.exists(dfreq_filepath)):
+		print('Warning: Skipping \'' + filename_base + '\' as it is missing a tree or neighbourhood file.')
+		return
 
-	# secondary structure
-	db_to_ct(ss_filepath, os.path.dirname(ss_filepath))
-	ssct_filepath = os.path.join(os.path.dirname(ss_filepath), os.path.basename(ss_filepath).split('.')[0] + '.ct')
-
-	# freqs
-	with open(sf_filepath) as single_freq_file:
+	with open(sfreq_filepath, 'r') as single_freq_file:
 		single_frequencies = single_freq_file.readline()[:-1]
-	with open(df_filepath) as doublet_freq_file:
+	with open(dfreq_filepath, 'r') as doublet_freq_file:
 		doublet_frequencies = doublet_freq_file.readline()[:-1]
 
-	command = ('../../sissi099' +
-			   ' -k ' + str(as_filepath) +
-			   ' -nr' + str(ssct_filepath) +
-			   ' -fs ' + single_frequencies +
-			   ' -fd ' + doublet_frequencies +
-			   ' -l' + str(length) +
-			   ' -a' + str(n) +
-			   ' -oc' +
-			   ' ' + str(tree_filepath))
-	result = subprocess.run(command, text=True, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	if len(result.stdout) == 0:
-		print('SISSI Error:\n' + result.stderr)
-	else:
-		result_lines = result.stdout.split('\n')[:-1]  # for some reason a line without content is added in the end
-		ali_sets = list()
-		ali_idx = -1
-		for line in result_lines:
-			if line == 'CLUSTAL ':
-				ali_sets.append(list())
-				ali_idx += 1
-			else:
-				ali_sets[ali_idx].append(line)
+	for i in range(n):
+		filename = filename_base + '_f' + str(i)
 
-		for idx, ali in enumerate(ali_sets):
-			with open(os.path.join(out_filepath + '_' + str(idx) + '.aln'), 'w') as outfile:
-				outfile.write('CLUSTAL \n')
-				for line in ali:
-					outfile.write(line + '\n')
-		print('Successfully generated alignment' + ('s' if n > 1 else '') + '.')
+		an_seq, ss_dbn = generate_sequence_structure_pair(length, int(length * default_min_paired_sites / 100))
+		ct = db_to_ct(ss_dbn, an_seq)
+
+		seq_out_filepath = os.path.join(outpath, 'sequences', filename + '.seq')
+		with open(seq_out_filepath, 'w') as file:
+			file.write(an_seq + '\n')
+		with open(os.path.join(outpath, 'neighbourhoods/dbn', filename + '.dbn'), 'w') as file:
+			file.write(an_seq + '\n' + ss_dbn + ' (0.0)\n')
+		ct_out_filepath = os.path.join(outpath, 'neighbourhoods/ct', filename + '.ct')
+		with open(ct_out_filepath, 'w') as file:
+			file.write(ct + '\n')
+
+		command = (sissi_filepath +
+				   ' -k ' + str(seq_out_filepath) +
+				   ' -nr' + str(ct_out_filepath) +
+				   ' -fs ' + single_frequencies +
+				   ' -fd ' + doublet_frequencies +
+				   ' -l' + str(length) +
+				   ' -a1' +
+				   ' -oc' +
+				   ' ' + str(tree_filepath))
+		result = subprocess.run(command, text=True, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		if len(result.stdout) == 0:
+			print('SISSI Error:\n' + result.stderr)
+		else:
+			with open(os.path.join(outpath, 'alignments', filename + '.aln'), 'w') as outfile:
+				outfile.write(result.stdout)
+
+	print('Successfully generated famil' + ('ies' if n > 1 else 'y') + '.')
+
+
+def generate_family_set(sissi_filepath, n, length, tree_dirpath, sfreq_dirpath, dfreq_dirpath, outpath):
+	paths = [tree_dirpath, sfreq_dirpath, dfreq_dirpath]
+	for path in paths:
+		if not os.path.exists(path):
+			raise FileNotFoundError('No path named \'' + path + '\'')
+
+	os.makedirs(os.path.join(outpath, 'sequences'), exist_ok=True)
+	os.makedirs(os.path.join(outpath, 'alignments'), exist_ok=True)
+	os.makedirs(os.path.join(outpath, 'neighbourhoods'), exist_ok=True)
+	os.makedirs(os.path.join(outpath, 'neighbourhoods/dbn'), exist_ok=True)
+	os.makedirs(os.path.join(outpath, 'neighbourhoods/ct'), exist_ok=True)
+
+	filenames = os.listdir(tree_dirpath)
+	for filename in filenames:
+		filename_base = filename.split('.')[0]
+		generate_family(sissi_filepath,
+						n,
+						length,
+						os.path.join(tree_dirpath, filename_base + '.seed_tree'),
+						os.path.join(sfreq_dirpath, filename_base + '.sfreq'),
+						os.path.join(dfreq_dirpath, filename_base + '.dfreq'),
+						outpath)
+	print('Done.')
+
+
+def get_paths(rfam_path):
+	tree_dirpath = os.path.join(rfam_path, 'seed_trees', 'rescaled')
+	sfreq_dirpath = os.path.join(rfam_path, 'seed_frequencies', 'single')
+	dfreq_dirpath = os.path.join(rfam_path, 'seed_frequencies', 'doublet')
+	return [tree_dirpath, sfreq_dirpath, dfreq_dirpath]
 
 
 def main():
-	filedir = 'Test/'
-	filename = 'Test'
-	generate_alignment('Test',
-					   12,
-					   filedir + filename + '.seq',
-					   filedir + filename + '.dbn',
-					   filedir + filename + '.seed_tree',
-					   filedir + filename + '.sfreq',
-					   filedir + filename + '.dfreq',
-					   5)
+	if len(sys.argv) != 8 and len(sys.argv) != 6:
+		print('Usage: ./alignment_generator.py <sissi path> <amount> <length> <trees path> <single frequencies path> <doublet frequencies path> <outpath>'
+			  '\n       OR\n       ./alignment_generator.py <sissi path> <amount> <length> <rfam path> <outpath>')
+		return -1
+
+	sissi_filepath = sys.argv[1]
+	n = int(sys.argv[2])
+	length = int(sys.argv[3])
+	if len(sys.argv) == 6:
+		paths = get_paths(sys.argv[4])
+		outpath = sys.argv[5]
+	elif len(sys.argv) == 8:
+		paths = sys.argv[4:7]
+		outpath = sys.argv[7]
+	else:
+		raise IOError('Impossible!')
+
+	print('========== GENERATING FAMILIES ==========')
+	generate_family_set(sissi_filepath, n, length, *paths, outpath)
 
 
 if __name__ == '__main__':

@@ -56,11 +56,11 @@ def filter_rfam_data(rfam_path, max_length):
 			except FileNotFoundError:
 				pass
 			try:
-				os.remove(os.path.join(single_freq_filepath, filename_base + '.freq'))
+				os.remove(os.path.join(single_freq_filepath, filename_base + '.sfreq'))
 			except FileNotFoundError:
 				pass
 			try:
-				os.remove(os.path.join(doublet_freq_filepath, filename_base + '.freq'))
+				os.remove(os.path.join(doublet_freq_filepath, filename_base + '.dfreq'))
 			except FileNotFoundError:
 				pass
 

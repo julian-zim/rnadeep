@@ -6,7 +6,7 @@ def clean(full=True):
 	datasets = list(set(os.listdir())
 					- {'__pycache__'}
 					- set([subdir for subdir in os.listdir() if '.' in subdir.split('/')[-1]])
-					- {'full'} if full else set())
+					- {'full'} if not full else set())
 
 	for dataset in datasets:
 		command = 'cd ./' + dataset + '/; ./clean.sh'
