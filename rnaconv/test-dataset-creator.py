@@ -145,7 +145,7 @@ def create(alicount, seqlength, batch_sizes, epochs):
 def main():
 	alicounts = [100]
 	seqlengths = [200]  # [100, 200, 301, 401, 503, 604, 673]
-	batch_sizes = [10]  # [1, 2, 3, 4, 5]
+	batch_sizes = [5]  # [1, 2, 3, 4, 5]
 	epochs = [1, 2, 3, 4, 5]
 
 	for alicount in alicounts:

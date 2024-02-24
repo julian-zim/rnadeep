@@ -56,14 +56,14 @@ def training(datatag, dbn_dir, ali_dir,
 	model_checkpoint = ModelCheckpoint(filepath=logname + '_{epoch:03d}',
 									   save_weights_only=False)
 	# Get the data for analysis
-	[train, valid] = list(draw_ali_sets(ali_dir, dbn_dir, [0.5, 0.5]))
+	[train, valid] = list(draw_ali_sets(ali_dir, dbn_dir, [0.8, 0.2]))
 
 	[train_alis, train_dbrs] = zip(*train)
 	train_generator = PaddedAlignmentMatrixEncoding(batch_size, train_alis, train_dbrs)
 	[valid_alis, valid_dbrs] = zip(*valid)
 	valid_generator = PaddedAlignmentMatrixEncoding(batch_size, valid_alis, valid_dbrs)
 
-	tf.profiler.experimental.start('./tf-logs/')
+	#tf.profiler.experimental.start('./tf-logs/')
 	model.fit(
 		x=train_generator,
 		validation_data=valid_generator,
@@ -73,11 +73,11 @@ def training(datatag, dbn_dir, ali_dir,
 		verbose=1,
 		callbacks=[csv_logger, model_checkpoint]
 	)
-	tf.profiler.experimental.stop()
+	#tf.profiler.experimental.stop()
 	#
 	# Save final model
 	#
-	#model.save(f"RNAdeep-{logname}-ep{epochs}")
+	model.save(f"RNAdeep-{logname}-ep{epochs}")
 	return model
 
 

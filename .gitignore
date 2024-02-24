@@ -11,6 +11,7 @@ rnadeep.egg-info
 playground.py
 
 examples/RNAdeep-models
+examples/slurm/RNAdeep-..
 examples/models/*
 examples/script/tf-logs
 examples/script/AT-*

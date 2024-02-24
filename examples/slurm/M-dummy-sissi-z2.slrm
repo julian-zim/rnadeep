@@ -16,4 +16,4 @@ conda activate rnadeep
 python ../train_ali.py --ali-dir ../../rnaconv/data/generated/alignment/dummy/alignments/ \
                     --dbn-dir ../../rnaconv/data/rfam/dummy/seed_neighbourhoods/dbn/ \
                     --model-log-dir ../models \
-                    --data-tag sm3-dummy-sissi --smodel 3 --batch-size 2 --epochs 5
+                    --data-tag sm3-dummy-sissi --smodel 3 --batch-size 2 --epochs 1
