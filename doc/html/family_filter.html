@@ -28,7 +28,20 @@
 <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
     
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-filter_alignments"><strong>filter_alignments</strong></a>(path, max_dbrs_deviation)</dt></dl>
+<td width="100%"><dl><dt><a name="-filter_alignments"><strong>filter_alignments</strong></a>(path, max_dbrs_deviation)</dt><dd><tt>Filters&nbsp;the&nbsp;alignments&nbsp;generated&nbsp;by&nbsp;the&nbsp;family_generator:&nbsp;In&nbsp;each&nbsp;alignment,&nbsp;every&nbsp;sequence&nbsp;is&nbsp;removed&nbsp;that<br>
+deviates&nbsp;by&nbsp;over&nbsp;&lt;max_dbrs_deviation&gt;&nbsp;from&nbsp;the&nbsp;desired&nbsp;consensus&nbsp;structure.&nbsp;This&nbsp;is&nbsp;achieved&nbsp;using&nbsp;RNAfold&nbsp;to<br>
+predict&nbsp;the&nbsp;structure&nbsp;and&nbsp;the&nbsp;base&nbsp;pair&nbsp;distance&nbsp;to&nbsp;compare&nbsp;it&nbsp;to&nbsp;the&nbsp;desired&nbsp;consensus&nbsp;structure.&nbsp;If&nbsp;this&nbsp;results<br>
+in&nbsp;all&nbsp;sequences&nbsp;being&nbsp;removed,&nbsp;the&nbsp;whole&nbsp;alignment&nbsp;file&nbsp;with&nbsp;the&nbsp;corresponding&nbsp;consensus&nbsp;structure&nbsp;file&nbsp;is<br>
+removed.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;(str):&nbsp;path&nbsp;directory&nbsp;of&nbsp;the&nbsp;generated&nbsp;families.&nbsp;Expects&nbsp;the&nbsp;following&nbsp;folder&nbsp;structure:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;alignments<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;neighbourhoods<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;ct<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;dbn<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;sequences<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_dbrs_deviation&nbsp;(int):</tt></dd></dl>
  <dl><dt><a name="-main"><strong>main</strong></a>()</dt></dl>
 </td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">

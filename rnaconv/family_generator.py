@@ -9,6 +9,14 @@ default_min_paired_sites = 25  # in percent
 
 
 def db_to_ct(dbn, seq):
+	"""
+	Converts the consensus structures contained in the dot bracket notation input file into the connect table format
+
+		Parameters:
+			dbn (str): secondary structure in dot bracket notation
+			seq (str): sequence
+	"""
+
 	ptable = list(RNA.ptable(dbn))
 
 	column1 = list(range(1, ptable[0] + 1))
@@ -32,6 +40,15 @@ def db_to_ct(dbn, seq):
 
 
 def generate_sequence_structure_pair(length=85, min_paired_sites=0):
+	"""
+	Repeatedly generates a random sequence and predicts its secondary structure using RNAfold, until the structure
+	has at least min_paired_sites paired sites.
+
+		Parameters:
+			length (int, optional): Length of the random sequence
+			min_paired_sites (int, optional): Minimal required sites to be paired
+	"""
+
 	bases = ['A', 'C', 'G', 'U']
 	seq = ''
 	dbrs = ''
@@ -48,20 +65,21 @@ def generate_sequence_structure_pair(length=85, min_paired_sites=0):
 
 def generate_family(sissi_filepath, n, length, tree_filepath, sfreq_filepath, dfreq_filepath, outpath):
 	"""
-	Generates n RNA families (consisting of an alignment and a secondary structure)
-	for given equilibrium frequencies and a phylogenetic tree, using:
+	Generates n RNA families (consisting of an alignment and a secondary structure) for the given equilibrium frequencies
+	and phylogenetic tree, using:
 	- a random ancestral sequence
-	- RNAfold to predict a consensus structure
-	- SISSI simulate a corresponding homologous sequence alignment.
+	- RNAfold to predict a consensus structure for that sequence
+	- SISSI simulate a corresponding homologous sequence alignment (taking the sequence, tree, and equilibrium
+	frequencies as input).
 
-	Parameters:
-	sissi_filepath (str): path to the compiled sissi099 file
-	n (int): The number of families to generate
-	length(int): Length of the ancestral sequence used to generate the family
-	tree_filepath (str): path to a tree file in the newick string format ('.seed_tree')
-	sfreq_dfilepath (str): path to a file containing a single frequency vector ('.sfreq')
-	dfreq_filepath (str): path to a file containing a doublet frequency vector ('.dfreq')
-	outpath (str): The path to which to write the generated families
+		Parameters:
+			sissi_filepath (str): Path to the compiled sissi099 file
+			n (int): The number of families to generate
+			length (int): Length of the ancestral sequence used to generate the family
+			tree_filepath (str): Path to a tree file in the newick string format ('.seed_tree')
+			sfreq_filepath (str): Path to a file containing a single frequency vector ('.sfreq')
+			dfreq_filepath (str): Path to a file containing a doublet frequency vector ('.dfreq')
+			outpath (str): The path to which to write the generated families
 	"""
 
 	filename_base = os.path.basename(tree_filepath).split('.')[0]
@@ -111,6 +129,21 @@ def generate_family(sissi_filepath, n, length, tree_filepath, sfreq_filepath, df
 
 
 def generate_family_set(sissi_filepath, n, length, tree_dirpath, sfreq_dirpath, dfreq_dirpath, outpath):
+	"""
+	Generates n RNA families of a certain length for each combination of tree, single frequency & double frequency files
+	with the same name in the respective directories.
+	For more information, refer to the generate_family() function.
+
+		Parameters:
+			sissi_filepath (str): Path to the compiled sissi099 file
+			n (int): The number of families to generate
+			length (int): Length of the ancestral sequences used to generate the families
+			tree_dirpath (str): Path to a directory containing tree files in the newick string format ('.seed_tree')
+			sfreq_dirpath (str): Path to a directory containing files storing a single frequency vector ('.sfreq')
+			dfreq_dirpath (str): Path to a directory containing files storing a doublet frequency vector ('.dfreq')
+			outpath (str): Path to which to write the generated families
+	"""
+
 	paths = [tree_dirpath, sfreq_dirpath, dfreq_dirpath]
 	for path in paths:
 		if not os.path.exists(path):
@@ -136,6 +169,13 @@ def generate_family_set(sissi_filepath, n, length, tree_dirpath, sfreq_dirpath, 
 
 
 def get_paths(rfam_path):
+	"""
+	Accepts a path to a converted rfam database and returns the individual paths for the tree and frequency files.
+
+		Parameters:
+			rfam_path (str): path to a converted rfam database
+	"""
+
 	tree_dirpath = os.path.join(rfam_path, 'seed_trees', 'rescaled')
 	sfreq_dirpath = os.path.join(rfam_path, 'seed_frequencies', 'single')
 	dfreq_dirpath = os.path.join(rfam_path, 'seed_frequencies', 'doublet')

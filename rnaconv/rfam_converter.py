@@ -9,6 +9,18 @@ from ete3 import TreeNode
 
 
 def rescale_newick_strings(treedirpath, alidirpath, outpath):
+	"""
+	Rescales the tree branch lengths for trees which corresponding sequence alignments sequences are over 95% similar
+	with respect to their mean pairwise hamming distance, in order to increase the evolution rate when using the tree
+	for evolutionary simulation.
+	The rescale factor is 2.
+
+		Parameters:
+			treedirpath (str): path to the directory containing the tree files in newick string format
+			alidirpath (str): path to the directory containing the alignment files in CLUSTAL format
+			outpath (str): path to the directory in which to save the rescaled trees in the newick string format.
+	"""
+
 	os.makedirs(outpath, exist_ok=True)
 
 	tree_filenames = os.listdir(treedirpath)
@@ -31,7 +43,7 @@ def rescale_newick_strings(treedirpath, alidirpath, outpath):
 				newick_string = file.read()
 			tree = TreeNode(newick_string)
 			for node in tree.traverse():
-				node.dist *= 2
+				node.dist *= 2  # rescale factor
 			tree_rescaled = tree.write(format=1)
 			with open(os.path.join(outpath, filename.split('.')[0] + '.seed_tree'), 'w+') as file:
 				file.write(tree_rescaled)
@@ -40,6 +52,18 @@ def rescale_newick_strings(treedirpath, alidirpath, outpath):
 
 
 def fix_newick_strings(treedirpath, outpath):
+	"""
+	Fixes newick strings by replacing every control character (e.g. '(', ')', ',', '.', ':') within a node name with an
+	underscore.
+	Additionally, multifurcations are resolved and non-leaf node labels are removed.
+
+	These three steps are nessecary for SISSI to be able to parse the Rfam tree files.
+
+		Parameters:
+			treedirpath (str): path to the directory containing the tree files in newick string format
+			outpath (str): path to the directory in which to save the trees in the fixed newick string format.
+	"""
+
 	os.makedirs(outpath, exist_ok=True)
 
 	filenames = os.listdir(treedirpath)
@@ -81,7 +105,6 @@ def fix_newick_strings(treedirpath, outpath):
 		tree = TreeNode(fixed_newick_string_0)
 		tree.resolve_polytomy()
 		fixed_newick_string_1 = tree.write(format=1)
-
 		'''
 		# remove non-leaf node names (for whatever reason SISSi cant deal with them)
 		fixed_newick_string_2 = ''
@@ -105,6 +128,21 @@ def fix_newick_strings(treedirpath, outpath):
 
 
 def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
+	"""
+	Extracts the equilibrium frequencies for unpaired single nucleotides and nucleotide pairs from an alignment.
+
+	It counts the occurences of single nucleotides per unpaired site and saves them in a 4-vector.
+	Then It counts the occurences of nucleotide pairs per paired site tuple and saves them in a 16-vector.
+	Then it adds pseudocounts (+1 for each element) and normalizes.
+
+		Parameters:
+			alidirpath (str): path to the directory containing the alignment files in CLUSTAL format
+			neighdirpath (str): path to the directory containing the alignment consensus structure files in sissi0.1
+				(.nei) format
+			outpath (str): path to the directory in which to save the extracted unpaired single and paired nucleotide
+				equilibrium frequencies
+	"""
+
 	os.makedirs(outpath, exist_ok=True)
 	os.makedirs(os.path.join(outpath, 'single'), exist_ok=True)
 	os.makedirs(os.path.join(outpath, 'doublet'), exist_ok=True)
@@ -182,6 +220,16 @@ def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
 
 
 def ct_to_nei(filepath, outpath):
+	"""
+	Converts the consensus structures contained in the connect table input file into the sissi0.1 (.nei) format
+	Note: SISSI can also use connect table files directly, but this filetype is used for obtaining the equilibrium
+	frequencies later on.
+
+		Parameters:
+			filepath (str): path to the file in connect table format, containing the secondary structure
+			outpath (str): path to the directory in which to save the resulting sissi0.1 (.nei) file
+	"""
+
 	os.makedirs(outpath, exist_ok=True)
 
 	filename = filepath.split('/')[-1].split('.')[0]
@@ -200,8 +248,21 @@ def ct_to_nei(filepath, outpath):
 
 
 def db_to_ct(filepath, outpath):
+	"""
+	Converts the consensus structures contained in the dot bracket notation input file into the connect table format
+
+		Parameters:
+			filepath (str): path to the file in dot bracket notation format, containing the secondary structure
+			outpath (str): path to the directory in which to save the resulting connect table file
+	"""
+
 	os.makedirs(outpath, exist_ok=True)
 
+	with open(filepath, 'r') as file:
+		seq = file.readline().split()[0]
+		dbrs = file.readline().split()
+
+	ptable = list(RNA.ptable(dbrs[0]))
 	'''result = subprocess.run('RNAfold --version', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 	if result.returncode != 0:
 		raise RuntimeError('ViennaRNA is not installed.')
@@ -211,12 +272,6 @@ def db_to_ct(filepath, outpath):
 	if result.returncode != 0:
 		print('Warning: Couldn\'t convert file ' + filename + ' to ct. Traceback: ' + result.stderr.strip('\n'))
 		os.remove(os.path.join(outpath, filename + '.ct'))'''
-
-	with open(filepath, 'r') as file:
-		seq = file.readline().split()[0]
-		dbrs = file.readline().split()
-
-	ptable = list(RNA.ptable(dbrs[0]))
 
 	column1 = list(range(1, ptable[0] + 1))
 	column2 = [c for c in seq]
@@ -236,6 +291,14 @@ def db_to_ct(filepath, outpath):
 
 
 def wuss_to_db(filepath, outpath):
+	"""
+	Converts the consensus structures contained in the wuss input file into the dot bracket notation format
+
+		Parameters:
+			filepath (str): path to the file in wuss format, containing the secondary structure
+			outpath (str): path to the directory in which to save the resulting dot bracket notation file
+	"""
+
 	os.makedirs(outpath, exist_ok=True)
 
 	filename = filepath.split('/')[-1].split('.')[0]
@@ -267,6 +330,14 @@ def wuss_to_db(filepath, outpath):
 
 
 def stockholm_to_wuss(filepath, outpath):
+	"""
+	Converts the consensus structures contained in the STOCKHOLM input file into single files in the wuss format
+
+		Parameters:
+			filepath (str): path to the Rfam.seed file in STOCKHOLM format, containing the families
+			outpath (str): path to the directory in which to save the resulting wuss file
+	"""
+
 	os.makedirs(outpath, exist_ok=True)
 
 	with open(filepath, 'r') as file:
@@ -307,6 +378,18 @@ def stockholm_to_wuss(filepath, outpath):
 
 
 def stockholm_to_neighbourhoods(filepath, outpath):
+	"""
+	Converts the consensus structures contained in the STOCKHOLM input file into single files in the following formats:
+		- wuss
+		- dbn
+		- ct
+		- nei
+
+		Parameters:
+			filepath (str): path to the Rfam.seed file in STOCKHOLM format, containing the families
+			outpath (str): path to the directory in which to save the extracted consensus structures
+	"""
+
 	os.makedirs(outpath, exist_ok=True)
 
 	stockholm_to_wuss(filepath, os.path.join(outpath, 'wuss'))
@@ -325,6 +408,14 @@ def stockholm_to_neighbourhoods(filepath, outpath):
 
 
 def stockholm_to_alignments(filepath, outpath):
+	"""
+	Converts the alignments contained in the STOCKHOLM input file into CLUSTAL files
+
+		Parameters:
+			filepath (str): path to the Rfam.seed file in STOCKHOLM format, containing the families
+			outpath (str): path to the directory in which to save the extracted alignments in the CLUSTAL format
+	"""
+
 	os.makedirs(outpath, exist_ok=True)
 
 	with open(filepath, 'r') as file:
@@ -372,6 +463,27 @@ def convert_rfam_data(seed_filepath,
 					  tree_path,
 					  tree_fixed_outpath,
 					  tree_rescaled_outpath):
+	"""
+	Calls the nessecary functions to convert the whole rfam database into single files, preparing them to be used by
+	SISSI.
+
+		Parameters:
+			seed_filepath (str): path to the Rfam.seed file in STOCKHOLM format, containing the families
+			ali_outpath (str): path to the directory in which to save the extracted alignments in the CLUSTAL format
+			neigh_outpath (str): path to the directory in which to save the extracted consensus structures in the
+				- wuss
+				- dbn
+				- ct
+				- nei
+				formats, respectively
+			freq_outpath (str): path to the directory in which to save the extracted paired and unpaired nucleotide
+				equilibrium frequencies
+			tree_path (str): path to the directory in which Rfam tree files in newick format (.seed_tree) files are
+				located
+			tree_fixed_outpath (str): path to the directory in which to save the fixed tree newick strings
+			tree_rescaled_outpath (str): path to the directory in which to save the rescaled tree newick strings
+	"""
+
 	stockholm_to_alignments(seed_filepath, ali_outpath)
 	stockholm_to_neighbourhoods(seed_filepath, neigh_outpath)
 	obtain_equilibrium_frequencies(ali_outpath, neigh_outpath, freq_outpath)

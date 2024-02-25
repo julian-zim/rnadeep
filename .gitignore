@@ -10,6 +10,9 @@ rnadeep.egg-info
 
 playground.py
 
+# documentation
+doc/html/*
+
 # models & logs
 examples/RNAdeep-models
 examples/slurm/RNAdeep-..

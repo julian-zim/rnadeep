@@ -6,6 +6,29 @@ default_max_length = 700
 
 
 def filter_rfam_data(rfam_path, max_length):
+	"""
+	Filters the alignments, consensus structures, frequencies and trees of the converted rfam database:
+	Every data point (consisting of the four filetypes mentioned above) which alignment exceeds a certain length is
+	removed.
+
+		Parameters:
+			rfam_path (str): path to the directory of the convered rfam database. Expects the following folder structure:
+				- seed_alignments
+				- seed_frequencies
+					- single
+					- doublet
+				- seed_neighbourhoods
+					- ct
+					- dbn
+					- nei
+					- wuss
+				- seed_trees
+					- original
+					- fixed
+					- rescaled
+			max_length (int): maximally allowed length of an alignment. 700 by default.
+	"""
+
 	if max_length is None:
 		global default_max_length
 		max_length = default_max_length

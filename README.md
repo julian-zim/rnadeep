@@ -22,3 +22,6 @@ This repository contains additional resources that were used during preparation 
 
 * <sub><sup>3</sup>https://github.com/ViennaRNA</sub><br/>
 * <sub><sup>4</sup>https://cibiv.github.io/software/sissi</sub><br/>
+
+## BASH & SLURM SCRIPTS
+* TODO

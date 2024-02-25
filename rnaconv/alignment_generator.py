@@ -5,6 +5,14 @@ import RNA
 
 
 def db_to_ct(dbn, seq):
+	"""
+	Converts the consensus structures contained in the dot bracket notation input file into the connect table format
+
+		Parameters:
+			dbn (str): secondary structure in dot bracket notation
+			seq (str): sequence
+	"""
+
 	ptable = list(RNA.ptable(dbn))
 
 	column1 = list(range(1, ptable[0] + 1))
@@ -30,9 +38,9 @@ def db_to_ct(dbn, seq):
 def generate_alignments(sissi_filepath, n, tree_filepath, neigh_filepath, sfreq_dfilepath, dfreq_filepath, ali_filepath, outpath):
 	"""
 	Generates n RNA alignments using sissi for given equilibrium frequencies, neighbourhood system and phylogenetic tree.
-	The raw alignments are used to re-add indels.
-	Note: The given same neighbourhood will also be copied once for each generated alignment to create pairs for
-	easier parsing into the network.
+	The raw alignments are used to re-add the indels.
+	Note: The provided consensus structure will also be copied into one additional file per generated alignment, in order to
+	create pairs of samples and tags to be used to train a model.
 
 		Parameters:
 			sissi_filepath (str): path to the compiled sissi099 file
@@ -41,7 +49,7 @@ def generate_alignments(sissi_filepath, n, tree_filepath, neigh_filepath, sfreq_
 			neigh_filepath (str): path to a neighbourhood file in the sissi01 format ('.nei')
 			sfreq_dfilepath (str): path to a file containing a single frequency vector ('.sfreq')
 			dfreq_filepath (str): path to a file containing a doublet frequency vector ('.dfreq')
-			ali_filepath (str): path to a file containing an alignment in the clustal format ('.aln')
+			ali_filepath (str): path to an alignment file in the clustal format ('.aln')
 			outpath (str): The path to which to write the generated alignments
 	"""
 
@@ -116,6 +124,22 @@ def generate_alignments(sissi_filepath, n, tree_filepath, neigh_filepath, sfreq_
 
 
 def generate_alignment_set(sissi_filepath, n, tree_dirpath, neigh_dirpath, sfreq_dirpath, dfreq_dirpath, ali_dirpath, outpath):
+	"""
+	Generates n RNA alignments for each combination of tree, consensus structure, single frequency & double frequency
+	and alignment files with the same name in the respective directories.
+	For more information, refer to the generate_alignments() function.
+
+		Parameters:
+			sissi_filepath (str): path to the compiled sissi099 file
+			n (int): The number of alignments to generate
+			tree_dirpath (str): path to a directory containing tree files in the newick string format ('.seed_tree')
+			neigh_dirpath (str): path to a directory containing neighbourhood files in the sissi01 format ('.nei')
+			sfreq_dirpath (str): path to a directory containing files storing a single frequency vector ('.sfreq')
+			dfreq_dirpath (str): path to a directory containing files storing a doublet frequency vector ('.dfreq')
+			ali_dirpath (str): path to a directory containing alignment files in the clustal format ('.aln')
+			outpath (str): The path to which to write the generated alignments
+	"""
+
 	paths = [tree_dirpath, neigh_dirpath, sfreq_dirpath, dfreq_dirpath, ali_dirpath]
 	for path in paths:
 		if not os.path.exists(path):
@@ -141,6 +165,14 @@ def generate_alignment_set(sissi_filepath, n, tree_dirpath, neigh_dirpath, sfreq
 
 
 def get_paths(rfam_path):
+	"""
+	Accepts a path to a converted rfam database and returns the individual paths for the tree, consensus structure,
+	frequency and alignment files.
+
+		Parameters:
+			rfam_path (str): path to a converted rfam database
+	"""
+
 	tree_dirpath = os.path.join(rfam_path, 'seed_trees', 'rescaled')
 	neigh_dirpath = os.path.join(rfam_path, 'seed_neighbourhoods', 'dbn')
 	sfreq_dirpath = os.path.join(rfam_path, 'seed_frequencies', 'single')

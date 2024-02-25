@@ -21,4 +21,6 @@ for html_file in html_files:
 	except FileNotFoundError:
 		print('Skipping ' + html_file + ', as it\'s not existing.')
 
-pdfkit.from_string(merged_html, '../documentation.pdf')
+filtered_html = merged_html.replace('/home/julian-zim/Files/Cloud/OneDrive/OneFiles/Linux/Work/Workspaces/Study/UNIVIE/PyCharm/PR_SPB/','')
+
+pdfkit.from_string(filtered_html, '../documentation.pdf')

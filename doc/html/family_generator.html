@@ -29,24 +29,48 @@
 <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
     
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-db_to_ct"><strong>db_to_ct</strong></a>(dbn, seq)</dt></dl>
- <dl><dt><a name="-generate_family"><strong>generate_family</strong></a>(sissi_filepath, n, length, tree_filepath, sfreq_filepath, dfreq_filepath, outpath)</dt><dd><tt>Generates&nbsp;n&nbsp;RNA&nbsp;families&nbsp;(consisting&nbsp;of&nbsp;an&nbsp;alignment&nbsp;and&nbsp;a&nbsp;secondary&nbsp;structure)<br>
-for&nbsp;given&nbsp;equilibrium&nbsp;frequencies&nbsp;and&nbsp;a&nbsp;phylogenetic&nbsp;tree,&nbsp;using:<br>
--&nbsp;a&nbsp;random&nbsp;ancestral&nbsp;sequence<br>
--&nbsp;RNAfold&nbsp;to&nbsp;predict&nbsp;a&nbsp;consensus&nbsp;structure<br>
--&nbsp;SISSI&nbsp;simulate&nbsp;a&nbsp;corresponding&nbsp;homologous&nbsp;sequence&nbsp;alignment.<br>
+<td width="100%"><dl><dt><a name="-db_to_ct"><strong>db_to_ct</strong></a>(dbn, seq)</dt><dd><tt>Converts&nbsp;the&nbsp;consensus&nbsp;structures&nbsp;contained&nbsp;in&nbsp;the&nbsp;dot&nbsp;bracket&nbsp;notation&nbsp;input&nbsp;file&nbsp;into&nbsp;the&nbsp;connect&nbsp;table&nbsp;format<br>
 &nbsp;<br>
-Parameters:<br>
-sissi_filepath&nbsp;(str):&nbsp;path&nbsp;to&nbsp;the&nbsp;compiled&nbsp;sissi099&nbsp;file<br>
-n&nbsp;(int):&nbsp;The&nbsp;number&nbsp;of&nbsp;families&nbsp;to&nbsp;generate<br>
-length(int):&nbsp;Length&nbsp;of&nbsp;the&nbsp;ancestral&nbsp;sequence&nbsp;used&nbsp;to&nbsp;generate&nbsp;the&nbsp;family<br>
-tree_filepath&nbsp;(str):&nbsp;path&nbsp;to&nbsp;a&nbsp;tree&nbsp;file&nbsp;in&nbsp;the&nbsp;newick&nbsp;string&nbsp;format&nbsp;('.seed_tree')<br>
-sfreq_dfilepath&nbsp;(str):&nbsp;path&nbsp;to&nbsp;a&nbsp;file&nbsp;containing&nbsp;a&nbsp;single&nbsp;frequency&nbsp;vector&nbsp;('.sfreq')<br>
-dfreq_filepath&nbsp;(str):&nbsp;path&nbsp;to&nbsp;a&nbsp;file&nbsp;containing&nbsp;a&nbsp;doublet&nbsp;frequency&nbsp;vector&nbsp;('.dfreq')<br>
-outpath&nbsp;(str):&nbsp;The&nbsp;path&nbsp;to&nbsp;which&nbsp;to&nbsp;write&nbsp;the&nbsp;generated&nbsp;families</tt></dd></dl>
- <dl><dt><a name="-generate_family_set"><strong>generate_family_set</strong></a>(sissi_filepath, n, length, tree_dirpath, sfreq_dirpath, dfreq_dirpath, outpath)</dt></dl>
- <dl><dt><a name="-generate_sequence_structure_pair"><strong>generate_sequence_structure_pair</strong></a>(length=85, min_paired_sites=0)</dt></dl>
- <dl><dt><a name="-get_paths"><strong>get_paths</strong></a>(rfam_path)</dt></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dbn&nbsp;(str):&nbsp;secondary&nbsp;structure&nbsp;in&nbsp;dot&nbsp;bracket&nbsp;notation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seq&nbsp;(str):&nbsp;sequence</tt></dd></dl>
+ <dl><dt><a name="-generate_family"><strong>generate_family</strong></a>(sissi_filepath, n, length, tree_filepath, sfreq_filepath, dfreq_filepath, outpath)</dt><dd><tt>Generates&nbsp;n&nbsp;RNA&nbsp;families&nbsp;(consisting&nbsp;of&nbsp;an&nbsp;alignment&nbsp;and&nbsp;a&nbsp;secondary&nbsp;structure)&nbsp;for&nbsp;the&nbsp;given&nbsp;equilibrium&nbsp;frequencies<br>
+and&nbsp;phylogenetic&nbsp;tree,&nbsp;using:<br>
+-&nbsp;a&nbsp;random&nbsp;ancestral&nbsp;sequence<br>
+-&nbsp;RNAfold&nbsp;to&nbsp;predict&nbsp;a&nbsp;consensus&nbsp;structure&nbsp;for&nbsp;that&nbsp;sequence<br>
+-&nbsp;SISSI&nbsp;simulate&nbsp;a&nbsp;corresponding&nbsp;homologous&nbsp;sequence&nbsp;alignment&nbsp;(taking&nbsp;the&nbsp;sequence,&nbsp;tree,&nbsp;and&nbsp;equilibrium<br>
+frequencies&nbsp;as&nbsp;input).<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sissi_filepath&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;the&nbsp;compiled&nbsp;sissi099&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;(int):&nbsp;The&nbsp;number&nbsp;of&nbsp;families&nbsp;to&nbsp;generate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length&nbsp;(int):&nbsp;Length&nbsp;of&nbsp;the&nbsp;ancestral&nbsp;sequence&nbsp;used&nbsp;to&nbsp;generate&nbsp;the&nbsp;family<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tree_filepath&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;a&nbsp;tree&nbsp;file&nbsp;in&nbsp;the&nbsp;newick&nbsp;string&nbsp;format&nbsp;('.seed_tree')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sfreq_filepath&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;a&nbsp;file&nbsp;containing&nbsp;a&nbsp;single&nbsp;frequency&nbsp;vector&nbsp;('.sfreq')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dfreq_filepath&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;a&nbsp;file&nbsp;containing&nbsp;a&nbsp;doublet&nbsp;frequency&nbsp;vector&nbsp;('.dfreq')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outpath&nbsp;(str):&nbsp;The&nbsp;path&nbsp;to&nbsp;which&nbsp;to&nbsp;write&nbsp;the&nbsp;generated&nbsp;families</tt></dd></dl>
+ <dl><dt><a name="-generate_family_set"><strong>generate_family_set</strong></a>(sissi_filepath, n, length, tree_dirpath, sfreq_dirpath, dfreq_dirpath, outpath)</dt><dd><tt>Generates&nbsp;n&nbsp;RNA&nbsp;families&nbsp;of&nbsp;a&nbsp;certain&nbsp;length&nbsp;for&nbsp;each&nbsp;combination&nbsp;of&nbsp;tree,&nbsp;single&nbsp;frequency&nbsp;&amp;&nbsp;double&nbsp;frequency&nbsp;files<br>
+with&nbsp;the&nbsp;same&nbsp;name&nbsp;in&nbsp;the&nbsp;respective&nbsp;directories.<br>
+For&nbsp;more&nbsp;information,&nbsp;refer&nbsp;to&nbsp;the&nbsp;<a href="#-generate_family">generate_family</a>()&nbsp;function.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sissi_filepath&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;the&nbsp;compiled&nbsp;sissi099&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;(int):&nbsp;The&nbsp;number&nbsp;of&nbsp;families&nbsp;to&nbsp;generate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length&nbsp;(int):&nbsp;Length&nbsp;of&nbsp;the&nbsp;ancestral&nbsp;sequences&nbsp;used&nbsp;to&nbsp;generate&nbsp;the&nbsp;families<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tree_dirpath&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;a&nbsp;directory&nbsp;containing&nbsp;tree&nbsp;files&nbsp;in&nbsp;the&nbsp;newick&nbsp;string&nbsp;format&nbsp;('.seed_tree')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sfreq_dirpath&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;a&nbsp;directory&nbsp;containing&nbsp;files&nbsp;storing&nbsp;a&nbsp;single&nbsp;frequency&nbsp;vector&nbsp;('.sfreq')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dfreq_dirpath&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;a&nbsp;directory&nbsp;containing&nbsp;files&nbsp;storing&nbsp;a&nbsp;doublet&nbsp;frequency&nbsp;vector&nbsp;('.dfreq')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outpath&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;which&nbsp;to&nbsp;write&nbsp;the&nbsp;generated&nbsp;families</tt></dd></dl>
+ <dl><dt><a name="-generate_sequence_structure_pair"><strong>generate_sequence_structure_pair</strong></a>(length=85, min_paired_sites=0)</dt><dd><tt>Repeatedly&nbsp;generates&nbsp;a&nbsp;random&nbsp;sequence&nbsp;and&nbsp;predicts&nbsp;its&nbsp;secondary&nbsp;structure&nbsp;using&nbsp;RNAfold,&nbsp;until&nbsp;the&nbsp;structure<br>
+has&nbsp;at&nbsp;least&nbsp;min_paired_sites&nbsp;paired&nbsp;sites.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length&nbsp;(int,&nbsp;optional):&nbsp;Length&nbsp;of&nbsp;the&nbsp;random&nbsp;sequence<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min_paired_sites&nbsp;(int,&nbsp;optional):&nbsp;Minimal&nbsp;required&nbsp;sites&nbsp;to&nbsp;be&nbsp;paired</tt></dd></dl>
+ <dl><dt><a name="-get_paths"><strong>get_paths</strong></a>(rfam_path)</dt><dd><tt>Accepts&nbsp;a&nbsp;path&nbsp;to&nbsp;a&nbsp;converted&nbsp;rfam&nbsp;database&nbsp;and&nbsp;returns&nbsp;the&nbsp;individual&nbsp;paths&nbsp;for&nbsp;the&nbsp;tree&nbsp;and&nbsp;frequency&nbsp;files.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rfam_path&nbsp;(str):&nbsp;path&nbsp;to&nbsp;a&nbsp;converted&nbsp;rfam&nbsp;database</tt></dd></dl>
  <dl><dt><a name="-main"><strong>main</strong></a>()</dt></dl>
 </td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
