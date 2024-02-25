@@ -64,6 +64,7 @@ rnaconv/data/generated/alignment/maxlen300/frequencies
 rnaconv/data/generated/alignment/maxlen300/generate_o.txt
 rnaconv/data/generated/alignment/maxlen300/filter_o.txt
 rnaconv/data/generated/alignment/AT-*
+rnaconv/data/generated/alignment/maxlen280temp
 
 rnaconv/data/generated/family/full/sequences
 rnaconv/data/generated/family/full/alignments
