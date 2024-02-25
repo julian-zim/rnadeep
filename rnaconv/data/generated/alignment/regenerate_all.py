@@ -36,8 +36,8 @@ def filtering(full=True):
 
 
 def main():
-	generate(preclean=True, full=True)
-	filtering(full=True)
+	generate(preclean=True, full=False)
+	filtering(full=False)
 
 
 if __name__ == '__main__':

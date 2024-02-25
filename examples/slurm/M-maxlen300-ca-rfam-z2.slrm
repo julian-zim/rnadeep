@@ -1,5 +1,5 @@
 #!/bin/sh
-#SBATCH -J ml3darz2
+#SBATCH -J ml3arz2
 #SBATCH --partition=zen2_0256_a40x2
 #SBATCH --qos zen2_0256_a40x2
 #SBATCH --gres=gpu:2
@@ -12,9 +12,12 @@ module load miniconda3
 eval "$(conda shell.bash hook)"
 conda activate rnadeep
 
-python ../train_ali.py --ali-dir ../../rnaconv/data/rfam/maxlen300/seed_alignments/ \
-                    --dbn-dir ../../rnaconv/data/rfam/maxlen300/seed_neighbourhoods/dbn/ \
+DATASET="maxlen300"
+TAG="$DATASET-genali-rfam"
+
+python ../train_ali.py --ali-dir ../../rnaconv/data/rfam/$DATASET/seed_alignments/ \
+                    --dbn-dir ../../rnaconv/data/rfam/$DATASET/seed_neighbourhoods/dbn/ \
                     --model-log-dir ../models \
-                    --data-tag maxlen300-genali-rfam-z2 --load-model ../models/sm3_maxlen300-genali-rfam-z2_005 \
+                    --data-tag $TAG-z2 --load-model ../models/sm3_$TAG-z2_005 \
                     --smodel 3 --epoch0 5 --batch-size 4 --epochs 10
 

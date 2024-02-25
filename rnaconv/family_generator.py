@@ -107,7 +107,7 @@ def generate_family(sissi_filepath, n, length, tree_filepath, sfreq_filepath, df
 			with open(os.path.join(outpath, 'alignments', filename + '.aln'), 'w') as outfile:
 				outfile.write(result.stdout)
 
-	print('Successfully generated famil' + ('ies' if n > 1 else 'y') + '.')
+	print('Successfully generated famil' + ('ies' if n > 1 else 'y') + ' for ' + filename_base + '.')
 
 
 def generate_family_set(sissi_filepath, n, length, tree_dirpath, sfreq_dirpath, dfreq_dirpath, outpath):
