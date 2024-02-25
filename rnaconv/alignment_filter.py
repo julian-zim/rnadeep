@@ -108,8 +108,7 @@ def filter_alignments(path, rfam_path, max_dbrs_deviation):
 
 	for ali_filename in os.listdir(os.path.join(path, 'alignments')):
 		filename = ali_filename.split('.')[0]
-		file_seedname = filename.split('_')[0]
-		with open(os.path.join(rfam_path, 'seed_neighbourhoods/dbn', file_seedname + '.dbn'), 'r') as dbnfile:
+		with open(os.path.join(rfam_path, 'seed_neighbourhoods/dbn', filename.split('_')[0] + '.dbn'), 'r') as dbnfile:
 			cons_dbrs = dbnfile.readlines()[-1].split()[0]
 
 		with open(os.path.join(path, 'alignments', ali_filename), 'r') as alifile:
@@ -130,6 +129,8 @@ def filter_alignments(path, rfam_path, max_dbrs_deviation):
 
 		if len(ali) == 1:
 			os.remove(os.path.join(path, 'alignments', ali_filename))
+			os.remove(os.path.join(path, 'neighbourhoods/dbn', filename + '.dbn'))
+			os.remove(os.path.join(path, 'neighbourhoods/ct', filename + '.ct'))
 		else:
 			with open(os.path.join(path, 'alignments', ali_filename), 'w') as alifile:
 				alifile.write(''.join(ali))
