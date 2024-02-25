@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module encoding_utils</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>encoding_utils</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/julian-zim/Files/Cloud/OneDrive/OneFiles/Linux/Work/Workspaces/Study/UNIVIE/PyCharm/PR_SPB/rnadeep/rnadeep/encoding_utils.py">/home/julian-zim/Files/Cloud/OneDrive/OneFiles/Linux/Work/Workspaces/Study/UNIVIE/PyCharm/PR_SPB/rnadeep/rnadeep/encoding_utils.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-base_pair_matrix"><strong>base_pair_matrix</strong></a>(ss)</dt></dl>
+ <dl><dt><a name="-binary_encode"><strong>binary_encode</strong></a>(structure)</dt></dl>
+ <dl><dt><a name="-create_windows"><strong>create_windows</strong></a>(sequences, window_size)</dt></dl>
+ <dl><dt><a name="-encode_padded_alignment_matrix"><strong>encode_padded_alignment_matrix</strong></a>(alignments, max_length=None)</dt></dl>
+ <dl><dt><a name="-encode_padded_sequence_matrix"><strong>encode_padded_sequence_matrix</strong></a>(sequences, max_length=None)</dt></dl>
+ <dl><dt><a name="-encode_padded_structure_matrix"><strong>encode_padded_structure_matrix</strong></a>(structures, max_length=None)</dt></dl>
+ <dl><dt><a name="-encode_sequence"><strong>encode_sequence</strong></a>(sequences)</dt></dl>
+ <dl><dt><a name="-encode_sequence_matrix"><strong>encode_sequence_matrix</strong></a>(sequences)</dt><dd><tt>Make&nbsp;a&nbsp;BP&nbsp;probability&nbsp;matrix&nbsp;with&nbsp;one-hot&nbsp;encoding&nbsp;of&nbsp;basepairs.<br>
+NOTE:&nbsp;This&nbsp;only&nbsp;works&nbsp;if&nbsp;all&nbsp;sequences&nbsp;have&nbsp;the&nbsp;same&nbsp;length,&nbsp;otherwise<br>
+you&nbsp;need&nbsp;to&nbsp;use:&nbsp;encode_padded_sequence_matrix</tt></dd></dl>
+ <dl><dt><a name="-encode_sequence_windows"><strong>encode_sequence_windows</strong></a>(sequences, window_size)</dt></dl>
+ <dl><dt><a name="-encode_structure"><strong>encode_structure</strong></a>(structures)</dt></dl>
+ <dl><dt><a name="-encode_structure_matrix"><strong>encode_structure_matrix</strong></a>(structures)</dt><dd><tt>Make&nbsp;a&nbsp;BP&nbsp;probability&nbsp;matrix&nbsp;with&nbsp;one-hot&nbsp;encoding&nbsp;of&nbsp;basepairs.<br>
+NOTE:&nbsp;This&nbsp;only&nbsp;works&nbsp;if&nbsp;all&nbsp;sequences&nbsp;have&nbsp;the&nbsp;same&nbsp;length!</tt></dd></dl>
+ <dl><dt><a name="-make_pair_table"><strong>make_pair_table</strong></a>(ss, base=0, chars=['.'])</dt><dd><tt>Return&nbsp;a&nbsp;secondary&nbsp;struture&nbsp;in&nbsp;form&nbsp;of&nbsp;pair&nbsp;table.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;ss&nbsp;(str):&nbsp;secondary&nbsp;structure&nbsp;in&nbsp;dot-bracket&nbsp;format<br>
+&nbsp;&nbsp;base&nbsp;(int,&nbsp;optional):&nbsp;choose&nbsp;between&nbsp;a&nbsp;pair-table&nbsp;with&nbsp;base&nbsp;0&nbsp;or&nbsp;1<br>
+&nbsp;&nbsp;chars&nbsp;(list,&nbsp;optional):&nbsp;a&nbsp;list&nbsp;of&nbsp;characters&nbsp;to&nbsp;be&nbsp;are&nbsp;ignored,&nbsp;default:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['.']<br>
+&nbsp;<br>
+**Example:**<br>
+&nbsp;&nbsp;&nbsp;base=0:&nbsp;((..)).&nbsp;=&gt;&nbsp;[5,4,-1,-1,1,0,-1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.e.&nbsp;start&nbsp;counting&nbsp;from&nbsp;0,&nbsp;unpaired&nbsp;=&nbsp;-1<br>
+&nbsp;&nbsp;&nbsp;base=1:&nbsp;((..)).&nbsp;=&gt;&nbsp;[7,6,5,0,0,2,1,0]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.e.&nbsp;start&nbsp;counting&nbsp;from&nbsp;1,&nbsp;unpaired&nbsp;=&nbsp;0,&nbsp;pt[0]=len(ss)<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;[list]:&nbsp;A&nbsp;pair-table</tt></dd></dl>
+ <dl><dt><a name="-one_hot_encode"><strong>one_hot_encode</strong></a>(char)</dt></dl>
+ <dl><dt><a name="-one_hot_matrix"><strong>one_hot_matrix</strong></a>(seq)</dt></dl>
+ <dl><dt><a name="-profile_vec_matrix"><strong>profile_vec_matrix</strong></a>(ali)</dt></dl>
+</td></tr></table>
+</body></html>

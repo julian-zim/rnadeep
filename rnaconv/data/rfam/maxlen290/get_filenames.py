@@ -9,7 +9,7 @@ def main():
 	for filename_full in filenames:
 		with open(os.path.join(ali_path, filename_full)) as file:
 			file.readline()
-			if len(file.readline().split()[1]) <= 300:
+			if len(file.readline().split()[1]) <= 290:
 				ambig_filenames.append(filename_full.split('.')[0])
 
 	print(' '.join(ambig_filenames))

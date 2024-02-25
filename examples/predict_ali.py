@@ -14,10 +14,10 @@ absl.logging.set_verbosity(absl.logging.ERROR)
 
 
 def main():
-	ali_dir = '../rnaconv/data/small/rfam/seed_frequency/ali/'
-	dbn_dir = '../rnaconv/data/small/rfam/seed_neighbourhood/dbn/'
-	model = './models/sm0_rfam-sissi_004'  # choose a trained model here
-	outdir = f"predictions/{model}-rfamseed"
+	ali_dir = '../rnaconv/data/rfam/maxlen300/alignments/'
+	dbn_dir = '../rnaconv/data/rfam/maxlen300/neighbourhoods/dbn/'
+	model = './models/sm3_maxlen300-genali-z3_005'  # choose a trained model here
+	outdir = f"predictions/{model}"
 
 	evaluate = True
 	predict = False

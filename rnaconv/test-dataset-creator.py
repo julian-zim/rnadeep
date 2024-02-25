@@ -26,7 +26,7 @@ def script(batchsize, epoch, seqlength, alicount):
 				'conda activate rnadeep\n'
 				'\n'
 				'python ../train_ali.py --ali-dir ../../rnaconv/data/generated/family/' + filename_lcc + '/alignments/ \\\n'
-				'\t   --dbn-dir ../../rnaconv/data/generated/family/' + filename_lcc + '/seed_neighbourhoods/dbn/ \\\n'
+				'\t   --dbn-dir ../../rnaconv/data/generated/family/' + filename_lcc + '/neighbourhoods/dbn/ \\\n'
 				'\t   --model-log-dir ../models \\\n'
 				'\t   --data-tag sm3-' + tag + '-sissi --smodel 3 --batch-size ' + str(batchsize) + ' --epochs ' + str(epoch) + '\n')
 

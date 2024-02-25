@@ -34,15 +34,15 @@ def generate_alignments(sissi_filepath, n, tree_filepath, neigh_filepath, sfreq_
 	Note: The given same neighbourhood will also be copied once for each generated alignment to create pairs for
 	easier parsing into the network.
 
-	Parameters:
-	sissi_filepath (str): path to the compiled sissi099 file
-	n (int): The number of alignments to generate
-	tree_filepath (str): path to a tree file in the newick string format ('.seed_tree')
-	neigh_filepath (str): path to a neighbourhood file in the sissi01 format ('.nei')
-	sfreq_dfilepath (str): path to a file containing a single frequency vector ('.sfreq')
-	dfreq_filepath (str): path to a file containing a doublet frequency vector ('.dfreq')
-	ali_filepath (str): path to a file containing an alignment in the clustal format ('.aln')
-	outpath (str): The path to which to write the generated alignments
+		Parameters:
+			sissi_filepath (str): path to the compiled sissi099 file
+			n (int): The number of alignments to generate
+			tree_filepath (str): path to a tree file in the newick string format ('.seed_tree')
+			neigh_filepath (str): path to a neighbourhood file in the sissi01 format ('.nei')
+			sfreq_dfilepath (str): path to a file containing a single frequency vector ('.sfreq')
+			dfreq_filepath (str): path to a file containing a doublet frequency vector ('.dfreq')
+			ali_filepath (str): path to a file containing an alignment in the clustal format ('.aln')
+			outpath (str): The path to which to write the generated alignments
 	"""
 
 	filename = os.path.basename(tree_filepath).split('.')[0]
