@@ -10,7 +10,7 @@ def filter_rfam_data(rfam_path, max_length):
 		global default_max_length
 		max_length = default_max_length
 
-	treerescaled_filepath = os.path.join(rfam_path, 'seed_trees/fixed')
+	treerescaled_filepath = os.path.join(rfam_path, 'seed_trees/rescaled')
 	treefixed_filepath = os.path.join(rfam_path, 'seed_trees/fixed')
 	ali_filepath = os.path.join(rfam_path, 'seed_alignments')
 
