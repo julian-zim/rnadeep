@@ -11,7 +11,7 @@ rnadeep.egg-info
 playground.py
 
 # documentation
-doc/html/*
+doc/html
 
 # models & logs
 examples/RNAdeep-models
@@ -49,21 +49,25 @@ rnaconv/data/rfam/maxlen290/filter_o.txt
 rnaconv/data/rfam/AT-*
 
 # generated datasets
+rnaconv/data/generated/alignment/full/sequences
 rnaconv/data/generated/alignment/full/alignments
 rnaconv/data/generated/alignment/full/neighbourhoods
 rnaconv/data/generated/alignment/full/frequencies
 rnaconv/data/generated/alignment/full/generate_o.txt
 rnaconv/data/generated/alignment/full/filter_o.txt
+rnaconv/data/generated/alignment/ambiguous/sequences
 rnaconv/data/generated/alignment/ambiguous/alignments
 rnaconv/data/generated/alignment/ambiguous/neighbourhoods
 rnaconv/data/generated/alignment/ambiguous/frequencies
 rnaconv/data/generated/alignment/ambiguous/generate_o.txt
 rnaconv/data/generated/alignment/ambiguous/filter_o.txt
+rnaconv/data/generated/alignment/dummy/sequences
 rnaconv/data/generated/alignment/dummy/alignments
 rnaconv/data/generated/alignment/dummy/neighbourhoods
 rnaconv/data/generated/alignment/dummy/frequencies
 rnaconv/data/generated/alignment/dummy/generate_o.txt
 rnaconv/data/generated/alignment/dummy/filter_o.txt
+rnaconv/data/generated/alignment/maxlen290/sequences
 rnaconv/data/generated/alignment/maxlen290/alignments
 rnaconv/data/generated/alignment/maxlen290/neighbourhoods
 rnaconv/data/generated/alignment/maxlen290/frequencies

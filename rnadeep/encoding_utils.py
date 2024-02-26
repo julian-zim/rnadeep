@@ -27,6 +27,12 @@ def one_hot_matrix(seq):
 
 
 def profile_vec_matrix(ali):
+	"""
+	Creates a profile matrix for the given alignment: For each cell a_ij, the columns i and j or the alignment are
+	combined by forming the outer product of two profile vectors for the two respective symbols at the current row
+	index of the two columns and summing them all up. The two respective profile vectors created by the sheme defined in
+	the base_to_ids dictionary variable.
+	"""
 	seq_count = len(ali)
 	seq_len = len(ali[0])
 	#print(f'Calculations: {seq_len} x {seq_len} x {seq_count} = {seq_len * seq_len * seq_count}')
@@ -164,7 +170,6 @@ def encode_padded_sequence_matrix(sequences, max_length=None):
 
 
 def encode_padded_alignment_matrix(alignments, max_length=None):
-	# TODO: check whether all sequences are the same length in the alignment (I guess that can be assumed?)
 	if max_length is None:
 		max_length = max(len(ali[0]) for ali in alignments)
 	batch_size = len(alignments)

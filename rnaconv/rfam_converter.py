@@ -1,14 +1,13 @@
 import sys
 import os
-import subprocess
+import shutil
 import numpy as np
 import textdistance
-import shutil
 import RNA
 from ete3 import TreeNode
 
 
-def rescale_newick_strings(treedirpath, alidirpath, outpath):
+def rescale_newick_strings(tree_dirpath, ali_dirpath, outpath):
 	"""
 	Rescales the tree branch lengths for trees which corresponding sequence alignments sequences are over 95% similar
 	with respect to their mean pairwise hamming distance, in order to increase the evolution rate when using the tree
@@ -16,18 +15,18 @@ def rescale_newick_strings(treedirpath, alidirpath, outpath):
 	The rescale factor is 2.
 
 		Parameters:
-			treedirpath (str): path to the directory containing the tree files in newick string format
-			alidirpath (str): path to the directory containing the alignment files in CLUSTAL format
+			tree_dirpath (str): path to the directory containing the tree files in newick string format
+			ali_dirpath (str): path to the directory containing the alignment files in CLUSTAL format
 			outpath (str): path to the directory in which to save the rescaled trees in the newick string format.
 	"""
 
 	os.makedirs(outpath, exist_ok=True)
 
-	tree_filenames = os.listdir(treedirpath)
+	tree_filenames = os.listdir(tree_dirpath)
 	for tree_filename in tree_filenames:
 		filename = tree_filename.split('.')[0]
 
-		with open(os.path.join(alidirpath, filename + '.aln'), 'r') as file:
+		with open(os.path.join(ali_dirpath, filename + '.aln'), 'r') as file:
 			ali = [line.split()[1] for line in file.readlines()[1:]]
 
 		pdists = np.zeros((len(ali), len(ali)))
@@ -36,9 +35,9 @@ def rescale_newick_strings(treedirpath, alidirpath, outpath):
 				pdists[i, j] = textdistance.hamming(seq1, seq2)
 		mean_pw_distance = np.mean(pdists)
 
-		shutil.copy(os.path.join(treedirpath, tree_filename), outpath)
+		shutil.copy(os.path.join(tree_dirpath, tree_filename), outpath)
 		if mean_pw_distance / len(ali[0]) < 0.05:
-			shutil.copy(os.path.join(treedirpath, tree_filename), outpath)
+			shutil.copy(os.path.join(tree_dirpath, tree_filename), outpath)
 			with open(os.path.join(outpath, tree_filename), 'r') as file:
 				newick_string = file.read()
 			tree = TreeNode(newick_string)
@@ -51,24 +50,23 @@ def rescale_newick_strings(treedirpath, alidirpath, outpath):
 				  'sequences being 95% similar.')
 
 
-def fix_newick_strings(treedirpath, outpath):
+def fix_newick_strings(tree_dirpath, outpath):
 	"""
 	Fixes newick strings by replacing every control character (e.g. '(', ')', ',', '.', ':') within a node name with an
 	underscore.
 	Additionally, multifurcations are resolved and non-leaf node labels are removed.
-
-	These three steps are nessecary for SISSI to be able to parse the Rfam tree files.
+	(These three steps are nessecary for SISSI to be able to parse the Rfam tree files.)
 
 		Parameters:
-			treedirpath (str): path to the directory containing the tree files in newick string format
+			tree_dirpath (str): path to the directory containing the tree files in newick string format
 			outpath (str): path to the directory in which to save the trees in the fixed newick string format.
 	"""
 
 	os.makedirs(outpath, exist_ok=True)
 
-	filenames = os.listdir(treedirpath)
+	filenames = os.listdir(tree_dirpath)
 	for filename in filenames:
-		filepath = os.path.join(treedirpath, filename)
+		filepath = os.path.join(tree_dirpath, filename)
 
 		with (open(filepath, 'r') as file):
 			newick_string = file.read()
@@ -127,23 +125,21 @@ def fix_newick_strings(treedirpath, outpath):
 			outfile.write(fixed_newick_string_1)
 
 
-def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
+def obtain_equilibrium_frequencies(ali_dirpath, neigh_dirpath, outpath):
 	"""
-	Extracts the equilibrium frequencies for unpaired single nucleotides and nucleotide pairs from an alignment.
-
-	It counts the occurences of single nucleotides per unpaired site and saves them in a 4-vector.
-	Then It counts the occurences of nucleotide pairs per paired site tuple and saves them in a 16-vector.
-	Then it adds pseudocounts (+1 for each element) and normalizes.
+	Extracts the equilibrium frequencies for unpaired single nucleotides and nucleotide pairs from an alignment, by
+	counting the occurences of single nucleotides in unpaired site and saving them in a 4-vector, counting the
+	occurences of nucleotide pairs in paired sites and saving them in a 16-vector, adding pseudocounts to both
+	(+1 for each element) and normalizing in the end.
 
 		Parameters:
-			alidirpath (str): path to the directory containing the alignment files in CLUSTAL format
-			neighdirpath (str): path to the directory containing the alignment consensus structure files in sissi0.1
-				(.nei) format
-			outpath (str): path to the directory in which to save the extracted unpaired single and paired nucleotide
+			ali_dirpath (str): Path to the directory containing the alignment files in CLUSTAL format
+			neigh_dirpath (str): Path to the directory containing the alignment consensus structure files in dot bracket
+				notation format
+			outpath (str): Path to the directory in which to save the extracted unpaired single and paired nucleotide
 				equilibrium frequencies
 	"""
 
-	os.makedirs(outpath, exist_ok=True)
 	os.makedirs(os.path.join(outpath, 'single'), exist_ok=True)
 	os.makedirs(os.path.join(outpath, 'doublet'), exist_ok=True)
 
@@ -165,35 +161,48 @@ def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
 		'N': np.array([0.25, 0.25, 0.25, 0.25]),
 	}
 
-	for alifilename in os.listdir(alidirpath):
-		filename_base = alifilename.split('.')[0]
-		if not os.path.exists(os.path.join(neighdirpath, 'nei', filename_base + '.nei')):
+	for ali_filename in os.listdir(ali_dirpath):
+		filename_base = ali_filename.split('.')[0]
+		if not os.path.exists(os.path.join(neigh_dirpath, filename_base + '.dbn')):
 			print('Warning: Couldn\'t obtain equilibrium frequencies of \"' + filename_base +
 				  '\" since there is no neighbourhood information.')
 			continue
 
+		# read ali & dbn
 		alignment = list()
-		with open(os.path.join(alidirpath, alifilename)) as alifile:
+		with open(os.path.join(ali_dirpath, ali_filename)) as alifile:
 			alifile.readline()
 			line = alifile.readline()
 			while line != '':
 				alignment.append(line.split()[1])
 				line = alifile.readline()
 
-		neighbourhood = set()
-		with open(os.path.join(neighdirpath, 'nei', filename_base + '.nei')) as neifile:
-			line = neifile.readline()
-			while line != '':
-				split_line = line.split()
-				if len(split_line) < 3:
-					split_line.append('-1')
-				pair = tuple(sorted((int(split_line[1].split('|')[0]), int(split_line[2].split(':')[0]))))
-				neighbourhood.add(pair)
-				line = neifile.readline()
+		with open(os.path.join(neigh_dirpath, filename_base + '.dbn')) as dbnfile:
+			dbnfile.readline()
+			dbn = dbnfile.readline().split()[0]
 
+		# convert dbn
+		pairs = []
+		stack = []
+		for i, char in enumerate(dbn):
+			if char == '(':
+				stack.append(i)
+			elif char == ')':
+				if len(stack) != 0:
+					j = stack.pop()
+					pairs.append((j, i))
+				else:
+					raise ValueError('Mismatched parentheses neighbourhood file \'' + filename_base + '\'.')
+			else:
+				pairs.append((-1, i))
+		if len(stack) != 0:
+			raise ValueError('Mismatched parentheses neighbourhood file \'' + filename_base + '\'.')
+		pairs = set(sorted(pairs))
+
+		# generate frequencies
 		single_frequencies = np.ones(4)  # ones because of pseudocounts
 		doublet_frequencies = np.ones(16)  # ones because of pseudocounts
-		for pair in neighbourhood:
+		for pair in pairs:
 			for seq in alignment:
 				if pair[0] == -1:
 					char = seq[pair[1]]
@@ -205,7 +214,7 @@ def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
 						summand = np.outer(base_to_ids[char_i], base_to_ids[char_j]).flatten()
 						doublet_frequencies += summand
 
-		# normalization
+		# normalize
 		sum_single_freq = sum(single_frequencies)
 		if sum_single_freq > 0:
 			single_frequencies /= sum_single_freq
@@ -213,81 +222,82 @@ def obtain_equilibrium_frequencies(alidirpath, neighdirpath, outpath):
 		if sum_double_freq > 0:
 			doublet_frequencies /= sum_double_freq
 
+		# save
 		with open(os.path.join(outpath, 'single', filename_base + '.sfreq'), 'w') as outfile:
 			outfile.write(' '.join([str(e) for e in single_frequencies]) + '\n')
 		with open(os.path.join(outpath, 'doublet', filename_base + '.dfreq'), 'w') as outfile:
 			outfile.write(' '.join([str(e) for e in doublet_frequencies]) + '\n')
 
 
-def ct_to_nei(filepath, outpath):
-	"""
-	Converts the consensus structures contained in the connect table input file into the sissi0.1 (.nei) format
-	Note: SISSI can also use connect table files directly, but this filetype is used for obtaining the equilibrium
-	frequencies later on.
+# def ct_to_nei(filepath, outpath):
+# 	"""
+# 	Converts the consensus structures contained in the connect table input file into the sissi0.1 (.nei) format
+# 	Note: SISSI can also use connect table files directly, but this filetype is used for obtaining the equilibrium
+# 	frequencies later on.
+#
+# 		Parameters:
+# 			filepath (str): path to the file in connect table format, containing the secondary structure
+# 			outpath (str): path to the directory in which to save the resulting sissi0.1 (.nei) file
+# 	"""
+#
+# 	os.makedirs(outpath, exist_ok=True)
+#
+# 	filename = filepath.split('/')[-1].split('.')[0]
+#
+# 	with open(filepath, 'r') as file:
+# 		with open(os.path.join(outpath, filename + '.nei'), 'w') as outfile:
+# 			file.readline()
+# 			line = file.readline()
+# 			while line != '':
+# 				data = line.split()
+# 				pos1 = str(int(data[0]) - 1)
+# 				pos2 = str(int(data[4]) - 1)
+# 				gap = ' ' * (5 - len(str(pos1)))
+# 				outfile.write('Pos' + gap + pos1 + '|' + ((' ' + pos2 + ':(1.000000)\n') if pos2 != '-1' else '\n'))
+# 				line = file.readline()
 
-		Parameters:
-			filepath (str): path to the file in connect table format, containing the secondary structure
-			outpath (str): path to the directory in which to save the resulting sissi0.1 (.nei) file
-	"""
 
-	os.makedirs(outpath, exist_ok=True)
-
-	filename = filepath.split('/')[-1].split('.')[0]
-
-	with open(filepath, 'r') as file:
-		with open(os.path.join(outpath, filename + '.nei'), 'w') as outfile:
-			file.readline()
-			line = file.readline()
-			while line != '':
-				data = line.split()
-				pos1 = str(int(data[0]) - 1)
-				pos2 = str(int(data[4]) - 1)
-				gap = ' ' * (5 - len(str(pos1)))
-				outfile.write('Pos' + gap + pos1 + '|' + ((' ' + pos2 + ':(1.000000)\n') if pos2 != '-1' else '\n'))
-				line = file.readline()
-
-
-def db_to_ct(filepath, outpath):
-	"""
-	Converts the consensus structures contained in the dot bracket notation input file into the connect table format
-
-		Parameters:
-			filepath (str): path to the file in dot bracket notation format, containing the secondary structure
-			outpath (str): path to the directory in which to save the resulting connect table file
-	"""
-
-	os.makedirs(outpath, exist_ok=True)
-
-	with open(filepath, 'r') as file:
-		seq = file.readline().split()[0]
-		dbrs = file.readline().split()
-
-	ptable = list(RNA.ptable(dbrs[0]))
-	'''result = subprocess.run('RNAfold --version', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-	if result.returncode != 0:
-		raise RuntimeError('ViennaRNA is not installed.')
-
-	command = 'b2ct < ' + filepath + ' > ' + str(os.path.join(outpath, filename + '.ct'))  # TODO: use library
-	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-	if result.returncode != 0:
-		print('Warning: Couldn\'t convert file ' + filename + ' to ct. Traceback: ' + result.stderr.strip('\n'))
-		os.remove(os.path.join(outpath, filename + '.ct'))'''
-
-	column1 = list(range(1, ptable[0] + 1))
-	column2 = [c for c in seq]
-	column3 = [idx - 1 for idx in column1[:-1]] + [0]
-	column4 = [idx + 1 for idx in column1]
-	column5 = ptable[1:]
-	column6 = column1
-	with open(os.path.join(outpath, os.path.basename(filepath).split('/')[-1].split('.')[0] + '.ct'), 'w') as file:
-		file.write('{: >5}'.format(ptable[0]) + ' ENERGY =     0.0    1\n')
-		for i in column3:
-			file.write('{: >5}'.format(column1[i]) +
-					   ' ' + column2[i] +
-					   '{: >8}'.format(column3[i]) +
-					   '{: >5}'.format(column4[i]) +
-					   '{: >5}'.format(column5[i]) +
-					   '{: >5}'.format(column6[i]) + '\n')
+# def db_to_ct(filepath, outpath):
+# 	"""
+# 	Converts the consensus structures contained in the dot bracket notation input file into the connect table format
+#
+# 		Parameters:
+# 			filepath (str): path to the file in dot bracket notation format, containing the secondary structure
+# 			outpath (str): path to the directory in which to save the resulting connect table file
+# 	"""
+#
+# 	os.makedirs(outpath, exist_ok=True)
+#
+# 	with open(filepath, 'r') as file:
+# 		seq = file.readline().split()[0]
+# 		dbrs = file.readline().split()
+#
+# 	ptable = list(RNA.ptable(dbrs[0]))
+# 	'''result = subprocess.run('RNAfold --version', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+# 	if result.returncode != 0:
+# 		raise RuntimeError('ViennaRNA is not installed.')
+#
+# 	command = 'b2ct < ' + filepath + ' > ' + str(os.path.join(outpath, filename + '.ct'))  # TODO: use library
+# 	result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+# 	if result.returncode != 0:
+# 		print('Warning: Couldn\'t convert file ' + filename + ' to ct. Traceback: ' + result.stderr.strip('\n'))
+# 		os.remove(os.path.join(outpath, filename + '.ct'))'''
+#
+# 	column1 = list(range(1, ptable[0] + 1))
+# 	column2 = [c for c in seq]
+# 	column3 = [idx - 1 for idx in column1[:-1]] + [0]
+# 	column4 = [idx + 1 for idx in column1]
+# 	column5 = ptable[1:]
+# 	column6 = column1
+# 	with open(os.path.join(outpath, os.path.basename(filepath).split('/')[-1].split('.')[0] + '.ct'), 'w') as file:
+# 		file.write('{: >5}'.format(ptable[0]) + ' ENERGY =     0.0    1\n')
+# 		for i in column3:
+# 			file.write('{: >5}'.format(column1[i]) +
+# 					   ' ' + column2[i] +
+# 					   '{: >8}'.format(column3[i]) +
+# 					   '{: >5}'.format(column4[i]) +
+# 					   '{: >5}'.format(column5[i]) +
+# 					   '{: >5}'.format(column6[i]) + '\n')
 
 
 def wuss_to_db(filepath, outpath):
@@ -295,8 +305,8 @@ def wuss_to_db(filepath, outpath):
 	Converts the consensus structures contained in the wuss input file into the dot bracket notation format
 
 		Parameters:
-			filepath (str): path to the file in wuss format, containing the secondary structure
-			outpath (str): path to the directory in which to save the resulting dot bracket notation file
+			filepath (str): Path to the file in wuss format, containing the secondary structure
+			outpath (str): Path to the directory in which to save the resulting dot bracket notation file
 	"""
 
 	os.makedirs(outpath, exist_ok=True)
@@ -331,11 +341,12 @@ def wuss_to_db(filepath, outpath):
 
 def stockholm_to_wuss(filepath, outpath):
 	"""
-	Converts the consensus structures contained in the STOCKHOLM input file into single files in the wuss format
+	Converts the consensus structures contained in the STOCKHOLM input file into single files in the washington
+	university secondary structure (wuss) format.
 
 		Parameters:
-			filepath (str): path to the Rfam.seed file in STOCKHOLM format, containing the families
-			outpath (str): path to the directory in which to save the resulting wuss file
+			filepath (str): Path to the Rfam.seed file in STOCKHOLM format, containing the families
+			outpath (str): Path to the directory in which to save the resulting wuss file
 	"""
 
 	os.makedirs(outpath, exist_ok=True)
@@ -379,18 +390,13 @@ def stockholm_to_wuss(filepath, outpath):
 
 def stockholm_to_neighbourhoods(filepath, outpath):
 	"""
-	Converts the consensus structures contained in the STOCKHOLM input file into single files in the following formats:
-		- wuss
-		- dbn
-		- ct
-		- nei
+	Calls the necessary functions to convert the consensus structures contained in the STOCKHOLM input file into single
+	files in the wuss and dbn formats, respectively.
 
 		Parameters:
-			filepath (str): path to the Rfam.seed file in STOCKHOLM format, containing the families
-			outpath (str): path to the directory in which to save the extracted consensus structures
+			filepath (str): Path to the Rfam.seed file in STOCKHOLM format, containing the families
+			outpath (str): Path to the directory in which to save the extracted consensus structures
 	"""
-
-	os.makedirs(outpath, exist_ok=True)
 
 	stockholm_to_wuss(filepath, os.path.join(outpath, 'wuss'))
 
@@ -398,22 +404,22 @@ def stockholm_to_neighbourhoods(filepath, outpath):
 	for filename in filenames:
 		wuss_to_db(os.path.join(outpath, 'wuss', filename), os.path.join(outpath, 'dbn'))
 
-	filenames = os.listdir(os.path.join(outpath, 'dbn'))
-	for filename in filenames:
-		db_to_ct(os.path.join(outpath, 'dbn', filename), os.path.join(outpath, 'ct'))
-
-	filenames = os.listdir(os.path.join(outpath, 'ct'))
-	for filename in filenames:
-		ct_to_nei(os.path.join(outpath, 'ct', filename), os.path.join(outpath, 'nei'))
+	# filenames = os.listdir(os.path.join(outpath, 'dbn'))
+	# for filename in filenames:
+	# 	db_to_ct(os.path.join(outpath, 'dbn', filename), os.path.join(outpath, 'ct'))
+	#
+	# filenames = os.listdir(os.path.join(outpath, 'ct'))
+	# for filename in filenames:
+	# 	ct_to_nei(os.path.join(outpath, 'ct', filename), os.path.join(outpath, 'nei'))
 
 
 def stockholm_to_alignments(filepath, outpath):
 	"""
-	Converts the alignments contained in the STOCKHOLM input file into CLUSTAL files
+	Converts the alignments contained in the STOCKHOLM input file into CLUSTAL files.
 
 		Parameters:
-			filepath (str): path to the Rfam.seed file in STOCKHOLM format, containing the families
-			outpath (str): path to the directory in which to save the extracted alignments in the CLUSTAL format
+			filepath (str): Path to the Rfam.seed file in STOCKHOLM format, containing the families
+			outpath (str): Path to the directory in which to save the extracted alignments in the CLUSTAL format
 	"""
 
 	os.makedirs(outpath, exist_ok=True)
@@ -456,62 +462,50 @@ def stockholm_to_alignments(filepath, outpath):
 			line = file.readline()
 
 
-def convert_rfam_data(seed_filepath,
-					  ali_outpath,
-					  neigh_outpath,
-					  freq_outpath,
-					  tree_path,
-					  tree_fixed_outpath,
-					  tree_rescaled_outpath):
+def convert_rfam_data(seed_filepath, tree_dirpath, outpath):
 	"""
-	Calls the nessecary functions to convert the whole rfam database into single files, preparing them to be used by
+	Calls the necessary functions to convert the whole rfam database into single files, preparing them to be used by
 	SISSI.
 
 		Parameters:
-			seed_filepath (str): path to the Rfam.seed file in STOCKHOLM format, containing the families
-			ali_outpath (str): path to the directory in which to save the extracted alignments in the CLUSTAL format
-			neigh_outpath (str): path to the directory in which to save the extracted consensus structures in the
-				- wuss
-				- dbn
-				- ct
-				- nei
-				formats, respectively
-			freq_outpath (str): path to the directory in which to save the extracted paired and unpaired nucleotide
-				equilibrium frequencies
-			tree_path (str): path to the directory in which Rfam tree files in newick format (.seed_tree) files are
+			seed_filepath (str): Path to the Rfam.seed file in STOCKHOLM format, containing the families
+			tree_dirpath (str): Path to the directory in which Rfam tree files in newick format (.seed_tree) files are
 				located
-			tree_fixed_outpath (str): path to the directory in which to save the fixed tree newick strings
-			tree_rescaled_outpath (str): path to the directory in which to save the rescaled tree newick strings
+			outpath (str): Path to the directory in which to save the converted data
 	"""
 
+	ali_outpath = os.path.join(outpath, 'seed_alignments')
+	neigh_outpath = os.path.join(outpath, 'seed_neighbourhoods')
+	treefixed_outpath = os.path.join(outpath, 'seed_trees/fixed')
+
+	print('Converting alignments...')
 	stockholm_to_alignments(seed_filepath, ali_outpath)
+	print('Converting neighbourhoods...')
 	stockholm_to_neighbourhoods(seed_filepath, neigh_outpath)
-	obtain_equilibrium_frequencies(ali_outpath, neigh_outpath, freq_outpath)
-	fix_newick_strings(tree_path, tree_fixed_outpath)
-	rescale_newick_strings(tree_fixed_outpath, ali_outpath, tree_rescaled_outpath)
-	print('Done.')
+	print('Extracting frequencies...')
+	obtain_equilibrium_frequencies(ali_outpath, os.path.join(neigh_outpath, 'dbn'), os.path.join(outpath, 'seed_frequencies'))
+	print('Fixing trees...')
+	fix_newick_strings(tree_dirpath, treefixed_outpath)
+	print('Rescaling trees...')
+	rescale_newick_strings(treefixed_outpath, ali_outpath, os.path.join(outpath, 'seed_trees/rescaled'))
 
 
 def main():
-	if len(sys.argv) != 2:
-		print('Usage: ./rfam_converter.py <rfam_path>')
+	if len(sys.argv) != 4:
+		print('Usage: ./rfam_converter.py <seed_file_path> <tree_directory_path> <out_path>')
 		return -1
 
-	rfam_path = sys.argv[1]
+	seed_filepath = sys.argv[1]
+	tree_dirpath = sys.argv[2]
+	out_path = sys.argv[3]
+	if not os.path.exists(seed_filepath):
+		raise FileNotFoundError('No file found at \'' + seed_filepath + ' \'')
+	if not os.path.exists(tree_dirpath):
+		raise FileNotFoundError('No directory found at \'' + tree_dirpath + ' \'')
 
-	if (not os.path.exists(os.path.join(rfam_path, 'Rfam.seed'))
-			or not os.path.exists(os.path.join(rfam_path, 'seed_trees/original'))):
-		print('Required rfam folder structure:\n- rfam\n\tRfam.seed\n\t- seed_trees\n\t\t- original\n\t\t\t<tree files>')
-		return -1
-
-	print('========== CONVERTING RFAM DATA POINTS ==========')
-	convert_rfam_data(os.path.join(rfam_path, 'Rfam.seed'),
-					  os.path.join(rfam_path, 'seed_alignments'),
-					  os.path.join(rfam_path, 'seed_neighbourhoods'),
-					  os.path.join(rfam_path, 'seed_frequencies'),
-					  os.path.join(rfam_path, 'seed_trees/original'),
-					  os.path.join(rfam_path, 'seed_trees/fixed'),
-					  os.path.join(rfam_path, 'seed_trees/rescaled'))
+	print('========= CONVERTING RFAM DATA POINTS =========')
+	convert_rfam_data(seed_filepath, tree_dirpath, out_path)
+	print('Done.')
 
 
 if __name__ == '__main__':

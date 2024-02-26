@@ -2,88 +2,65 @@ import sys
 import os
 
 
-default_max_length = 700
-
-
-def filter_rfam_data(rfam_path, max_length):
+def filter_rfam_data(ali_dirpath,
+					 single_freq_dirpath,
+					 doublet_freq_dirpath,
+					 neigh_wuss_dirpath,
+					 neigh_dbn_dirpath,
+					 tree_fixed_dirpath,
+					 tree_rescaled_dirpath,
+					 max_length=700):
 	"""
-	Filters the alignments, consensus structures, frequencies and trees of the converted rfam database:
+	Filters the alignments, consensus structures, frequencies and trees of a converted rfam database (not touching
+	the original tree files and original Rfam.seed file):
 	Every data point (consisting of the four filetypes mentioned above) which alignment exceeds a certain length is
 	removed.
 
 		Parameters:
-			rfam_path (str): path to the directory of the convered rfam database. Expects the following folder structure:
-				- seed_alignments
-				- seed_frequencies
-					- single
-					- doublet
-				- seed_neighbourhoods
-					- ct
-					- dbn
-					- nei
-					- wuss
-				- seed_trees
-					- original
-					- fixed
-					- rescaled
-			max_length (int): maximally allowed length of an alignment. 700 by default.
+			ali_dirpath (str): Path to the directory of the converted alignments.
+			single_freq_dirpath (str): Path to the directory of the extracted single frequency files.
+			doublet_freq_dirpath (str): Path to the directory of the extracted doublet frequency files.
+			neigh_wuss_dirpath (str): Path to the directory of the extracted wuss files.
+			neigh_dbn_dirpath (str): Path to the directory of the extracted dbn files.
+			tree_fixed_dirpath (str): Path to the directory of the fixed newick string tree files.
+			tree_rescaled_dirpath (str): Path to the directory of the rescaled tree files.
+			max_length (int, None, optional): Maximum allowed length of an alignment. Default is 700.
 	"""
 
 	if max_length is None:
-		global default_max_length
-		max_length = default_max_length
+		max_length = 700
 
-	treerescaled_filepath = os.path.join(rfam_path, 'seed_trees/rescaled')
-	treefixed_filepath = os.path.join(rfam_path, 'seed_trees/fixed')
-	ali_filepath = os.path.join(rfam_path, 'seed_alignments')
-
-	neigh_nei_filepath = os.path.join(rfam_path, 'seed_neighbourhoods/nei')
-	neigh_ct_filepath = os.path.join(rfam_path, 'seed_neighbourhoods/ct')
-	neigh_dbn_filepath = os.path.join(rfam_path, 'seed_neighbourhoods/dbn')
-	neigh_wuss_filepath = os.path.join(rfam_path, 'seed_neighbourhoods/wuss')
-
-	single_freq_filepath = os.path.join(rfam_path, 'seed_frequencies/single')
-	doublet_freq_filepath = os.path.join(rfam_path, 'seed_frequencies/doublet')
-
-	for filename in os.listdir(ali_filepath):
-		with open(os.path.join(ali_filepath, filename)) as file:
+	for filename in os.listdir(ali_dirpath):
+		ali_filepath = os.path.join(ali_dirpath, filename)
+		with open(ali_filepath) as file:
 			file.readline()
 			length = len(file.readline().split()[1])
 
 		filename_base = filename.split('.')[0]
 		if length > max_length:
-			os.remove(os.path.join(ali_filepath, filename))
-
+			os.remove(ali_filepath)
 			try:
-				os.remove(os.path.join(treefixed_filepath, filename_base + '.seed_tree'))
+				os.remove(os.path.join(single_freq_dirpath, filename_base + '.sfreq'))
 			except FileNotFoundError:
 				pass
 			try:
-				os.remove(os.path.join(treerescaled_filepath, filename_base + '.seed_tree'))
+				os.remove(os.path.join(doublet_freq_dirpath, filename_base + '.dfreq'))
 			except FileNotFoundError:
 				pass
 			try:
-				os.remove(os.path.join(neigh_nei_filepath, filename_base + '.nei'))
+				os.remove(os.path.join(neigh_wuss_dirpath, filename_base + '.wuss'))
 			except FileNotFoundError:
 				pass
 			try:
-				os.remove(os.path.join(neigh_ct_filepath, filename_base + '.ct'))
+				os.remove(os.path.join(neigh_dbn_dirpath, filename_base + '.dbn'))
 			except FileNotFoundError:
 				pass
 			try:
-				os.remove(os.path.join(neigh_dbn_filepath, filename_base + '.dbn'))
+				os.remove(os.path.join(tree_fixed_dirpath, filename_base + '.seed_tree'))
 			except FileNotFoundError:
 				pass
 			try:
-				os.remove(os.path.join(neigh_wuss_filepath, filename_base + '.wuss'))
-			except FileNotFoundError:
-				pass
-			try:
-				os.remove(os.path.join(single_freq_filepath, filename_base + '.sfreq'))
-			except FileNotFoundError:
-				pass
-			try:
-				os.remove(os.path.join(doublet_freq_filepath, filename_base + '.dfreq'))
+				os.remove(os.path.join(tree_rescaled_dirpath, filename_base + '.seed_tree'))
 			except FileNotFoundError:
 				pass
 
@@ -91,19 +68,44 @@ def filter_rfam_data(rfam_path, max_length):
 
 
 def main():
-	if len(sys.argv) < 2:
-		print('Usage: ./rfam_converter.py <rfam_path> [max_length]')
+	if not 2 <= len(sys.argv) <= 3:
+		print('Usage: ./rfam_filter.py <rfam_directory_path> [max_length]')
 		return -1
 
-	rfam_path = sys.argv[1]
-
+	rfam_dirpath = sys.argv[1]
 	max_length = None
 	if len(sys.argv) == 3:
 		max_length = int(sys.argv[2])
 
+	ali_filepath = os.path.join(rfam_dirpath, 'seed_alignments')
+	single_freq_filepath = os.path.join(rfam_dirpath, 'seed_frequencies/single')
+	doublet_freq_filepath = os.path.join(rfam_dirpath, 'seed_frequencies/doublet')
+	neigh_wuss_filepath = os.path.join(rfam_dirpath, 'seed_neighbourhoods/wuss')
+	neigh_dbn_filepath = os.path.join(rfam_dirpath, 'seed_neighbourhoods/dbn')
+	treefixed_filepath = os.path.join(rfam_dirpath, 'seed_trees/fixed')
+	treerescaled_filepath = os.path.join(rfam_dirpath, 'seed_trees/rescaled')
+	if (not os.path.exists(ali_filepath)
+			or not os.path.exists(single_freq_filepath)
+			or not os.path.exists(doublet_freq_filepath)
+			or not os.path.exists(neigh_wuss_filepath)
+			or not os.path.exists(neigh_dbn_filepath)
+			or not os.path.exists(treefixed_filepath)
+			or not os.path.exists(treerescaled_filepath)):
+		print('Warning: The given path doesn\'t look like a converted Rfam database. We will filter what we find.\n'
+			  'Expected folder structure:\n'
+			  '- rfam\n\t- seed_alignments\n\t- seed_frequencies\n\t\t- doublet\n\t\t- single\n\t- seed_neighbourhoods'
+			  '\n\t\t- dbn\n\t\t- wuss\n\t- seed_trees\n\t\t- fixed\n\t\t- original\n\t\t- rescaled')
+
 	print('========== FILTERING RFAM DATA POINTS ==========')
-	filter_rfam_data(rfam_path, max_length)
-	print('Done')
+	filter_rfam_data(ali_filepath,
+					 single_freq_filepath,
+					 doublet_freq_filepath,
+					 neigh_wuss_filepath,
+					 neigh_dbn_filepath,
+					 treefixed_filepath,
+					 treerescaled_filepath,
+					 max_length)
+	print('Done.')
 
 
 if __name__ == '__main__':

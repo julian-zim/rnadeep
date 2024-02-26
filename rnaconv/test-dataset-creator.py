@@ -2,7 +2,7 @@ import os
 import subprocess
 import shutil
 import numpy as np
-import family_generator
+import data_generator
 
 
 def get_paths(rfam_path):
@@ -122,7 +122,7 @@ def create(alicount, seqlength, batch_sizes, epochs):
 	filename = [filenames[np.random.randint(len(filenames))].split('.')[0]]
 
 	copy(os.path.join(rfam_path, 'full'), os.path.join(rfam_path, foldername), filename)
-	family_generator.generate_family_set('./sissi099',
+	data_generator.generate_family_set('./sissi099',
 										 alicount,
 										 seqlength,
 										 *get_paths(os.path.join(rfam_path, foldername)),
@@ -133,6 +133,7 @@ def create(alicount, seqlength, batch_sizes, epochs):
 
 
 def main():
+	return  # this tool is deprecated
 	alicounts = [5]
 	seqlengths = [285, 290, 295, 300]  # [100, 200, 301, 401, 503, 604, 673]
 	batch_sizes = [4]  # [1, 2, 3, 4, 5]
