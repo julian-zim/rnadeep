@@ -1,23 +1,23 @@
 #!/bin/sh
-#SBATCH -J ml3fz3
-#SBATCH --partition=zen3_0512_a100x2
-#SBATCH --qos zen3_0512_a100x2
+#SBATCH -J 250fz2
+#SBATCH --partition=zen2_0256_a40x2
+#SBATCH --qos zen2_0256_a40x2
 #SBATCH --gres=gpu:2
 #SBATCH --mail-user=a12144285@unet.univie.ac.at
 #SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --output=/gpfs/data/fs71475/julianz123/out/maxlen290-genfam-z3.%A.out
-#SBATCH --error=/gpfs/data/fs71475/julianz123/out/maxlen290-genfam-z3.%A.err
+#SBATCH --output=/gpfs/data/fs71475/julianz123/out/maxlen250-genfam-z2.%A.out
+#SBATCH --error=/gpfs/data/fs71475/julianz123/out/maxlen250-genfam-z2.%A.err
 
 module load miniconda3
 eval "$(conda shell.bash hook)"
 conda activate rnadeep
 
 DATADIR="/gpfs/data/fs71475/julianz123"
-DATASET="maxlen290"
+DATASET="maxlen250"
 TAG="$DATASET-genfam"
 
 python ../train_ali.py --ali-dir $DATADIR/generated/family/$DATASET/alignments/ \
                     --dbn-dir $DATADIR/generated/family/$DATASET/neighbourhoods/dbn/ \
                     --model-log-dir ../models \
-                    --data-tag $TAG-z3 --smodel 3 --batch-size 4 --epochs 5
+                    --data-tag $TAG-z2 --smodel 3 --batch-size 4 --epochs 5
 

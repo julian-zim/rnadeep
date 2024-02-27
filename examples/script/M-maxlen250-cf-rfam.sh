@@ -4,8 +4,8 @@ module load miniconda3
 eval "$(conda shell.bash hook)"
 conda activate rnadeep
 
-DATASET="maxlen290"
-TAG="$DATASET-genali-rfam"
+DATASET="maxlen250"
+TAG="$DATASET-genfam-rfam"
 
 python ../train_ali.py --ali-dir ../../rnaconv/data/rfam/$DATASET/seed_alignments/ \
                     --dbn-dir ../../rnaconv/data/rfam/$DATASET/seed_neighbourhoods/dbn/ \

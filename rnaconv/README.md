@@ -35,7 +35,7 @@
 * run data/rfam/full/convert.sh to convert the Rfam database into a state usable by SISSI
 * run data/rfam/full/filter.sh to do basic filtering to the converted database
 
-* Create subdatasets: Create a folder in which you run a script to copy specified files from the converted database, similar to the example in data/rfam/dummy/copy.sh. Alternatively, you can use a script to get filesnames to copy based on certain properties, similar to the examples in data/rfam/maxlen290/copy.sh.
+* Create subdatasets: Create a folder in which you run a script to copy specified files from the converted database, similar to the example in data/rfam/dummy/copy.sh. Alternatively, you can use a script to get filesnames to copy based on certain properties, similar to the examples in data/rfam/maxlen250/copy.sh.
 * Filter subdatasets: Run a script to do basic filtering the created subdataset, similar to the example in data/rfam/dummy/filter.sh. If the converted Rfam database was already filtered, this doesn't do anything.
 
 ### Generate artificial data:
