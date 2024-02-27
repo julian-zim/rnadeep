@@ -73,6 +73,12 @@ rnaconv/data/generated/alignment/maxlen250/neighbourhoods
 rnaconv/data/generated/alignment/maxlen250/frequencies
 rnaconv/data/generated/alignment/maxlen250/generate_o.txt
 rnaconv/data/generated/alignment/maxlen250/filter_o.txt
+rnaconv/data/generated/alignment/maxlen250_filtered/sequences
+rnaconv/data/generated/alignment/maxlen250_filtered/alignments
+rnaconv/data/generated/alignment/maxlen250_filtered/neighbourhoods
+rnaconv/data/generated/alignment/maxlen250_filtered/frequencies
+rnaconv/data/generated/alignment/maxlen250_filtered/generate_o.txt
+rnaconv/data/generated/alignment/maxlen250_filtered/filter_o.txt
 rnaconv/data/generated/alignment/AT-*
 
 rnaconv/data/generated/family/full/sequences
@@ -99,4 +105,10 @@ rnaconv/data/generated/family/maxlen250/neighbourhoods
 rnaconv/data/generated/family/maxlen250/frequencies
 rnaconv/data/generated/family/maxlen250/generate_o.txt
 rnaconv/data/generated/family/maxlen250/filter_o.txt
+rnaconv/data/generated/family/maxlen250_filtered/sequences
+rnaconv/data/generated/family/maxlen250_filtered/alignments
+rnaconv/data/generated/family/maxlen250_filtered/neighbourhoods
+rnaconv/data/generated/family/maxlen250_filtered/frequencies
+rnaconv/data/generated/family/maxlen250_filtered/generate_o.txt
+rnaconv/data/generated/family/maxlen250_filtered/filter_o.txt
 rnaconv/data/generated/family/AT-*
