@@ -1,3 +1,4 @@
 #!/usr/bin/bash
 
-python ../copy.py ./ ../full RF00161 RF02051 RF02316 RF02359 RF02715
+# shellcheck disable=SC2046
+python ../copy.py ./ ../full $(python get_filenames.py) > copy_o.txt

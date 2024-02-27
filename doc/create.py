@@ -4,6 +4,8 @@ import pdfkit
 # sudo apt-get install wkhtmltopdf; sudo apt-get install python-dev-is-python3; pip install pdfkit
 
 directories = ['../../examples', '../../rnaconv', '../../rnadeep']
+excluded_files = ['lstm_models.html', 'metrics.html', 'mlforensics.html', 'sliding_window.html']
+
 html_files = []
 for directory in directories:
 	for filename in os.listdir(directory):
@@ -11,7 +13,8 @@ for directory in directories:
 			filepath = os.path.join(directory, filename)
 			os.system(f'pydoc -w {filepath}')
 			html_file = os.path.basename(filepath).replace('.py', '.html')
-			html_files.append(html_file)
+			if html_file not in excluded_files:
+				html_files.append(html_file)
 
 merged_html = ''
 for html_file in html_files:

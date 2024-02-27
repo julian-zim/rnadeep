@@ -1,5 +1,5 @@
 ## MODULES
-*rfam_converter.py*:<br>
+* *rfam_converter.py*:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Tool to convert the Rfam database into filetypes and formats that can be used by SISSI.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Usage: ./rfam_converter.py <seed_file_path> <tree_directory_path> <out_path>
 
@@ -30,17 +30,27 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tool to copy selected data points from a given rfam directory into a new location for creating sub data sets.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usage: ./copy.py <path_to_copy_to> <rfam_path_to_copy_from> <filenames_to_copy> \[<additional_filenames_to_copy> ...\]<br>
 
+
+## DATASETS
+There are three types of datasets:
+* real data (data/rfam/)
+* generated alignments (data/generated/alignment/)
+* generated families (data/generated/family/)
+<br>
+Each path contains a dummy folder with example scripts of how to create the types of datasets. Refer to them for more information.
+
+
 ## Typical Workflow
 ### Prepare the real data:
 * run data/rfam/full/convert.sh to convert the Rfam database into a state usable by SISSI
-* run data/rfam/full/filter.sh to do basic filtering to the converted database
+* run data/rfam/full/filter.sh to do basic filtering to the converted database (removing all alignments longer than 700nt)
 
-* Create subdatasets: Create a folder in which you run a script to copy specified files from the converted database, similar to the example in data/rfam/dummy/copy.sh. Alternatively, you can use a script to get filesnames to copy based on certain properties, similar to the examples in data/rfam/maxlen250/copy.sh.
-* Filter subdatasets: Run a script to do basic filtering the created subdataset, similar to the example in data/rfam/dummy/filter.sh. If the converted Rfam database was already filtered, this doesn't do anything.
+* Create subdatasets: Create a folder for your dataset and call the rfam/copy.py module to copy specified files from the converted Rfam database, similar to the example in data/rfam/dummy/copy.sh.
+* Filter subdatasets: Call the rfam_filter.py module to do basic filtering to your subdataset, similar to the example in data/rfam/dummy/filter.sh. If you already filtered the converted Rfam database, this doesn't do anything.
 
 ### Generate artificial data:
-* Create a folder in which you run a script to generate either more alignments baased on certain families or more families based on certain evolutionary trees, similar to the examples in data/rfam/generated/alignment/dummy/generate.sh and data/rfam/generated/families/dummy/generate.sh.
-* Filter your artificial data: Run a script to filter the generated data by throwing out data that deviates too much from the desired data, similar to the examples in data/rfam/generated/alignment/dummy/filter.sh and data/rfam/generated/families/dummy/filter.sh.
+* Call the data_generator.py module to either generate more alignments based on certain consensus structures and evolutionary trees, or to generate more families based on certain evolutionary trees, similar to the examples in data/generated/alignment/dummy/generate.sh and data/generated/family/dummy/generate.sh.
+* Call the data_filter.py module to filter the generated alignments by throwing out sequences which predicted secondary structure deviate too much from the desired consensus structure of its alignment, similar to the examples in data/generated/alignment/dummy/filter.sh and data/generated/family/dummy/filter.sh.
 
 ### Train on real or artificial data:
-* Use the alignment sampler to sample data from the artificial or real datasets, similar to the examples in examples/script/dummy-rfam.sh, examples/script/dummy-genali.sh and examples/script/dummy-genfam.sh as well as their corresponding slurm scripts in examples/slurm.
+* Use the ../rnadeep/sample_ali.py module to sample data from artificial or real datasets and ../examples/train_ali.py module to train a model on it, similar to the example scripts starting with "dummy-" in ../examples/script/ as well as their corresponding slurm scripts in ../examples/slurm/.

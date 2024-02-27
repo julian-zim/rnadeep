@@ -22,25 +22,33 @@ def main():
 	lengths.sort(key=lambda x: x[0])
 	seqcounts.sort(key=lambda x: x[0])
 
-	print(lengths[0])
-	print(lengths[-1])
+	print('minlength' + str(lengths[0]))
+	print('maxlength' + str(lengths[-1]))
 
-	print(seqcounts[0])
-	print(seqcounts[-1])
+	print('mincount' + str(seqcounts[0]))
+	print('maxcount' + str(seqcounts[-1]))
 
 	plt.boxplot([e[0] for e in lengths])
 	plt.violinplot([e[0] for e in lengths])
-	plt.savefig('lenplot')
+	plt.savefig('seqlenplot')
 	plt.clf()
 	plt.boxplot([e[0] for e in seqcounts])
 	plt.violinplot([e[0] for e in seqcounts])
-	plt.savefig('countplot')
+	plt.savefig('seqcountplot')
 	plt.clf()
+
+	# CUT
+	cutcounts = [e for e in seqcounts if e[0] <= 50]
+	plt.boxplot([e[0] for e in cutcounts])
+	plt.violinplot([e[0] for e in cutcounts])
+	plt.savefig('limited-seqcountplot')
+	plt.clf()
+	print(len(cutcounts))
 
 	cutlengths = [e for e in lengths if e[0] <= 300]
 	plt.boxplot([e[0] for e in cutlengths])
 	plt.violinplot([e[0] for e in cutlengths])
-	plt.savefig('len300plot')
+	plt.savefig('limited-seqlengthplot')
 	plt.clf()
 	print(len(cutlengths))
 

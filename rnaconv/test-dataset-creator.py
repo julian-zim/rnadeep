@@ -133,7 +133,13 @@ def create(alicount, seqlength, batch_sizes, epochs):
 
 
 def main():
-	return  # this tool is deprecated
+	"""
+	This module was originally used to dynamically create dummy datasets with alignments of a certain length, alignment
+	count, sequence counts and corresponding scripts defining diffreent batch sizes and epochs to monitor the RAM usage
+	based on the provided parameters. The module is outdated and therefore deprecated now.
+	"""
+	return
+
 	alicounts = [5]
 	seqlengths = [285, 290, 295, 300]  # [100, 200, 301, 401, 503, 604, 673]
 	batch_sizes = [4]  # [1, 2, 3, 4, 5]
