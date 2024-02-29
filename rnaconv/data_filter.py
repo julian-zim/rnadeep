@@ -149,7 +149,8 @@ def filter_data(ali_dirpath, seq_dirpath, neigh_dbn_dirpath, neigh_ct_dirpath, m
 
 		Parameters:
 			ali_dirpath (str): Path to the directory of the generated alignments.
-			seq_dirpath (str): Path to the directory of the generated or copied sequences.
+			seq_dirpath (str): Path to the directory of the generated or copied sequences (only used to delete the
+				sequences if necessary)
 			neigh_dbn_dirpath (str): Path to the directory of the generated or copied dbn files.
 			neigh_ct_dirpath (str): Path to the directory of the generated ct files.
 			max_dbrs_deviation (int, None, optional): maximum allowed base pair distance deviation from the consensus structure in
@@ -239,10 +240,10 @@ def main():
 			  '- data\n\t- alignments\n\t- neighbourhoods\n\t\t- ct\n\t\t- dbn\n\t- sequences')
 
 	print('========== FILTERING DATA ==========')
-	# obtain_and_compare_equilibrium_frequencies(ali_dirpath, neigh_dbn_dirpath,
-	# 										   '../../../rfam/full/seed_frequencies/single',
-	# 										   '../../../rfam/full/seed_frequencies/doublet',
-	# 										   os.path.join(data_path, 'frequencies'))
+	obtain_and_compare_equilibrium_frequencies(ali_dirpath, neigh_dbn_dirpath,
+											   '../../../rfam/full/seed_frequencies/single',
+											   '../../../rfam/full/seed_frequencies/doublet',
+											   os.path.join(data_dirpath, 'frequencies'))
 	filter_data(ali_dirpath, seq_dirpath, neigh_dbn_dirpath, neigh_ct_dirpath, max_dbrs_deviation)
 	print('Done.')
 

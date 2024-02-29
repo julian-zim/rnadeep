@@ -17,6 +17,7 @@
 * For a documentation document of the modules and functions refer to `doc/documentation.pdf`
 
 
+## Original Literature:
 # Caveats to deep learning approaches to RNA secondary structure prediction
 
 Christoph Flamm<sup>1</sup>, Julia Wielach<sup>1</sup>, Michael T. Wolfinger<sup>1,2</sup>, Stefan Badelt<sup>1</sup>,  Ronny Lorenz<sup>1</sup>, Ivo L. Hofacker<sup>1,2</sup>

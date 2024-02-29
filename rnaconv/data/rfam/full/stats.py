@@ -1,5 +1,13 @@
 import os
 from matplotlib import pyplot as plt
+from collections import Counter
+import numpy as np
+
+def most_common_number(numbers):
+    counts = Counter(numbers)
+    most_common = counts.most_common(1)
+    return most_common[0][0] if most_common else None
+
 
 
 def main():
@@ -24,9 +32,13 @@ def main():
 
 	print('minlength' + str(lengths[0]))
 	print('maxlength' + str(lengths[-1]))
+	print('most common: ' + str(most_common_number([e[0] for e in lengths])))
+	print('mean: ' + str(np.median(np.array([e[0] for e in lengths]))))
 
 	print('mincount' + str(seqcounts[0]))
 	print('maxcount' + str(seqcounts[-1]))
+	print('most common: ' + str(most_common_number([e[0] for e in seqcounts])))
+	print('mean: ' + str(np.median(np.array([e[0] for e in seqcounts]))))
 
 	plt.boxplot([e[0] for e in lengths])
 	plt.violinplot([e[0] for e in lengths])
@@ -43,14 +55,22 @@ def main():
 	plt.violinplot([e[0] for e in cutcounts])
 	plt.savefig('limited-seqcountplot')
 	plt.clf()
-	print(len(cutcounts))
+
+	print('mincount' + str(cutcounts[0]))
+	print('maxcount' + str(cutcounts[-1]))
+	print('most common: ' + str(most_common_number([e[0] for e in cutcounts])))
+	print('mean: ' + str(np.median(np.array([e[0] for e in cutcounts]))))
 
 	cutlengths = [e for e in lengths if e[0] <= 300]
 	plt.boxplot([e[0] for e in cutlengths])
 	plt.violinplot([e[0] for e in cutlengths])
 	plt.savefig('limited-seqlengthplot')
 	plt.clf()
-	print(len(cutlengths))
+
+	print('minlength' + str(cutlengths[0]))
+	print('maxlength' + str(cutlengths[-1]))
+	print('most common: ' + str(most_common_number([e[0] for e in cutlengths])))
+	print('mean: ' + str(np.median(np.array([e[0] for e in cutlengths]))))
 
 	"""
 	len85 = [e for e in lengths if abs(e[0] - 85) < 1]

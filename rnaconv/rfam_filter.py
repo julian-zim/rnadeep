@@ -69,7 +69,7 @@ def filter_rfam_data(ali_dirpath,
 
 def main():
 	if not 2 <= len(sys.argv) <= 3:
-		print('Usage: ./rfam_filter.py <rfam_directory_path> [max_length]')
+		print('Usage: ./rfam_filter.py <rfam_directory_path> [<max_length>]')
 		return -1
 
 	rfam_dirpath = sys.argv[1]

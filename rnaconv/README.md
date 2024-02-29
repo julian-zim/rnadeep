@@ -11,15 +11,15 @@
 &nbsp;&nbsp;&nbsp;&nbsp;Tool to generate n RNA families of a certain length or alignments based on a certain family using SISSI, for given single and doublet equilibrium frequencies and phylogenetic trees.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Arguments:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`--sissi-path`:        Path to compiled sissi099 file<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`--type`:              Type of data to generate: can be "alignments" "families"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`--type`:              Type of data to generate: can be "alignments" or "families"<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`--number`:            Number of data points to generate<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`--min-length`:        Minimum length of sequences and alignments to generate. Only used of type=families<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`--max-length`:        Maximum length of sequences and alignments to generate. Only used of type=families<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`[--min-length]`:        Minimum length of sequences and alignments to generate. Only required if type=families<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`[--max-length]`:        Maximum length of sequences and alignments to generate. Only required if type=families<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`--tree-path`:         Path to the tree files used for generation<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`--neigh-path`:        Path to the neighbourhood files used for generation. Only used if type=alignments<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`[--neigh-path]`:        Path to the neighbourhood files used for generation. Only required if type=alignments<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`--single-freq-path`:  Path to single equilibrium frequency files used for generation<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`--doublet-freq-path`: Path to doublet equilibrium frequency files used for generation<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`--ali-path`:          Path to the alignment files used to readd indels. Only used if type=alignments. Can be omitted if nothing should be readded<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`[--ali-path]`:          Path to the alignment files used to readd indels. Only used if type=alignments. Can be omitted if nothing should be readded<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`--out-path`:          Path to the directory in which to save the generated files<br>
 
 * *data_filter.py*:<br>
@@ -49,7 +49,7 @@ Each path contains a dummy folder with example scripts of how to create the type
 * Filter subdatasets: Call the `rfam_filter.py` module to do basic filtering to your subdataset, similar to the example in `data/rfam/dummy/filter.sh`. If you already applied filtered the converted Rfam database, this doesn't change anything.
 
 ### Generate artificial data:
-* Call the `data_generator.py` module to either generate more alignments based on certain consensus structures and evolutionary trees, or to generate more families based on certain evolutionary trees, similar to the examples in `data/generated/alignment/dummy/generate.sh` and `data/generated/family/dummy/generate.sh`.
+* Call the `data_generator.py` module with the path to a previously created subdataset (or the whole converted dataset) to either generate more alignments based on certain consensus structures and evolutionary trees, or to generate more families based on certain evolutionary trees, similar to the examples in `data/generated/alignment/dummy/generate.sh` and `data/generated/family/dummy/generate.sh`.
 * Call the `data_filter.py` module to filter the generated alignments by throwing out sequences which respective predicted secondary structure deviates too much from the desired consensus structure of its alignment, similar to the examples in `data/generated/alignment/dummy/filter.sh and data/generated/family/dummy/filter.sh`.
 
 ### Train on real or artificial data:

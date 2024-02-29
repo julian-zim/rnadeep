@@ -5,6 +5,7 @@ import numpy as np
 import textdistance
 import RNA
 from ete3 import TreeNode
+import time
 
 
 def rescale_newick_strings(tree_dirpath, ali_dirpath, outpath):
@@ -16,7 +17,8 @@ def rescale_newick_strings(tree_dirpath, ali_dirpath, outpath):
 
 		Parameters:
 			tree_dirpath (str): path to the directory containing the tree files in newick string format
-			ali_dirpath (str): path to the directory containing the alignment files in CLUSTAL format
+			ali_dirpath (str): path to the directory containing the alignment files in CLUSTAL format, therefore
+				requiring the Rfam alignments to be converted already.
 			outpath (str): path to the directory in which to save the rescaled trees in the newick string format.
 	"""
 
@@ -487,7 +489,10 @@ def convert_rfam_data(seed_filepath, tree_dirpath, outpath):
 	print('Fixing trees...')
 	fix_newick_strings(tree_dirpath, treefixed_outpath)
 	print('Rescaling trees...')
+	before = time.time()
 	rescale_newick_strings(treefixed_outpath, ali_outpath, os.path.join(outpath, 'seed_trees/rescaled'))
+	after = time.time()
+	print(after - before)
 
 
 def main():
